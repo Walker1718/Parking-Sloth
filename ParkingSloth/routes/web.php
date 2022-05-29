@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/test', function() {
     return view('test');
+=======
+Route::get('/admin', function () {
+    return view('layouts.admin');
+>>>>>>> 42b8e929de1ccae7521959b248ba4dcd4d18d9be
 });
