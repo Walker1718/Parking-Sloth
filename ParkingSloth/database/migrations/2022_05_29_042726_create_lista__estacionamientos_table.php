@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('lista__estacionamientos', function (Blueprint $table) {
             $table->id('ID_Lista');
-            $table->integer('ID_Estacionamiento');
+            $table->integer('ID_Estacionamiento')->references('ID_Estacionamiento')->on('Estacionamiento');
             $table->string('Nombre_Calle');
             $table->timestamps();
         });
