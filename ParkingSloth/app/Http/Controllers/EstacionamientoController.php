@@ -55,8 +55,8 @@ class EstacionamientoController extends Controller
         $estacionamiento->Capacidad_Utilizada = 0;
 
         $estacionamiento->save();
-
-        return 'Guardado!';
+        return redirect()->route('estacionamientos.index');
+        //return 'Guardado!';
     }
 
     /**
@@ -81,10 +81,10 @@ class EstacionamientoController extends Controller
         //return $id;
         //$estacionamientos = Estacionamiento::all();
         $estacionamiento = new Estacionamiento();
-        //$estacionamiento = $estacionamientos->find($id);
-        $estacionamiento = DB::table('Estacionamientos')
-                            ->where('ID_Estacionamiento','=',$id)
-                            ->get()->first();
+        $estacionamiento = Estacionamiento::find($id);
+        // $estacionamiento = DB::table('Estacionamientos')
+        //                     ->where('ID_Estacionamiento','=',$id)
+        //                     ->get()->first();
 
         return view('estacionamientos.edit', compact('estacionamiento'));
     }
@@ -125,8 +125,8 @@ class EstacionamientoController extends Controller
         //return $estacionamiento;
 
         $estacionamiento->save();
-
-        return 'Actualizado!';
+        return redirect()->route('estacionamientos.index');
+        //return 'Actualizado!';
     }
 
     /**
@@ -137,6 +137,10 @@ class EstacionamientoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estacionamiento = new Estacionamiento();
+        $estacionamiento = Estacionamiento::find($id);
+        //return $estacionamiento;
+        $estacionamiento->delete();
+        return redirect()->route('estacionamientos.index');
     }
 }

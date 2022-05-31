@@ -33,7 +33,12 @@
                             
                             <td>
                                 <a class="btn btn-primary" href="../estacionamientos/{{$estacionamiento->ID_Estacionamiento}}/edit">U</a>
-                                <a class="btn btn-danger" href="">D</a>
+                                <form class="form-group" method="POST" action="../estacionamientos/{{$estacionamiento->ID_Estacionamiento}}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">D</button>
+                                </form>
+                                {{-- <a class="btn btn-danger" href="../estacionamientos/{{$estacionamiento->ID_Estacionamiento}}">D</a> --}}
 
                             </td>
                             
