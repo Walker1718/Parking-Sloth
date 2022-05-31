@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function() {
+    return view('test');
+});
 Route::get('/admin', function () {
     return view('layouts.admin');
 });
@@ -30,3 +33,6 @@ Route::get('/admin', function () {
 Route::resource('estacionamientos', EstacionamientoController::class);
 
 //Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
+Route::get('/reportes', function () {
+    return view('reportes.reportes');
+});
