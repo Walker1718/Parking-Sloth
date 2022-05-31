@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -20,4 +21,22 @@ class UsuarioController extends Controller
             'usuarios' => $usuarios
         ]);
     }
+
+    public function login(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email',
+            'pass' => 'required',
+        ]);
+
+        $usuario = Usuario::where('Email', $request->email)->first();
+        if(!$usuario){
+            return null;
+        }
+        $compare = Hash::check($request->pass, $usuario->Contraseña);
+        if(!$compare){
+            return null;
+        }
+        return $usuario;
+    }
+
 }

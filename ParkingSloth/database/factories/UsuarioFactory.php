@@ -30,11 +30,11 @@ class UsuarioFactory extends Factory
         $digitoVerificador = $this->generarDV($num);
         $rut = number_format($num, 0,",",".").'-'.$digitoVerificador;
         return [
-            'Nombre' => $this->faker->name(),
+            'Nombre' => $this->faker->firstName(),
             'Apellido'=> $this->faker->lastName(),
             'Rut' => $rut,
             'Email' => $this->faker->unique()->safeEmail(),
-            'Contraseña' => Hash::make('123456'),
+            'Contraseña' => bcrypt('123456'),
             'ID_Rol' => $this->faker->numberBetween(1,2),
             'created_at' => $this->faker->date('Y-m-d H:i:s')
         ];
