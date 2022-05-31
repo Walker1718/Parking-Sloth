@@ -14,6 +14,7 @@ class EstacionamientoController extends Controller
     public function index()
     {
         //
+        return 'EO';
     }
 
     /**
@@ -24,6 +25,7 @@ class EstacionamientoController extends Controller
     public function create()
     {
         //
+        return view('estacionamientos.create');
     }
 
     /**

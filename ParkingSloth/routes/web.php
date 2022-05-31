@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EstacionamientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,12 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('layouts.admin');
 });
+
+
+// Route::get('/estacionamientos', function() {
+//     return view('estacionamientos.create');
+// });
+
+Route::resource('estacionamientos', EstacionamientoController::class);
+
+//Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
