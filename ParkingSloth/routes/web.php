@@ -23,3 +23,7 @@ Route::get('/test', function() {
 Route::get('/admin', function () {
     return view('layouts.admin');
 });
+
+Route::get('/reportes', function () {
+    return view('reportes.reportes');
+});
