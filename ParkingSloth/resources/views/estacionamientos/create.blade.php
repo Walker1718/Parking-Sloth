@@ -1,23 +1,37 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 
 
 @section('content')
     
     <div class="container-fluid">
         <div class="container">
-            <h1>Test estacionamientos</h1>
+            <h1>Crear estacionamiento</h1>
             
             <form class="form-group" method="POST" action="/estacionamientos">
+                @csrf
 
-                {{-- NOMBRE --}}
+                {{-- NUMERO --}}
                 <div class="form-group">
-                    <label>Nombre:</label>
-                    <input type="text" class="form-control" name='nombre'>
+                    <label>Número:</label>
+                    <input type="number" class="form-control" name='numero'>
                 </div>
-                {{-- CANTIDAD --}}
+
+                {{-- ACTIVO --}}
                 <div class="form-group">
-                    <label>Cantidad:</label>
-                    <input type="number" class="form-control" name='cantidad'>
+                    <label>Activo:</label>
+                    <input type="checkbox" class="form-control" name='activo'>
+                </div>
+                
+                {{-- CAPACIDAD TOTAL --}}
+                <div class="form-group">
+                    <label>Capacidad:</label>
+                    <input type="number" class="form-control" name='capacidad_total'>
+                </div>
+
+                {{-- REFERENCIA --}}
+                <div class="form-group">
+                    <label>Referencia:</label>
+                    <input type="text" class="form-control" name='referencia'>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar</button>

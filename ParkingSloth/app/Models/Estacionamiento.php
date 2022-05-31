@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estacionamiento extends Model
 {
-    use HasFactory;
+    protected $fillable = ['Numero','Activo','Capacidad_Total','Capacidad_Utilizada','Referencia'];
+
+    protected $primaryKey = 'ID_Estacionamiento';
+    //use HasFactory;
 }

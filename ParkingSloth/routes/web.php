@@ -36,3 +36,8 @@ Route::resource('estacionamientos', EstacionamientoController::class);
 Route::get('/reportes', function () {
     return view('reportes.reportes');
 });
+
+Route::get('/master', function () {
+    return view('layouts.master');
+});
+
