@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,9 @@ Route::get('/', function () {
 Route::get('/test', function() {
     return view('test');
 });
+
+Route::get('/usuarios', [UsuarioController::class, 'vistaUsuarios']);
+
 Route::get('/admin', function () {
     return view('layouts.admin');
 });
