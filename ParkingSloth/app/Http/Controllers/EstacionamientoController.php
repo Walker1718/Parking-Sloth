@@ -146,12 +146,11 @@ class EstacionamientoController extends Controller
 
     // update Estacionamiento
   public function updateEstacionamiento(Request $request){
-    $name = $request->input('name');
+    $Cantidad = $request->input('Cantidad');
 
     $Estacionamiento = Estacionamiento::find(2); //CAMBIAR AQUI SEGUN USUARIO 
-    $Estacionamiento->Capacidad_Utilizada = $name;
+    $Estacionamiento->Capacidad_Utilizada = $Cantidad;
     $Estacionamiento->save();
-    dd("good");
     exit; 
   }
 
