@@ -27,3 +27,7 @@ Route::get('/admin', function () {
 Route::get('/reportes', function () {
     return view('reportes.reportes');
 });
+
+Route::get('/ActualizarEstacionamientos', function() {
+    return view('ActualizarEstacionamientos.Main');
+});
