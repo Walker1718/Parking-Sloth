@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EstacionamientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,13 @@ Route::get('/admin', function () {
     return view('layouts.admin');
 });
 
+
+//     return view('estacionamientos.create');
+// });
+
+Route::resource('estacionamientos', EstacionamientoController::class);
+
+//Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
 Route::get('/reportes', function () {
     return view('reportes.reportes');
 });
@@ -31,3 +39,7 @@ Route::get('/reportes', function () {
 Route::get('/ActualizarEstacionamientos', function() {
     return view('ActualizarEstacionamientos.Main');
 });
+Route::get('/master', function () {
+    return view('layouts.master');
+});
+
