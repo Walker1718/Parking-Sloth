@@ -2,12 +2,9 @@
 <script>
     
     async function login(){
-
         const email = document.getElementById('email').value;
         const pass = document.getElementById('pass').value;
-        console.log(email, pass);
         const url = "{{ url('/api/login') }}";
-        console.log(url);
         const data = {
             email,
             pass
@@ -17,15 +14,11 @@
         if(!usuario){
             alert('Credenciales invalidas');
         }else{
-            console.log(usuario)
             localStorage.setItem("usuario", JSON.stringify(usuario));
             const adminUrl = "{{ url('admin') }}"
             window.location.replace(adminUrl);
-            //redirect al admin
         }
-
     }
-        
     
 </script>
 

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/test', function() {
@@ -25,7 +25,7 @@ Route::get('/test', function() {
 Route::get('/usuarios', [UsuarioController::class, 'vistaUsuarios']);
 
 Route::get('/admin', function () {
-    return view('layouts.admin');
+    return view('layouts.master');
 });
 
 Route::get('/reportes', function () {

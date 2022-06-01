@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 
 @section('content')
     <table class="table table-bordered table-responsive-lg">
