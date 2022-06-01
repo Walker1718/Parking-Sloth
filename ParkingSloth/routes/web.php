@@ -31,3 +31,7 @@ Route::get('/admin', function () {
 Route::get('/reportes', function () {
     return view('reportes.reportes');
 });
+
+Route::get('/navegarmapa', function(){
+    return view('navegarmapa.navegarmapa');
+});
