@@ -20,6 +20,17 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <style>
+       .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+        }
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -167,15 +178,14 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                 
                 @yield('content')
 
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="footer">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="text-center my-auto">
                         <span>Copyright &copy; Parking Sloth 2022</span>
                     </div>
                 </div>
