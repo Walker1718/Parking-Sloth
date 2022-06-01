@@ -22,7 +22,7 @@
 						
 					</div>
 						<h2 class="info-card_label">Calle</h2>
-						<div class="info-card_message">.sdasdasd</div>
+						<div class="info-card_message">{{$Estacionamiento->Numero}}</div>
 					</div>
 				</div>
 				<div class="col-sm-6 ">
@@ -33,7 +33,7 @@
 
 						</div>
 						<h2 class="info-card_label">Total Estacionamiento</h2>
-						<div class="info-card_message">asdasd</div>
+						<div class="info-card_message">{{$Estacionamiento->Capacidad_Total}}</div>
 					</div>
 				</div>
 			</div>
@@ -42,15 +42,15 @@
 
 <div class="" style="text-align: center">
 <h1 >Actualizar</h5>
-<h6 >"Cantidad Actual de estacionamiento"</h6>
-
+<h6 >"Cantidad Actual de autos estacionados"</h6>
 </div>
+
 
 <div class="center">
 	<div class="containerR">
 		<button id="decrement" onclick="stepper(this)" class = "buttoninde">-</button>
 		<!-- You can change these values below-->
-		<input type="number" id="my-input" min="-0" max="100" value="0" step="1" readonly>
+		<input type="number" id="my-input" min="-0" max="{{$Estacionamiento->Capacidad_Total}}" value="{{$Estacionamiento->Capacidad_Utilizada}}" step="1" readonly>
 		<button id="increment" onclick="stepper(this)" class = "buttoninde">+</button>
 	</div>
 </div>
@@ -102,8 +102,67 @@ function stepper(btn) {
 </script>
 
 
-<style type="text/css">
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+$('#decrement').on('click', function() {
+var name = $('#my-input').val();
+if(name!=""){
+    $.ajax({
+      url: 'updateEstacionamiento',
+      type: 'post',
+	  data: {
+        "_token": "{{ csrf_token() }}",
+        "id": 1,
+		"name": name
+        },
+      success: function(response){
+        alert(response);
+      }
+    });
+
+	}
+	else{
+		alert('Please fill all the field !');
+	}
+});
+});
+
+$(document).ready(function() {
+$('#increment').on('click', function() {
+var name = $('#my-input').val();
+if(name!=""){
+    $.ajax({
+      url: 'updateEstacionamiento',
+      type: 'post',
+	  data: {
+        "_token": "{{ csrf_token() }}",
+        "id": 1,
+		"name": name
+        },
+      success: function(response){
+        alert(response);
+      }
+    });
+
+	}
+	else{
+		alert('Please fill all the field !');
+	}
+});
+});
+
+</script>
+
+
+
+
+<style type="text/css">
+	
+/*ccs de +number-*/ 
 .center{
     display: flex;
   justify-content: center;
@@ -147,10 +206,7 @@ input::-webkit-inner-spin-button {
 }
 
 
-
-
-
-
+/*ccs de cartas*/ 
 .main-content {
 	padding-top: 100px;
 	padding-bottom: 100px;
@@ -210,9 +266,6 @@ input::-webkit-inner-spin-button {
 .info-card--warning .info-card_icon i {
 	color: #ff9800;
 }
-
-
-
 </style>
 
 @endsection

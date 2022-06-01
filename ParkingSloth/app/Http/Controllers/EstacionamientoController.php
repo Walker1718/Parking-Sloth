@@ -143,4 +143,24 @@ class EstacionamientoController extends Controller
         $estacionamiento->delete();
         return redirect()->route('estacionamientos.index');
     }
+
+    // update Estacionamiento
+  public function updateEstacionamiento(Request $request){
+    $name = $request->input('name');
+
+    $Estacionamiento = Estacionamiento::find(2); //CAMBIAR AQUI SEGUN USUARIO 
+    $Estacionamiento->Capacidad_Utilizada = $name;
+    $Estacionamiento->save();
+    dd("good");
+    exit; 
+  }
+
+
+  public function index2()
+  {
+    $Estacionamiento = Estacionamiento::find(2);
+
+      return view('ActualizarEstacionamientos.Main', compact('Estacionamiento'));
+  }
+
 }

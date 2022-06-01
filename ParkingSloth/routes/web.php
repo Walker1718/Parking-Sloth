@@ -31,14 +31,16 @@ Route::get('/admin', function () {
 
 Route::resource('estacionamientos', EstacionamientoController::class);
 
+
+Route::post('/updateEstacionamiento', 'App\Http\Controllers\EstacionamientoController@updateEstacionamiento');
+Route::get('/ActualizarEstacionamientos', 'App\Http\Controllers\EstacionamientoController@index2');
+
 //Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
 Route::get('/reportes', function () {
     return view('reportes.reportes');
 });
 
-Route::get('/ActualizarEstacionamientos', function() {
-    return view('ActualizarEstacionamientos.Main');
-});
+
 Route::get('/master', function () {
     return view('layouts.master');
 });
