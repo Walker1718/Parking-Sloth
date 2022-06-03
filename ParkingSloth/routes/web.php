@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EstacionamientoController;
 
@@ -15,14 +16,17 @@ use App\Http\Controllers\EstacionamientoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/test', function() {
     return view('test');
 });
+
+Route::get('/usuarios', [UsuarioController::class, 'vistaUsuarios']);
+
 Route::get('/admin', function () {
-    return view('layouts.admin');
+    return view('layouts.master');
 });
 
 
@@ -45,3 +49,6 @@ Route::get('/master', function () {
     return view('layouts.master');
 });
 
+Route::get('/navegarmapa', function(){
+    return view('navegarmapa.navegarmapa');
+});

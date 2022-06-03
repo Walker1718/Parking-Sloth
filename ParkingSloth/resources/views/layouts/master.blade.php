@@ -20,6 +20,17 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <style>
+       .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+        }
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -31,7 +42,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/admin')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -41,11 +52,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                <a class="nav-link" href="{{ url('/usuarios/') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -151,11 +162,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Noot Noot</span>
-                            
-                                <div>
-                                <img width="55px" height="40px" src="https://i.ytimg.com/vi/9di_CmiwhVw/maxresdefault.jpg">
-                                </div>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id='username'>Usuario</span>
+                                <i class="fas fa-user-circle" style="font-size: 36px; color:black"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -166,7 +174,7 @@
                                 </a>
                                
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" onclick="logout()">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Salir
                                 </a>
@@ -179,15 +187,14 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                 
                 @yield('content')
 
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="footer">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="text-center my-auto">
                         <span>Copyright &copy; Parking Sloth 2022</span>
                     </div>
                 </div>
@@ -231,6 +238,24 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+
+    <script>
+        const usuarioJson = localStorage.getItem("usuario");
+        if(usuarioJson){
+            const usuario = JSON.parse(usuarioJson);
+            const span = document.getElementById('username');
+            span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
+        }else{
+            //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
+            //logout();
+        }
+
+        function logout(){
+            localStorage.removeItem('usuario');
+            const loginUrl = "{{ url('/') }}"
+            window.location.replace(loginUrl);
+        }
+    </script>
 
 </body>
 

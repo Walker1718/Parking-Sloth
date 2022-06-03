@@ -9,6 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
 
+    protected $id = 'ID_Rol';
     protected $table = 'Usuario';
 
     protected $fillable = [
@@ -19,9 +20,9 @@ class Usuario extends Model
         'Contraseña',
     ];
 
-    public function rol()
+    public function Rol()
     {
-        return $this->hasOne('Rol');
+        return $this->belongsTo(Rol::class,'ID_Rol','ID_Rol');
     }
 
 }

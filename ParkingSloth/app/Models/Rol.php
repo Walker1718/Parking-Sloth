@@ -9,6 +9,7 @@ class Rol extends Model
 {
     use HasFactory;
 
+    protected $id = 'ID_Rol';
     protected $table = 'Rol';
 
     protected $fillable = [
@@ -16,4 +17,7 @@ class Rol extends Model
         'Descripcion',
     ];
 
+    public function usuarios(){
+        return $this->hasMany(Usuario::class,'ID_Rol','ID_Rol');
+    }
 }
