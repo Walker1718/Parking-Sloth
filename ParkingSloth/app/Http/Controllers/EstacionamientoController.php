@@ -169,7 +169,6 @@ class EstacionamientoController extends Controller
                 'estacionamientos.Capacidad_Total',
                 'estacionamientos.Capacidad_Utilizada',
                 'lista_estacionamientos.Nombre_Calle',
-                'Usuario.ID_Usuario',
                 'Usuario.Nombre',
                 'Usuario.Apellido')
     ->where("Usuario.ID_Usuario",1)  //aqui falta parte de usuario actual nada mas
