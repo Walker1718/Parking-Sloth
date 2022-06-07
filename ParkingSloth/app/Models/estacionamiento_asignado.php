@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lista_Estacionamiento extends Model
+class estacionamiento_asignado extends Model
 {
-    protected $primaryKey = 'ID_Lista';
+    use HasFactory;
 }

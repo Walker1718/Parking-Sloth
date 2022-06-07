@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolSeeder::class,
             UsuarioSeeder::class,
+            lista_estacionamiento::class,
+            estacionamiento::class,
+            estacionamiento_asignados::class,
         ]);
     }
 }

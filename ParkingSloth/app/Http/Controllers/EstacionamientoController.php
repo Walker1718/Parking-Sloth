@@ -147,8 +147,11 @@ class EstacionamientoController extends Controller
     // update Estacionamiento
   public function updateEstacionamiento(Request $request){
     $Cantidad = $request->input('Cantidad');
+    $id = $request->input('id');
 
-    $Estacionamiento = Estacionamiento::find(2); //CAMBIAR AQUI SEGUN USUARIO 
+
+    /*"ID_Usuario" "ID_Estacionamiento" */
+    $Estacionamiento = Estacionamiento::find($id); //CAMBIAR AQUI SEGUN USUARIO 
     $Estacionamiento->Capacidad_Utilizada = $Cantidad;
     $Estacionamiento->save();
     exit; 
@@ -157,7 +160,20 @@ class EstacionamientoController extends Controller
 
   public function index2()
   {
-    $Estacionamiento = Estacionamiento::find(2);
+    $Estacionamiento = DB::table('estacionamientos') 
+    ->join('lista_estacionamientos','estacionamientos.ID_Lista','=','lista_estacionamientos.ID_Lista')
+    ->join("estacionamiento_asignados","estacionamientos.ID_Estacionamiento","=","estacionamiento_asignados.ID_Estacionamiento")
+    ->join("Usuario","estacionamiento_asignados.ID_Usuario","=","Usuario.ID_Usuario")
+    ->select(   'estacionamientos.ID_Estacionamiento',
+                'estacionamientos.Numero',
+                'estacionamientos.Capacidad_Total',
+                'estacionamientos.Capacidad_Utilizada',
+                'lista_estacionamientos.Nombre_Calle',
+                'Usuario.ID_Usuario',
+                'Usuario.Nombre',
+                'Usuario.Apellido')
+    ->where("Usuario.ID_Usuario",1)  //aqui falta parte de usuario actual nada mas
+    ->first();
 
       return view('ActualizarEstacionamientos.Main', compact('Estacionamiento'));
   }

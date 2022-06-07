@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lista__estacionamientos', function (Blueprint $table) {
+        Schema::create('lista_estacionamientos', function (Blueprint $table) {
             $table->id('ID_Lista');
-            $table->integer('ID_Estacionamiento')->references('ID_Estacionamiento')->on('Estacionamiento');
             $table->string('Nombre_Calle');
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lista__estacionamientos');
+        Schema::dropIfExists('lista_estacionamientos');
     }
 };

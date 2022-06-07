@@ -20,7 +20,7 @@
 						</div>
 							<h2>Calle</h2>
 						<div>
-							<h4 style ="font-weight: 900">{{$Estacionamiento->Numero}}</h4>
+							<h4 style ="font-weight: 900">{{$Estacionamiento->Nombre_Calle}} {{$Estacionamiento->Numero}}</h4>
 						</div>
 					</div>
 				</div>
@@ -118,7 +118,7 @@ $(document).ready(function() {
       			type: 'post', // por metodo post
 	  			data: { // lo que mandare
         			"_token": "{{ csrf_token() }}", // un token
-        			"id": 1, //un id de la calle-
+        			"id": {{$Estacionamiento->ID_Estacionamiento}}, //un id de la calle-
 					"Cantidad": Cantidad // y la cantidad total de estacionamientos que se modifico
         		},
       			success: function(response){ // si se realizo mandar mensaje
@@ -141,7 +141,7 @@ $(document).ready(function() { // lo mismo a lo ed arriba
       			type: 'post',
 	  			data: {
         			"_token": "{{ csrf_token() }}",
-        			"id": 1,
+        			"id": {{$Estacionamiento->ID_Estacionamiento}},
 					"Cantidad": Cantidad
         		},
       			success: function(response){

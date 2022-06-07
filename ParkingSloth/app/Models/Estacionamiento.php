@@ -11,4 +11,11 @@ class Estacionamiento extends Model
 
     protected $primaryKey = 'ID_Estacionamiento';
     //use HasFactory;
+
+    public function Estacionamiento_asignado()
+    {
+    return $this->belongsToMany(estacionamientos::class, 'estacionamiento_asignados');
+    }
 }
+
+

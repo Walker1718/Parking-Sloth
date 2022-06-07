@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('estacionamientos', function (Blueprint $table) {
             $table->id('ID_Estacionamiento')->autoIncrement();
+            $table->integer('ID_Lista')->references('ID_Lista')->on('lista_estacionamientos');
             $table->integer('Numero');
             $table->boolean('Activo');
             $table->integer('Capacidad_Total');

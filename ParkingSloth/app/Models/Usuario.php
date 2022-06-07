@@ -25,4 +25,8 @@ class Usuario extends Model
         return $this->belongsTo(Rol::class,'ID_Rol','ID_Rol');
     }
 
+    public function Estacionamiento_asignado()
+    {
+        return $this->belongsToMany(Usuario::class, 'estacionamiento_asignados');
+    }
 }
