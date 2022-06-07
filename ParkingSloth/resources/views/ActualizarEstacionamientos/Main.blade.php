@@ -4,6 +4,7 @@
 
 <div class="" style="text-align: center;margin-top:5%">
 	<h1 class="text-center text-uppercase">Actualizacion Estacionamiento</h1> 
+	<h6 class="text-center text-uppercase">{{$Estacionamiento->Nombre}} {{$Estacionamiento->Apellido}}</h6> 
 </div>
 
 <div class="" style="text-align: center">
