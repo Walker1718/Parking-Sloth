@@ -23,6 +23,8 @@ Route::get('/test', function() {
 });
 
 Route::get('/usuarios', [UsuarioController::class, 'vistaUsuarios']);
+Route::get('/usuarios/crear', [UsuarioController::class, 'vistaCrearUsuarios']);
+Route::get('/usuarios/{id}/editar', [UsuarioController::class, 'vistaEditarUsuarios']);
 
 Route::get('/admin', function () {
     return view('layouts.master');

@@ -17,6 +17,7 @@ class Usuario extends Model
         'Apellido',
         'Rut',
         'Email',
+        'ID_Rol',
         'Contraseña',
     ];
 

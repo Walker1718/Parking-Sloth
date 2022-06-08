@@ -179,7 +179,9 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @yield('content')
+                <div style="margin-inline: 20px">
+                    @yield('content')
+                </div>
 
             <!-- End of Main Content -->
 
@@ -223,10 +225,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
