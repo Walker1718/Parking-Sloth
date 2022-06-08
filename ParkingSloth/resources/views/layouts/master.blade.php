@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <style>
        .footer {
@@ -229,6 +230,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <script>
         const usuarioJson = localStorage.getItem("usuario");

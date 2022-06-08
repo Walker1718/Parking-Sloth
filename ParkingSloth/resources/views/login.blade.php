@@ -1,6 +1,5 @@
 
 <script>
-    
     async function login(){
         const email = document.getElementById('email').value;
         const pass = document.getElementById('pass').value;
@@ -12,7 +11,7 @@
         const res = await axios.post(url, data);
         const usuario = res.data;
         if(!usuario){
-            alert('Credenciales invalidas');
+            new AWN().alert('Credenciales invalidas');
         }else{
             localStorage.setItem("usuario", JSON.stringify(usuario));
             const adminUrl = "{{ url('admin') }}"
@@ -22,6 +21,9 @@
     
 </script>
 
+<head>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+</head>
 <div>
     <form>
         <input type="email" name="email" id="email"><br>
