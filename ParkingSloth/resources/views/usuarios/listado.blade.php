@@ -17,6 +17,7 @@
                     <th>Correo</th>
                     <th>Rol</th>
                     <th>Fecha de creación</th>
+                    <th>Fecha de actualización</th>
                     <th>Acciones</th>
                 </tr>
                 @foreach ($usuarios as $usuario)
@@ -28,6 +29,7 @@
                         <td>{{ $usuario->Email }}</td>
                         <td>{{ $usuario->Rol->Nombre }}</td>
                         <td>{{ $usuario->created_at }}</td>
+                        <td>{{ $usuario->updated_at }}</td>
                         <td>
                             <form action="" method="POST">
     

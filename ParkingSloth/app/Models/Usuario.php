@@ -9,7 +9,8 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    protected $id = 'ID_Rol';
+    protected $id = 'ID_Usuario';
+    protected $primaryKey = 'ID_Usuario';
     protected $table = 'Usuario';
 
     protected $fillable = [

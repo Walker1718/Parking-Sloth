@@ -6,6 +6,7 @@ use App\Models\Rol;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
@@ -39,6 +40,22 @@ class UsuarioController extends Controller
      * @return \Models\Usuario
      */
     public function guardarUsuarios(Request $request){
+        
+        $validator = Validator::make($request->all(),([
+            'Nombre' => 'required',
+            'Apellido' => 'required',
+            'Rut' => 'required',
+            'Email' => 'required|email',
+            'ID_Rol' => 'required|min:1|max:2',
+            'Contraseña' => 'required|min:4'
+        ]));
+
+        if ($validator->fails()) {
+            return redirect('/usuarios/crear')
+                ->withErrors($validator)
+                ->withInput();
+        }
+ 
         $pass = bcrypt($request->input('rut'));
         $data = [
             'Nombre' => $request->input('nombre'),
@@ -49,7 +66,7 @@ class UsuarioController extends Controller
             'Contraseña' => $pass,
         ];
         Usuario::create($data);
-        return $this->vistaUsuarios();
+        return redirect('/usuarios');
     }
 
 
@@ -59,13 +76,15 @@ class UsuarioController extends Controller
      */
     public function vistaEditarUsuarios($id)
     {
+        $roles = Rol::all();
         $usuario = Usuario::where('ID_Usuario', $id)
             ->first();
         if(!$usuario){
             abort(404);
         }
         return view('usuarios.editar', [
-            'usuario' => $usuario
+            'usuario' => $usuario,
+            'roles' => $roles
         ]);
     }
 
@@ -73,8 +92,20 @@ class UsuarioController extends Controller
      * Actualiza los datos del usuario en la base de datos
      * @return \Models\Usuario
      */
-    public function actualizarUsuarios(Request $req){
+    public function actualizarUsuarios($id, Request $request){
+        $usuario = Usuario::where('ID_Usuario', $id)
+            ->first();
+ 
+        $rol = $request->input('rol');
 
+        $usuario->Nombre = $request->input('nombre') ?? $usuario->Nombre;
+        $usuario->Apellido = $request->input('apellido') ?? $usuario->Apellido;
+        $usuario->Rut = $request->input('rut') ?? $usuario->Rut;
+        $usuario->Email = $request->input('email') ?? $usuario->Email;
+        $usuario->ID_Rol = $rol == 0 ? $usuario->ID_Rol : $rol;
+        $usuario->save();
+
+        return redirect('/usuarios');
     }
 
     public function login(Request $request){
