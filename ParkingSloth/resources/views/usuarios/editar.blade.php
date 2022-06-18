@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <form action="{{url('/api/usuarios/'.$usuario->ID_Usuario.'/actualizar' )}}" method="POST">
+    <form action="{{url('usuarios/'.$usuario->ID_Usuario.'/actualizarDatos' )}}" method="POST">
         @method('PATCH')
         @csrf
 
@@ -15,7 +15,16 @@
         </div>
         <div class="form-group">
             <label for="rut" class="form-label">Rut</label>
-            <input type="text" class="form-control" name="rut" id="rut"  value="{{$usuario->Rut}}">
+            <input 
+                type="text" 
+                class="form-control @error('rut') is-invalid @enderror"
+                name="rut"
+                id="rut"
+                value="{{ $usuario->Rut }}"
+            >
+            @error('rut')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="email" class="form-label">Correo electronico</label>

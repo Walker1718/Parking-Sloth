@@ -1,18 +1,18 @@
 @extends('layouts.master')
 
 @section('content')
-    <form action="{{url('/api/usuarios/guardar')}}" method="POST">
+    <form action="{{url('/usuarios/guardarDatos')}}" method="POST">
         @csrf
         <div class="form-group">
             <label for="nombre" class="form-label">Nombre</label>
             <input 
                 type="text"
-                class="form-control" 
+                class="form-control @error('nombre') is-invalid @enderror" 
                 name="nombre" 
                 id="nombre"
-                class="@error('Nombre') is-invalid @enderror"
+                value="{{ old('nombre') }}"
             >
-            @error('Nombre')
+            @error('nombre')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -20,12 +20,12 @@
             <label for="apellido" class="form-label">Apellido</label>
             <input 
                 type="text"
-                class="form-control"
+                class="form-control @error('apellido') is-invalid @enderror"
                 name="apellido"
                 id="apellido"
-                class="@error('Apellido') is-invalid @enderror"
+                value="{{ old('apellido') }}"
             >
-            @error('Apellido')
+            @error('apellido')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -33,12 +33,12 @@
             <label for="rut" class="form-label">Rut</label>
             <input 
                 type="text" 
-                class="form-control"
+                class="form-control @error('rut') is-invalid @enderror"
                 name="rut"
                 id="rut"
-                class="@error('Rut') is-invalid @enderror"
+                value="{{ old('rut') }}"
             >
-            @error('Rut')
+            @error('rut')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -46,30 +46,31 @@
             <label for="email" class="form-label">Correo electronico</label>
             <input 
                 type="email"
-                class="form-control"
+                class="form-control @error('email') is-invalid @enderror"
                 name="email"
                 id="email"
-                class="@error('Email') is-invalid @enderror"
+                value="{{ old('email') }}"
             >
-            @error('Email')
+            @error('email')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
             <label for="rol" class="form-label">Rol</label>
             <select 
-                class="form-select" 
+                class="form-select @error('rol') is-invalid @enderror" 
                 name="rol" 
                 id="rol" 
                 aria-label="Default select example"
-                class="@error('Rol') is-invalid @enderror"
             >
                 <option value="0">Seleccione un rol disponible</option>
                 @foreach ($roles as $rol)
-                    <option value="{{$rol->ID_Rol}}">{{$rol->Nombre}}</option>
+                    <option 
+                        value="{{$rol->ID_Rol}}">{{$rol->Nombre}}
+                    </option>
                 @endforeach
             </select>
-            @error('Rol')
+            @error('rol')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

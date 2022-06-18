@@ -1,5 +1,11 @@
 
 <script>
+    const usuarioJson = localStorage.getItem("usuario")
+    if(usuarioJson){
+        const adminUrl = "{{ url('admin') }}"
+        window.location.replace(adminUrl);
+    }
+
     async function login(){
         const email = document.getElementById('email').value;
         const pass = document.getElementById('pass').value;
