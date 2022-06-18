@@ -31,18 +31,9 @@
                         <td>{{ $usuario->created_at }}</td>
                         <td>{{ $usuario->updated_at }}</td>
                         <td>
-                            <form action="" method="POST">
-    
-                                <a href="{{url('/usuarios/'.$usuario->ID_Usuario.'/editar')}}">
-                                    <i class="fas fa-edit  fa-lg"></i>
-                                </a>
-    
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                                    <i class="fas fa-trash fa-lg text-danger"></i>
-                                </button>
-                            </form>
+                            <a href="{{url('/usuarios/'.$usuario->ID_Usuario.'/editar')}}">
+                                <i class="fas fa-edit  fa-lg"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

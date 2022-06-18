@@ -229,7 +229,9 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
-
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script>
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
