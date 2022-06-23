@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Estacionamiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class EstacionamientoController extends Controller
 {
@@ -150,16 +151,18 @@ class EstacionamientoController extends Controller
     $id = $request->input('id');
 
 
-    /*"ID_Usuario" "ID_Estacionamiento" */
-    $Estacionamiento = Estacionamiento::find($id); //CAMBIAR AQUI SEGUN USUARIO 
+    /*"ID_Estacionamiento"*/
+    $Estacionamiento = Estacionamiento::find($id); 
     $Estacionamiento->Capacidad_Utilizada = $Cantidad;
     $Estacionamiento->save();
     exit; 
   }
 
 
-  public function index2()
+  public function index2($ID_Usuario)
   {
+    $Fecha = Carbon::now()->toDateString();
+
     $Estacionamiento = DB::table('estacionamientos') 
     ->join('lista_estacionamientos','estacionamientos.ID_Lista','=','lista_estacionamientos.ID_Lista')
     ->join("estacionamiento_asignados","estacionamientos.ID_Estacionamiento","=","estacionamiento_asignados.ID_Estacionamiento")
@@ -171,10 +174,15 @@ class EstacionamientoController extends Controller
                 'lista_estacionamientos.Nombre_Calle',
                 'Usuario.Nombre',
                 'Usuario.Apellido')
-    ->where("Usuario.ID_Usuario",1)  //aqui falta parte de usuario actual nada mas
+    ->where("Usuario.ID_Usuario",$ID_Usuario) 
+    ->where("estacionamiento_asignados.Horario",$Fecha)
     ->first();
 
-      return view('ActualizarEstacionamientos.Main', compact('Estacionamiento'));
-  }
+    if($Estacionamiento){
+        return view('ActualizarEstacionamientos.Main', compact('Estacionamiento'));
+    }
+    return view('ActualizarEstacionamientos.Notempty');
+    
+      }
 
 }

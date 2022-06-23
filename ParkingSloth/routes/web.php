@@ -37,7 +37,7 @@ Route::resource('estacionamientos', EstacionamientoController::class);
 
 
 Route::post('/updateEstacionamiento', 'App\Http\Controllers\EstacionamientoController@updateEstacionamiento');
-Route::get('/ActualizarEstacionamientos', 'App\Http\Controllers\EstacionamientoController@index2');
+Route::get('/ActualizarEstacionamientos/{ID_Usuario}', 'App\Http\Controllers\EstacionamientoController@index2');
 
 //Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
 Route::get('/reportes', function () {

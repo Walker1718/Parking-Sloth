@@ -115,7 +115,7 @@ $(document).ready(function() {
 		var Cantidad = $('#my-input').val(); // llama a my-input que es la numeracion que se modifica
 		if(Cantidad!=""){
     		$.ajax({ // ocupo ajax para update de la base ed datos
-      			url: 'updateEstacionamiento', // llamo a la funcion updateEstacionamiento en el controller de estacionamiento
+      			url: '/updateEstacionamiento', // llamo a la funcion updateEstacionamiento en el controller de estacionamiento
       			type: 'post', // por metodo post
 	  			data: { // lo que mandare
         			"_token": "{{ csrf_token() }}", // un token
@@ -138,7 +138,7 @@ $(document).ready(function() { // lo mismo a lo ed arriba
 		var Cantidad = $('#my-input').val();
 		if(Cantidad!=""){
     		$.ajax({
-      			url: 'updateEstacionamiento',
+      			url: '/updateEstacionamiento',
       			type: 'post',
 	  			data: {
         			"_token": "{{ csrf_token() }}",

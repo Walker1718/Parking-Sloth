@@ -87,7 +87,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="../ActualizarEstacionamientos">
+                <a class="nav-link" id='ID_Usuario' href="../ActualizarEstacionamientos">
                 <i class="fas fa-fw fa-cog"></i>
                     <span>Actualizar Estacionamientos</span></a>
             </li>
@@ -245,6 +245,12 @@
             const usuario = JSON.parse(usuarioJson);
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
+
+            //AARON Cambiar url de actualizar usuario respecto al id usuario asignado 
+            const ID_Usuario = document.getElementById('ID_Usuario');
+            ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+            //---------------------------
+            
         }else{
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
             //logout();
@@ -255,6 +261,8 @@
             const loginUrl = "{{ url('/') }}"
             window.location.replace(loginUrl);
         }
+
+
     </script>
 
 </body>
