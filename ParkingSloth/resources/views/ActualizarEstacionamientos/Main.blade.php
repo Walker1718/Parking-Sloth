@@ -8,7 +8,11 @@
 </div>
 
 <div class="" style="text-align: center">
-	<span id="reloj"></span>
+
+	{{$dias}}
+		<br> 
+	{{$Fecha_Inversa}}
+
 </div>
 
 <hr> 
@@ -57,36 +61,7 @@
 <br> 
 <br> 
 
-
-
-
-
-
-<script type="text/javascript">
-var reloj = document.getElementById('reloj');
-var semana = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO'];
-updateTime(); // se agrega todo lo hecho en funcion en variable reloj
-
-function updateTime() {
-    var cd = new Date();
-    reloj.innerHTML  = semana[cd.getDay()]; 	//dia segun arreglo [0-6]
-    reloj.innerHTML  += "<br/>"; 				// salto de linea
-    reloj.innerHTML  +=  agregarceros(cd.getDate(), 2) + '-'    // dia agrega 0 para fecha 06/06/0006 
-						+ agregarceros(cd.getMonth()+1, 2) + '-' // mes
-						+ agregarceros(cd.getFullYear(), 4);		// año
-};
-
-function agregarceros(fecha, digito) { // lo que hace es sumar 00 + 6 = 006 y de lo cual solo rescatamos los ultimos 06
-    var cero = '';
-    for(var i = 0; i < digito; i++) {
-        cero += '0';
-    }
-    return (cero + fecha).slice(-digito); // hace la funciond e "recortar" los ultimos valores segun el digito
-}
-</script>
-
 <script>
-
 let myInput = document.getElementById("my-input"); // mi variable input (numeracion de 0 a cantidad de estacionamiento)
 function stepper(btn) {
 	let id = btn.getAttribute("id");
@@ -113,6 +88,14 @@ function stepper(btn) {
 $(document).ready(function() {
 	$('#decrement').on('click', function() { // Pendiente de accion del id decrement
 		var Cantidad = $('#my-input').val(); // llama a my-input que es la numeracion que se modifica
+
+		location.reload(); // refresca la pagina
+
+		if(Cantidad == 0 && 0 == "{{$Estacionamiento->Capacidad_Utilizada}}"){ // si esta en el minimo o maximo
+			alert('Supera el minimo ');
+			return;
+		}
+		
 		if(Cantidad!=""){
     		$.ajax({ // ocupo ajax para update de la base ed datos
       			url: '/updateEstacionamiento', // llamo a la funcion updateEstacionamiento en el controller de estacionamiento
@@ -129,6 +112,7 @@ $(document).ready(function() {
 		}else{
 			alert('Intentalo denuevo'); // si no se realizo que intente deneuvo
 		}
+
 	});
 });
 
@@ -136,6 +120,14 @@ $(document).ready(function() {
 $(document).ready(function() { // lo mismo a lo ed arriba 
 	$('#increment').on('click', function() {
 		var Cantidad = $('#my-input').val();
+
+		location.reload();
+
+		if(Cantidad == "{{$Estacionamiento->Capacidad_Total}}" && "{{$Estacionamiento->Capacidad_Total}}" == "{{$Estacionamiento->Capacidad_Utilizada}}"){ 
+			alert('Supera el maximo ');
+			return;
+		}
+		
 		if(Cantidad!=""){
     		$.ajax({
       			url: '/updateEstacionamiento',

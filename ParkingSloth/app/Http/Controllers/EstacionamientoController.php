@@ -160,8 +160,27 @@ class EstacionamientoController extends Controller
 
 
   public function index2($ID_Usuario)
-  {
-    $Fecha = Carbon::now()->toDateString();
+    {
+
+    date_default_timezone_set('America/Santiago');
+
+    $Fecha = Carbon::now(); // fecha actual total
+
+    $dias = [                                   //dias de la semana en español
+        1 => 'LUNES',
+        2 => 'MARTES',
+        3 => 'MIERCOLES',
+        4 => 'JUEVES',
+        5 => 'VIERNES',
+        6 => 'SABADO',
+        7 => 'DOMINGO',
+    ];
+
+    $dias = $dias[($Fecha->dayOfWeek)]; // nombre de dia actual
+
+    $Fecha_Inversa = $Fecha->format('d-m-Y'); // array con fecha inversa dia mes y año
+
+    $Fecha = $Fecha->toDateString(); // solo año mes y dia
 
     $Estacionamiento = DB::table('estacionamientos') 
     ->join('lista_estacionamientos','estacionamientos.ID_Lista','=','lista_estacionamientos.ID_Lista')
@@ -179,10 +198,11 @@ class EstacionamientoController extends Controller
     ->first();
 
     if($Estacionamiento){
-        return view('ActualizarEstacionamientos.Main', compact('Estacionamiento'));
+        return view('ActualizarEstacionamientos.Main', compact('dias','Fecha_Inversa','Estacionamiento'));
     }
-    return view('ActualizarEstacionamientos.Notempty');
-    
-      }
 
+        return view('ActualizarEstacionamientos.Notempty', compact('dias','Fecha_Inversa'));
+
+    }
+    
 }
