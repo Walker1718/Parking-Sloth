@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <style>
        .footer {
@@ -187,7 +188,9 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @yield('content')
+                <div style="margin-inline: 20px">
+                    @yield('content')
+                </div>
 
             <!-- End of Main Content -->
 
@@ -232,13 +235,12 @@
         </div>
     </div>
 
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
-
     <script>
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
