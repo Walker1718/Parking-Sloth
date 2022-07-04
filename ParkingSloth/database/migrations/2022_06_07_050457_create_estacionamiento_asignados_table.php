@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ID_Estacionamiento');
             $table->foreign('ID_Estacionamiento')->references('ID_Estacionamiento')->on('estacionamientos')->onDelete('cascade');
             $table->date('Horario');
+            $table->boolean('TurnoAsistencia');
         });
     }
 

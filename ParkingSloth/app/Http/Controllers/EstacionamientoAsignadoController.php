@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\estacionamiento_asignado;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class EstacionamientoAsignadoController extends Controller
 {
     /**
@@ -81,5 +82,32 @@ class EstacionamientoAsignadoController extends Controller
     public function destroy(estacionamiento_asignado $estacionamiento_asignado)
     {
         //
+    }
+
+    public function ActualizarTurnoAsistencia(Request $request)
+    {
+        //FECHA
+        date_default_timezone_set('America/Santiago');
+        $Fecha = Carbon::now(); // fecha actual total
+        $Fecha = $Fecha->toDateString(); // solo año mes y dia
+        //FECHA
+
+        //VARIABLE
+        $TurnoAsistencia = $request->input('TurnoAsistencia');
+        if($TurnoAsistencia == true) $TurnoAsistencia=1;
+        if($TurnoAsistencia == false) $TurnoAsistencia=0;
+        $ID_Usuario = $request->input('ID_Usuario');
+        $ID_Estacionamiento = $request->input('ID_Estacionamiento');
+        //VARIABLE
+        
+
+        //CONSULTA
+        $estacionamiento_asignados = DB::table('estacionamiento_asignados')
+        ->where("estacionamiento_asignados.ID_Usuario",$ID_Usuario)
+        ->where("estacionamiento_asignados.ID_Estacionamiento",$ID_Estacionamiento) 
+        ->where("estacionamiento_asignados.Horario",$Fecha)
+        ->update(['TurnoAsistencia' => $TurnoAsistencia]);
+        //CONSULTA
+        exit; 
     }
 }

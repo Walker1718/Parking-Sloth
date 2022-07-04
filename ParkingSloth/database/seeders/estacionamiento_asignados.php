@@ -21,6 +21,7 @@ class estacionamiento_asignados extends Seeder
                 'ID_Usuario' => 1,
                 'ID_Estacionamiento' => 1,
                 'Horario' => Carbon::parse('01-01-2000'),
+                'TurnoAsistencia' => false,
             ]
         ];
         DB::table('estacionamiento_asignados')->insert($estacionamiento_asignados);

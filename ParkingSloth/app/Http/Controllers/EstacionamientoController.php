@@ -167,13 +167,13 @@ class EstacionamientoController extends Controller
     $Fecha = Carbon::now(); // fecha actual total
 
     $dias = [                                   //dias de la semana en español
+        0 => 'DOMINGO',
         1 => 'LUNES',
         2 => 'MARTES',
         3 => 'MIERCOLES',
         4 => 'JUEVES',
         5 => 'VIERNES',
         6 => 'SABADO',
-        7 => 'DOMINGO',
     ];
 
     $dias = $dias[($Fecha->dayOfWeek)]; // nombre de dia actual
@@ -192,7 +192,9 @@ class EstacionamientoController extends Controller
                 'estacionamientos.Capacidad_Utilizada',
                 'lista_estacionamientos.Nombre_Calle',
                 'Usuario.Nombre',
-                'Usuario.Apellido')
+                'Usuario.Apellido',
+                'Usuario.ID_Usuario',
+                'estacionamiento_asignados.TurnoAsistencia')
     ->where("Usuario.ID_Usuario",$ID_Usuario) 
     ->where("estacionamiento_asignados.Horario",$Fecha)
     ->first();

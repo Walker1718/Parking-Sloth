@@ -215,4 +215,128 @@ input::-webkit-inner-spin-button {
 }
 </style>
 
+
+
+
+
+
+
+
+
+
+<style>
+/*STYLE MODAL https://codepen.io/mburnette/pen/LxNxNg                                       ABAJO TODO MODAL TURNO ASISTENCIA*/
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.switchlabel {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 200px;
+	height: 100px;
+	background: #ff9295;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.switchlabel:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 90px;
+	height: 90px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + .switchlabel {
+	background: #6fc57c;
+}
+
+input:checked + .switchlabel:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.switchlabel:active:after {
+	width: 130px;
+}
+
+
+.centering {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+</style>
+
+
+
+<script>
+if({{$Estacionamiento->TurnoAsistencia}} == false){ //SI NO PRESENTO ASITENCIA MOSTRAR MODAL
+
+	$( document ).ready(function() { $('#myModal').modal('toggle')}); //ACTIVA AL PRINCIPIO
+
+$(document).on('click', '#GuardarTurno', function () {    //si hace click en guardar el turnoi
+	var TurnoAsistencia = document.getElementById("switch").checked; // ver variable de checkbox
+	if(TurnoAsistencia!=""){
+	$.ajax({  // llamar al controlador y cambiar turno en base de datos
+		  url: '/ActualizarTurnoAsistencia',
+		  type: 'post',
+		  data: {
+			"_token": "{{ csrf_token() }}",
+			"ID_Estacionamiento": {{$Estacionamiento->ID_Estacionamiento}},
+			"ID_Usuario": {{$Estacionamiento->ID_Usuario}},
+			"TurnoAsistencia": TurnoAsistencia,
+		},
+		success: function(response){
+			alert('Agregado correctamente');
+			$('#myModal').modal('hide'); // si es correcto se ceirra el modal
+		  }
+	});	
+	}else{alert('No estaras habilitado hasta que actives tu asistencia al turno');}
+});
+
+
+$(document).on('click', '#switch', function () {  // si se hace click en switch cambiar text
+	if(document.getElementById("switch").checked  == true){
+		document.getElementById("p1").innerHTML = "Turno Activo";
+	}else{
+		document.getElementById("p1").innerHTML = "Turno Inactivo";
+	}
+});
+
+}
+</script>
+
+
+<div id="myModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header " style="text-align: center;">
+		<h4 class="modal-title">Activar turno</h4>
+      </div>
+	  
+      <div class="modal-body centering">
+	  <input type="checkbox" id="switch" /><label for="switch" class="switchlabel">Toggle</label>
+	  <br>
+	  <p id="p1">Turno Inactivo</p>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" id="GuardarTurno" class="btn btn-primary">Guardar turno</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
