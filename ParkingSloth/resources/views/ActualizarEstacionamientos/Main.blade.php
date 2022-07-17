@@ -318,7 +318,7 @@ $(document).on('click', '#switch', function () {  // si se hace click en switch 
 </script>
 
 
-<div id="myModal" class="modal" tabindex="-1" role="dialog">
+<div id="myModal" class="modal hide" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header " style="text-align: center;">
