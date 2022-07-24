@@ -39,11 +39,11 @@ Route::get('/admin', function () {
 
 Route::resource('estacionamientos', EstacionamientoController::class);
 
-
+//aaron actualizar estacionamiento/
 Route::post('/updateEstacionamiento', 'App\Http\Controllers\EstacionamientoController@updateEstacionamiento');
 Route::post('/ActualizarTurnoAsistencia', 'App\Http\Controllers\EstacionamientoAsignadoController@ActualizarTurnoAsistencia');
 Route::get('/ActualizarEstacionamientos/{ID_Usuario}', 'App\Http\Controllers\EstacionamientoController@index2');
-
+//aaron actualizar estacionamiento/
 
 //Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
 Route::get('/reportes', function () {

@@ -150,12 +150,16 @@ class EstacionamientoController extends Controller
     $Cantidad = $request->input('Cantidad');
     $id = $request->input('id');
 
-
     /*"ID_Estacionamiento"*/
     $Estacionamiento = Estacionamiento::find($id); 
+
+    /*"VALIDACION"*/
+    if ($Estacionamiento->Capacidad_Total < $Cantidad) return;
+    if (0 > $Cantidad) return;
+    /*"VALIDACION"*/
+
     $Estacionamiento->Capacidad_Utilizada = $Cantidad;
     $Estacionamiento->save();
-    exit; 
   }
 
 

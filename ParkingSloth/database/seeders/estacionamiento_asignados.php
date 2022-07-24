@@ -20,7 +20,7 @@ class estacionamiento_asignados extends Seeder
             [
                 'ID_Usuario' => 1,
                 'ID_Estacionamiento' => 1,
-                'Horario' => Carbon::parse('01-01-2000'),
+                'Horario' => Carbon::parse('01-01-0001'),
                 'TurnoAsistencia' => false,
             ]
         ];

@@ -17,7 +17,7 @@ class lista_estacionamiento extends Seeder
     {
         $lista_estacionamientos = [
             [
-                'Nombre_Calle' => 'Orompello',
+                'Nombre_Calle' => 'Lista_Test',
             ]
         ];
         DB::table('lista_estacionamientos')->insert($lista_estacionamientos);

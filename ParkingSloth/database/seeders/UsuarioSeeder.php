@@ -19,6 +19,22 @@ class UsuarioSeeder extends Seeder
      */
     public function run()
     {
+
+    // Aaron test creo un usuario test
+    $UsuarioTest = [
+        [
+            'ID_Usuario' => 1,
+            'Nombre' => 'Usuario_test',
+            'Apellido' => 'Usuario_test',
+            'Rut' => '9.999.999-9',
+            'Email' => 'email@test',
+            'Contraseña' => 'Usuariotest',
+            'ID_Rol' => 1
+        ]
+    ];
+    DB::table('Usuario')->insert($UsuarioTest);
+    // Aaron test
+
        Usuario::factory()->count(10)->create();
     }
 }

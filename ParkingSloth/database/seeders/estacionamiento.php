@@ -22,7 +22,7 @@ class estacionamiento extends Seeder
                 'Activo' => true,
                 'Capacidad_Total' => 13,
                 'Capacidad_Utilizada' => 0,
-                'Referencia' => 'Orompello 99'
+                'Referencia' => 'Estacionamiento_Test1'
             ],
             [
                 'ID_Lista' => 1,
@@ -30,7 +30,7 @@ class estacionamiento extends Seeder
                 'Activo' => true,
                 'Capacidad_Total' => 8,
                 'Capacidad_Utilizada' => 0,
-                'Referencia' => 'Orompello 100'
+                'Referencia' => 'Estacionamiento_Test2'
             ]
         ];
         DB::table('estacionamientos')->insert($estacionamiento);
