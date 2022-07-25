@@ -4,31 +4,33 @@
 
 <div class="row">
     <div class="col-12">
-        <a href="{{url('/reportes/create')}}" class="btn btn-primary btn-lg float-right">Agregar</a>
-
-
+        <a href="{{url('/reportes/create')}}" class="btn btn-primary btn-lg float-right">Crear Nuevo Reporte</a>
     </div>
 </div>
 <br>
 <div class="card">
     <div class="card-header">
+        
         <h3 class="card-title">Reportes</h3>
-        <input align='right' style="float: right" type="text" placeholder="Buscar" name="search" id="search"
-            class="from-control" />
+        <input  style="float: right" type="text" placeholder="Buscar" name="search" id="search"
+        class="from-control" />
+        
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 700px;">
-        <table class="table table-head-fixed text-nowrap" id="TablaReportes">
-            <thead class="table table-head-fixed text-nowrap">
+        <table class="table" id="TablaReportes">
+            <thead >
                 <tr>
-                    <th>ID_Reporte</th>
-                    <th>ID_Usuario</th>
-                    <th>Título</th>
+                    <th>N°Reporte</th>
+                    <th>Rut Usuario</th>
+                    <th>Título de Reporte</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($reportes as $reportes)
-                <tr class="miclase" data-id="miid">
+                <tr>
                         <td>{{$reportes->ID_Reporte}}</td>
                         <td>
                             @foreach ($usuarios as $usuario)
@@ -133,6 +135,8 @@
 @endsection
 
 @section('scripts')
+
+{{-- Buscar en tabla --}}
 <script>
     $(document).ready(function () {
         $('#search').keyup(function () {
@@ -155,13 +159,5 @@
         }
     });
 </script>
-<script>
-    $( "#BotonVerMensaje" ).click(function() {
-        
-        $('.modal-body').load('content.html',function(){
-            $('#myModal').modal({show:true});
-        });
-        
-    });
-</script>
+
 @stop
