@@ -28,8 +28,8 @@ Route::post('/usuarios/guardarDatos',[UsuarioController::class, 'guardarUsuarios
 Route::patch('/usuarios/{id}/actualizarDatos',[UsuarioController::class, 'actualizarUsuarios']);
 Route::get('/usuarios/{id}/editar', [UsuarioController::class, 'vistaEditarUsuarios']);
 
-Route::get('/admin', function () {
-    return view('layouts.master');
+Route::get('/home', function () {
+    return view('home');
 });
 
 Route::resource('reportes', '\App\Http\Controllers\ReporteController');
