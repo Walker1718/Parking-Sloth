@@ -32,9 +32,7 @@ Route::get('/admin', function () {
     return view('layouts.master');
 });
 
-Route::get('/reportes', function () {
-    return view('reportes.reportes');
-});
+Route::resource('reportes', '\App\Http\Controllers\ReporteController');
 
 Route::get('/navegarmapa', function(){
     return view('navegarmapa.navegarmapa');

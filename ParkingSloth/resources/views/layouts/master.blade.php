@@ -232,6 +232,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
@@ -249,6 +250,7 @@
             window.location.replace(loginUrl);
         }
     </script>
+    @yield('scripts')
 
 </body>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reporte;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class ReporteController extends Controller
@@ -14,7 +15,9 @@ class ReporteController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = Usuario::all();
+        $datos['reportes']= Reporte::paginate();
+        return view('reportes.index',$datos,compact('usuarios'));
     }
 
     /**
@@ -24,7 +27,9 @@ class ReporteController extends Controller
      */
     public function create()
     {
-        //
+        $usuarios = Usuario::all();
+        
+        return view('reportes/create', compact('usuarios'));
     }
 
     /**
@@ -36,6 +41,25 @@ class ReporteController extends Controller
     public function store(Request $request)
     {
         //
+
+        $campos=[
+            'ID_Usuario'=>'required|string',
+            'Titulo'=>'required|string',
+            'Mensaje'=> 'required|string'
+        ];
+        
+        $Mensaje=[
+            "ID_Usuario.required"=>'El Usuario es requerido',
+            "Titulo.required"=>'Debe ingresar un Titulo',
+            "Mensaje.required"=>'Debe ingresar un Mensaje'
+        ];
+        $this->validate($request,$campos,$Mensaje);
+
+        $datosReporte=$request->except('_token');
+
+        Reporte::insert($datosReporte);
+
+        return redirect('reportes');  
     }
 
     /**
@@ -44,9 +68,11 @@ class ReporteController extends Controller
      * @param  \App\Models\Reporte  $reporte
      * @return \Illuminate\Http\Response
      */
-    public function show(Reporte $reporte)
+    public function show($ID_Reporte)
     {
-        //
+        $ReporteVerMas = Reporte::find($ID_Reporte);
+        $usuarios = Usuario::all(); 
+        return view('reportes.show', compact('ReporteVerMas', 'usuarios'));
     }
 
     /**
@@ -78,8 +104,10 @@ class ReporteController extends Controller
      * @param  \App\Models\Reporte  $reporte
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reporte $reporte)
+    public function destroy($ID_Reporte)
     {
-        //
+        Reporte::destroy($ID_Reporte);
+        
+        return redirect('reportes');
     }
 }
