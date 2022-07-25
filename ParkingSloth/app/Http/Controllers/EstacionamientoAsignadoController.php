@@ -108,6 +108,6 @@ class EstacionamientoAsignadoController extends Controller
         ->where("estacionamiento_asignados.Horario",$Fecha)
         ->update(['TurnoAsistencia' => $TurnoAsistencia]);
         //CONSULTA
-        exit; 
+        //exit; 
     }
 }
