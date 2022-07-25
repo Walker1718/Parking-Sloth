@@ -1,10 +1,4 @@
-/*!
- * Start Bootstrap - SB Admin 2 v4.1.3 (https://startbootstrap.com/theme/sb-admin-2)
- * Copyright 2013-2021 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
- */
-
-$(function() {
+(function($) {
   "use strict"; // Start of use strict
 
   // Toggle the side navigation
@@ -59,4 +53,4 @@ $(function() {
     e.preventDefault();
   });
 
-});
+})(jQuery); // End of use strict

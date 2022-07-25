@@ -44,8 +44,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="img/logo.png" alt="logo" width="65" height="65">
                 </div>
                 <div class="sidebar-brand-text mx-3">Parking Sloth</div>
             </a>
@@ -53,7 +53,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('/usuarios/') }}">
                     <i class="fas fa-users"></i>
                     <span>Usuarios</span>
@@ -65,7 +65,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Mapa
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -73,13 +73,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Collapse Menu</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="{{ url('/home/') }}">Buttons</a>
-                        <a class="collapse-item" href="{{ url('/home/') }}">Cards</a>
+                        <h6 class="collapse-header">Collapse Menu</h6>
+                        <a class="collapse-item" href="{{ url('/home/') }}">Home</a>
+                        <a class="collapse-item" href="{{ url('/home/') }}">Home</a>
                     </div>
                 </div>
             </li>
@@ -210,13 +210,15 @@
         </div>
     </div>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
     <script>
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
