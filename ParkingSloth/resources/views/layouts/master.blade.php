@@ -21,6 +21,7 @@
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    @yield('head')
     <style>
        .footer {
             position: fixed;
@@ -84,7 +85,23 @@
                 </div>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
            
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Navegar
+            </div>
+
+
+            <!-- Nav Item - Navegar -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/navegarmapa/') }}"">
+                    <i class="fa-regular fa-map-location-dot"></i>
+                    <span>Navegar Mapa</span></a>
+            </li>
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -164,6 +181,7 @@
 
                 <!-- Begin Page Content -->
                 <div style="margin-inline: 20px">
+
                     @yield('content')
                 </div>
 
