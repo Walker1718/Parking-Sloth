@@ -41,6 +41,16 @@ class LoginTest extends TestCase
         $response->assertStatus(302);
     }
 
+    public function testLoginEmailInvalido()
+    {
+        $response = $this->post('/api/login',[
+            'email'     => "noSoyEmail",
+            'pass'  =>  "123456",
+        ]);
+        //no es una solicitud exitosa
+        $response->assertStatus(302);
+    }
+
     public function testLoginUsuarioNoExiste()
     {
         $response = $this->post('/api/login',[
