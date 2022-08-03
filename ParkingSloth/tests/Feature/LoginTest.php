@@ -38,6 +38,7 @@ class LoginTest extends TestCase
         ]);
         //no es una solicitud exitosa
         $response->assertStatus(302);
+        $response->assertRedirect("http://localhost");
     }
 
     public function testLoginEmailInvalido()
@@ -48,6 +49,7 @@ class LoginTest extends TestCase
         ]);
         //no es una solicitud exitosa
         $response->assertStatus(302);
+        $response->assertRedirect("http://localhost");
     }
 
     public function testLoginUsuarioNoExiste()
