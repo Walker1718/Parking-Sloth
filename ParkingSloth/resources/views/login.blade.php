@@ -2,7 +2,7 @@
 <script>
     const usuarioJson = localStorage.getItem("usuario")
     if(usuarioJson){
-        const adminUrl = "{{ url('admin') }}"
+        const adminUrl = "{{ url('home') }}"
         window.location.replace(adminUrl);
     }
 
@@ -20,7 +20,7 @@
             new AWN().alert('Credenciales invalidas');
         }else{
             localStorage.setItem("usuario", JSON.stringify(usuario));
-            const adminUrl = "{{ url('admin') }}"
+            const adminUrl = "{{ url('home') }}"
             window.location.replace(adminUrl);
         }
     }
