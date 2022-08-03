@@ -25,7 +25,9 @@ class LoginTest extends TestCase
 
         $response->assertStatus(200);
         $content = $response->getContent();
-        $this->assertNotEquals("",$content);
+        $userContent = json_decode($content);
+        //misma id...
+        $this->assertEquals($this->user->ID_Usuario, $userContent->ID_Usuario);
     }
 
     public function testLoginSinCampos()
