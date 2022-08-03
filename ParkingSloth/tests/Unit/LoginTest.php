@@ -38,7 +38,6 @@ class LoginTest extends TestCase
         ]);
         //no es una solicitud exitosa
         $response->assertStatus(302);
-        $response->assertRedirect("http://localhost");
     }
 
     public function testLoginEmailInvalido()
@@ -49,7 +48,6 @@ class LoginTest extends TestCase
         ]);
         //no es una solicitud exitosa
         $response->assertStatus(302);
-        $response->assertRedirect("http://localhost");
     }
 
     public function testLoginUsuarioNoExiste()
@@ -76,25 +74,5 @@ class LoginTest extends TestCase
         $content = $response->getContent();
         //Solicitud exitosa, usuario encontrado, pero contraseña no es correcta
         $this->assertEquals("",$content);
-    }
-
-    public function testLoginEmailInvalido()
-    {
-        $response = $this->post('/api/login',[
-            'email'     => "noSoyEmail",
-            'pass'  =>  "123456",
-        ]);
-        //no es una solicitud exitosa
-        $response->assertStatus(302);
-    }
-
-    public function testLoginSinCampos()
-    {
-        $response = $this->post('/api/login',[
-            'email'     => "",
-            'pass'  =>  "",
-        ]);
-        //no es una solicitud exitosa
-        $response->assertStatus(200);
     }
 }
