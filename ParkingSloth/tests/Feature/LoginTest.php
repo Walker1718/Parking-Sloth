@@ -2,11 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Usuario;
-use App\Models\Rol;
 
 
 class LoginTest extends TestCase
