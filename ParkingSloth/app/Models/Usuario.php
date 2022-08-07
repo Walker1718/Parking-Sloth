@@ -20,6 +20,7 @@ class Usuario extends Model
         'Email',
         'ID_Rol',
         'Contraseña',
+        'Activo'
     ];
 
     public function Rol()

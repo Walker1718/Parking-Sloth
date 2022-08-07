@@ -35,7 +35,8 @@ class UsuarioFactory extends Factory
             'Email' => $this->faker->unique()->safeEmail(),
             'Contraseña' => bcrypt('123456'),
             'ID_Rol' => $this->faker->numberBetween(1,2),
-            'created_at' => $this->faker->date('Y-m-d H:i:s')
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'Activo' => true,
         ];
     }
 

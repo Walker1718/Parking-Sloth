@@ -8,6 +8,9 @@ use App\Models\Usuario;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UsuarioController extends Controller
 {
@@ -36,14 +39,55 @@ class UsuarioController extends Controller
         ]);
     }
 
+    public function vistaVerPerfil($id)
+    {
+        $usuario = Usuario::where('ID_Usuario', $id)
+            ->first();
+        if(!$usuario){
+            abort(404, "Usuario no encontrado");
+        }
+        return view('usuarios.perfil',[
+            "usuario" => $usuario
+        ]);
+    }
+
+    public function vistaModificarContraseña()
+    {
+        return view('usuarios.modificar-contraseña');
+    }
+
+
+    public function cambiarContraseña($id, Request $request){
+        $pass = $request->input('pass');
+        $confirm = $request->input('confirm');
+
+        if(!$pass || !$confirm){
+            return null;
+        }
+
+        if($pass != $confirm){
+            return null;
+        }
+
+        $usuario = Usuario::where('ID_Usuario', $id)->first();
+        if(!$usuario){
+            return null;
+        }
+        $usuario->Contraseña = bcrypt($pass);
+        $usuario->save();
+        return $usuario;
+    }
+
+
     /**
      * Genera el digito verificador de un rut (sin puntos).
      ** asdasd
      * @param integer $numero la parte izquierda del rut sin sus puntos, si el rut es 12.345.678-9 entonces el valor es 12345678
      * @return string el digito verificador
      */
-    private function generarDV($numero)
+    public function generarDV($numero)
     {
+        $numero = abs($numero);
         $i = 0;
         $suma = 0;
         while ($numero > 0) {
@@ -66,6 +110,7 @@ class UsuarioController extends Controller
 
     private function validarRut($rut)
     {
+
     }
     /**
      * Crea y guarda un usuario en la base de datos
@@ -205,13 +250,24 @@ class UsuarioController extends Controller
         ]);
 
         $usuario = Usuario::where('Email', $request->email)->first();
-        if (!$usuario) {
+        if (!$usuario || !$usuario->Activo) {
             return null;
         }
         $compare = Hash::check($request->pass, $usuario->Contraseña);
-        if (!$compare) {
+        if (!$compare ) {
             return null;
         }
         return $usuario;
     }
+
+    public function cambiarActivo($id){
+        $usuario = Usuario::where('ID_Usuario', $id)->first();
+        if($usuario == null){
+            throw new NotFoundHttpException("usuario no encontrado");
+        }
+        $usuario->Activo = !$usuario->Activo;
+        $usuario->save();
+        return $usuario;
+    }
+
 }

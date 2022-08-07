@@ -10,10 +10,14 @@ class LoginTest extends TestCase
 {
 
     private $user;
+    private $userDesactivado;
 
     protected function setUp() :void {
         parent::setUp();
         $this->user = Usuario::factory()->create();
+        $this->userDesactivado = Usuario::factory()->create([
+            "Activo" => false
+        ]);
     }
 
     public function testLoginCorrecto()
@@ -50,6 +54,19 @@ class LoginTest extends TestCase
         //no es una solicitud exitosa
         $response->assertStatus(302);
         $response->assertRedirect("http://localhost");
+    }
+
+    public function testLoginUsuarioDesactivado()
+    {
+        $response = $this->post('/api/login',[
+            'email'     =>  $this->userDesactivado->Email,
+            'pass'  =>  "123456",
+        ]);
+
+        $response->assertStatus(200);
+        $content = $response->getContent();
+        //solicitud correcta pero usuario desactivado
+        $this->assertEquals("",$content);
     }
 
     public function testLoginUsuarioNoExiste()
