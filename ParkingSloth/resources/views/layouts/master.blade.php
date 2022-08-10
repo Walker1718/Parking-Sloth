@@ -46,7 +46,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
                 <div class="sidebar-brand-icon">
-                    <img src="img/logo.png" alt="logo" width="65" height="65">
+                    <img src="../img/logo.png" alt="logo" width="65" height="65">
                 </div>
                 <div class="sidebar-brand-text mx-3">Parking Sloth</div>
             </a>
@@ -96,8 +96,8 @@
 
             <!-- Nav Item - Navegar -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/navegarmapa/') }}"">
-                    <i class="fa-regular fa-map-location-dot"></i>
+                <a class="nav-link" href="{{ url('/navegarmapa/') }}">
+                    <i class="fas fa-fw fa-map"></i>
                     <span>Navegar Mapa</span></a>
             </li>
 
@@ -114,9 +114,15 @@
 
             <!-- Nav Item - Soporte -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/reportes/') }}"">
+                <a class="nav-link" href="{{ url('/reportes/') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Reportes</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/comentarios/') }}">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>Calificanos</span></a>
             </li>
             
 

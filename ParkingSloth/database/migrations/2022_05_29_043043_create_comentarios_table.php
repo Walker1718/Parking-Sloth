@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id('ID_Comentario');
-            $table->integer('ID_Usuario')->references('ID_Usuario')->on('Usuario');
+            //$table->integer('ID_Usuario')->references('ID_Usuario')->on('Usuario');
             $table->string('Titulo');
             $table->string('Mensaje');
-            $table->integer('Clasificacion');
+            $table->integer('Calificacion');
             $table->timestamps();
         });
     }

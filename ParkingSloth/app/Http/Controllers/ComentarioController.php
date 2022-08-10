@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
@@ -14,7 +15,9 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = Usuario::all();
+        $datos['comentarios']= Comentario::paginate();
+        return view('comentarios.index',$datos,compact('usuarios'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('comentarios/create');
     }
 
     /**
@@ -35,7 +38,24 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos=[
+            'Titulo'=>'required|string',
+            'Mensaje'=> 'required|string',
+            'Calificacion'=> 'required|string'
+        ];
+        
+        $Mensaje=[
+            "Calificacion.required"=>'Debe ingresar una calificación',
+            "Titulo.required"=>'Debe ingresar un Título',
+            "Mensaje.required"=>'Debe ingresar un Mensaje'
+        ];
+        $this->validate($request,$campos,$Mensaje);
+
+        $datosComentario=$request->except('_token');
+
+        Comentario::insert($datosComentario);
+
+        return redirect('comentarios'); 
     }
 
     /**
@@ -44,9 +64,10 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function show(Comentario $comentario)
+    public function show($ID_Comentario)
     {
-        //
+        $ComentarioVerMas = Reporte::find($ID_Comentario);
+        return view('comentarios.show', compact('ComentarioVerMas'));
     }
 
     /**
@@ -78,8 +99,10 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comentario $comentario)
+    public function destroy($ID_Comentario)
     {
-        //
+        Comentario::destroy($ID_Comentario);
+        
+        return redirect('comentarios');
     }
 }

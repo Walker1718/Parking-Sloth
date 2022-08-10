@@ -35,6 +35,7 @@ Route::get('/home', function () {
 });
 
 Route::resource('reportes', '\App\Http\Controllers\ReporteController');
+Route::resource('comentarios', '\App\Http\Controllers\ComentarioController');
 
 Route::get('/navegarmapa', function(){
     return view('navegarmapa.navegarmapa');

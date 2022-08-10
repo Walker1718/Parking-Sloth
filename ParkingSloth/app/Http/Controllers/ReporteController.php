@@ -40,8 +40,6 @@ class ReporteController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
         $campos=[
             'ID_Usuario'=>'required|string',
             'Titulo'=>'required|string',
@@ -50,7 +48,7 @@ class ReporteController extends Controller
         
         $Mensaje=[
             "ID_Usuario.required"=>'El Usuario es requerido',
-            "Titulo.required"=>'Debe ingresar un Titulo',
+            "Titulo.required"=>'Debe ingresar un Título',
             "Mensaje.required"=>'Debe ingresar un Mensaje'
         ];
         $this->validate($request,$campos,$Mensaje);
