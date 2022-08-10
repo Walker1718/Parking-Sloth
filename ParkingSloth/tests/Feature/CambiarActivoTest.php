@@ -25,7 +25,6 @@ class CambiarActivoTest extends TestCase
     public function test_desactivar()
     {
         $url = 'api/usuarios/'.$this->userActivado->ID_Usuario.'/activo';
-        print $url;
         $response = $this->patch($url);
         $response->assertStatus(200);
         $content = $response->getContent();
