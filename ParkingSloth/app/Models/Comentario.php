@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comentario extends Model
 {
-    use HasFactory;
+    protected $primaryKey='ID_Comentario';
 }

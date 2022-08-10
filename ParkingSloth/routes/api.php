@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/login',[UsuarioController::class, 'login']);
+Route::patch('/usuarios/{id}/activo',[UsuarioController::class, 'cambiarActivo']);
+Route::patch('/usuarios/{id}/password',[UsuarioController::class, 'cambiarContraseña']);

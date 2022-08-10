@@ -25,18 +25,18 @@ Route::get('/test', function() {
 
 Route::get('/usuarios', [UsuarioController::class, 'vistaUsuarios']);
 Route::get('/usuarios/crear', [UsuarioController::class, 'vistaCrearUsuarios']);
+Route::get('/usuarios/{id}/perfil', [UsuarioController::class, 'vistaVerPerfil']);
+Route::get('/usuarios/modificarContraseña', [UsuarioController::class, 'vistaModificarContraseña']);
 Route::post('/usuarios/guardarDatos',[UsuarioController::class, 'guardarUsuarios']);
 Route::patch('/usuarios/{id}/actualizarDatos',[UsuarioController::class, 'actualizarUsuarios']);
 Route::get('/usuarios/{id}/editar', [UsuarioController::class, 'vistaEditarUsuarios']);
 
-Route::get('/admin', function () {
-    return view('layouts.master');
+Route::get('/home', function () {
+    return view('home');
 });
 
-
-//     return view('estacionamientos.create');
-// });
-
+Route::resource('reportes', '\App\Http\Controllers\ReporteController');
+Route::resource('comentarios', '\App\Http\Controllers\ComentarioController');
 Route::resource('estacionamientos', EstacionamientoController::class);
 
 //aaron actualizar estacionamiento/
@@ -46,18 +46,7 @@ Route::get('/ActualizarEstacionamientos/{ID_Usuario}', 'App\Http\Controllers\Est
 
 Route::get('/ImportDataSet', 'App\Http\Controllers\ImportDataSetController@show');
 Route::post('/ImportDataSet/import', 'App\Http\Controllers\ImportDataSetController@store');
-
 //aaron actualizar estacionamiento/
-
-//Route::resource('estacionamientos', 'App\Http\Controllers\EstacionamientoController');
-Route::get('/reportes', function () {
-    return view('reportes.reportes');
-});
-
-
-Route::get('/master', function () {
-    return view('layouts.master');
-});
 
 Route::get('/navegarmapa', function(){
     return view('navegarmapa.navegarmapa');

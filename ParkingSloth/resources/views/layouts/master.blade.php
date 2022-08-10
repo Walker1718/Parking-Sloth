@@ -21,6 +21,7 @@
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    @yield('head')
     <style>
        .footer {
             position: fixed;
@@ -43,9 +44,9 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/admin')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
+                <div class="sidebar-brand-icon">
+                    <img src="../img/logo.png" alt="logo" width="65" height="65">
                 </div>
                 <div class="sidebar-brand-text mx-3">Parking Sloth</div>
             </a>
@@ -53,7 +54,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('/usuarios/') }}">
                     <i class="fas fa-users"></i>
                     <span>Usuarios</span>
@@ -65,7 +66,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Mapa
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -78,11 +79,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Estacionamientos</h6>
-                        
                         <a class="collapse-item" href="../estacionamientos">Lista estacionamientos</a>
-
                         <a class="collapse-item" href="../estacionamientos/create">Crear estacionamientos</a>
-
                     </div>
                 </div>
             </li>
@@ -93,40 +91,42 @@
                     <span>Actualizar Estacionamientos</span></a>
             </li>
 
+            <div class="sidebar-heading">
+                Navegar
+            </div>
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                <a class="nav-link" href="{{ url('/navegarmapa/') }}">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Navegar Mapa</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
             </li>
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Soporte
             </div>
 
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Soporte -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{ url('/reportes/') }}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Reportes</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/comentarios/') }}">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>Calificanos</span></a>
+            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -142,23 +142,17 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                   
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -169,11 +163,14 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" id="btnVerPerfil" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                               
+                                <a class="dropdown-item" href="{{ url('/usuarios/modificarContraseña') }}">
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cambiar Contraseña
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" onclick="logout()">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -189,6 +186,7 @@
 
                 <!-- Begin Page Content -->
                 <div style="margin-inline: 20px">
+
                     @yield('content')
                 </div>
 
@@ -235,25 +233,30 @@
         </div>
     </div>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    
     <script>
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
-
-            //AARON Cambiar url de actualizar usuario respecto al id usuario asignado 
+            const btnVerPerfil = document.getElementById("btnVerPerfil");
+            const base = "{{ url('/') }}"
+            const url = `${base}/usuarios/${usuario.ID_Usuario}/perfil`;
+            btnVerPerfil.setAttribute("href", url);
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
-            //---------------------------
-            
         }else{
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
             //logout();
         }
@@ -266,6 +269,7 @@
 
 
     </script>
+    @yield('scripts')
 
 </body>
 

@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios', function (Blueprint $table) {
-            $table->id('ID_Comentario');
-            //$table->integer('ID_Usuario')->references('ID_Usuario')->on('Usuario');
-            $table->string('Titulo');
-            $table->string('Mensaje');
-            $table->integer('Calificacion');
-            $table->timestamps();
+        Schema::table('Usuario', function (Blueprint $table) {
+            $table->boolean("Activo")->default(true);
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentarios');
+        Schema::table('Usuario', function (Blueprint $table) {
+            $table->dropColumn("Activo");
+        });
     }
 };

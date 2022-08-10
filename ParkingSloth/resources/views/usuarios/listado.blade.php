@@ -1,6 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
+    <script>
+        async function actualizarActivo(id){
+            const base = "{{ url('/') }}"
+            const url = `${base}/api/usuarios/${id}/activo`;
+            try{
+                const res = await axios.patch(url);
+            }catch(e){
+                console.error(e);
+            }
+        }
+    </script>
     <div>
         <div class="row">
             <div class="col col-xs" style="margin-inline: 0px; padding-inline: 0px">
@@ -18,7 +29,8 @@
                     <th>Rol</th>
                     <th>Fecha de creación</th>
                     <th>Fecha de actualización</th>
-                    <th>Acciones</th>
+                    <th>Activo</th>
+                    <th>Editar</th>
                 </tr>
                 @foreach ($usuarios as $usuario)
                     <tr>
@@ -31,6 +43,18 @@
                         <td>{{ $usuario->created_at }}</td>
                         <td>{{ $usuario->updated_at }}</td>
                         <td>
+                            <div class="form-check form-switch">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    id="activo" 
+                                    name="activo" 
+                                    onchange="actualizarActivo({{$usuario->ID_Usuario }})" 
+                                    @checked($usuario->Activo)
+                                >
+                            </div>
+                        </td>
+                        <td>
                             <a href="{{url('/usuarios/'.$usuario->ID_Usuario.'/editar')}}">
                                 <i class="fas fa-edit  fa-lg"></i>
                             </a>
@@ -40,4 +64,5 @@
             </table>
         </div>  
     </div>
+
 @stop
