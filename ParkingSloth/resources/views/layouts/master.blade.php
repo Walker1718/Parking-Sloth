@@ -46,7 +46,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
                 <div class="sidebar-brand-icon">
-                    <img src="../img/logo.png" alt="logo" width="65" height="65">
+                    <img src="{{asset('img/logo.png')}}" alt="logo" width="65" height="65">
                 </div>
                 <div class="sidebar-brand-text mx-3">Parking Sloth</div>
             </a>
