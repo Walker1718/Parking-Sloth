@@ -82,17 +82,21 @@ function stepper(btn) {
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 // BOTON DE QUITAR
 $(document).ready(function() {
 	$('#decrement').on('click', function() { // Pendiente de accion del id decrement
 		var Cantidad = $('#my-input').val(); // llama a my-input que es la numeracion que se modifica
 
-		location.reload(); // refresca la pagina
+		//location.reload(); // refresca la pagina
 
 		if(Cantidad == 0 && 0 == "{{$Estacionamiento->Capacidad_Utilizada}}"){ // si esta en el minimo o maximo
-			alert('Supera el minimo ');
+			Swal.fire({
+  					icon: 'warning',
+  					title: 'Supera el minimo ',
+					}).then(function(){ 
+   					location.reload();});
 			return;
 		}
 		
@@ -106,11 +110,19 @@ $(document).ready(function() {
 					"Cantidad": Cantidad // y la cantidad total de estacionamientos que se modifico
         		},
       			success: function(response){ // si se realizo mandar mensaje
-        		alert('quitado correctamente');
+					Swal.fire({
+  					icon: 'success',
+  					title: 'Quitado correctamente',
+					}).then(function(){ 
+   					location.reload();});
       			}
     		});
 		}else{
-			alert('Intentalo denuevo'); // si no se realizo que intente deneuvo
+			Swal.fire({
+  					icon: 'error',
+  					title: 'Intentalo denuevo',
+					}).then(function(){ 
+   					location.reload();});
 		}
 
 	});
@@ -121,10 +133,14 @@ $(document).ready(function() { // lo mismo a lo ed arriba
 	$('#increment').on('click', function() {
 		var Cantidad = $('#my-input').val();
 
-		location.reload();
+		//location.reload();
 
 		if(Cantidad == "{{$Estacionamiento->Capacidad_Total}}" && "{{$Estacionamiento->Capacidad_Total}}" == "{{$Estacionamiento->Capacidad_Utilizada}}"){ 
-			alert('Supera el maximo ');
+			Swal.fire({
+  					icon: 'warning',
+  					title: 'Supera el maximo ',
+					}).then(function(){ 
+   					location.reload();});
 			return;
 		}
 		
@@ -138,11 +154,19 @@ $(document).ready(function() { // lo mismo a lo ed arriba
 					"Cantidad": Cantidad
         		},
       			success: function(response){
-        		alert('Agregado correctamente');
+					Swal.fire({
+  					icon: 'success',
+  					title: 'Agregado Correctamente',
+					}).then(function(){ 
+   					location.reload();});
       			}
     		});
 		}else{
-			alert('Intentalo denuevo');
+			Swal.fire({
+  					icon: 'error',
+  					title: 'Intentalo denuevo',
+					}).then(function(){ 
+   					location.reload();});
 		}
 	});
 });
@@ -215,14 +239,47 @@ input::-webkit-inner-spin-button {
 }
 </style>
 
+<script>
+if({{$Estacionamiento->TurnoAsistencia}} == false){ //SI NO PRESENTO ASITENCIA MOSTRAR MODAL
+	Swal.fire(
+    {
+        title: "Turno", 
+        text: "Tienes que activar tu turno para poder utilizar esta vista.", 
+        icon: "warning",
+        showConfirmButton: true,          // In case you want two scenarios 
+        confirmButtonText: 'Activar turno',
+        showDenyButton: true,        // In case you want two scenarios 
+        denyButtonText:'No activar turno',
+		allowOutsideClick: false  // apretar click solo en modal
+    }
+	).then(function (result) {
+    	if (result.isConfirmed) {
+			$.ajax({  // llamar al controlador y cambiar turno en base de datos
+		  		url: '/ActualizarTurnoAsistencia',
+		  		type: 'post',
+		  		data: {
+					"_token": "{{ csrf_token() }}",
+					"ID_Estacionamiento": {{$Estacionamiento->ID_Estacionamiento}},
+					"ID_Usuario": {{$Estacionamiento->ID_Usuario}},
+					"TurnoAsistencia": true,
+			},
+			success: function(response){
+					Swal.fire({
+  					icon: 'success',
+  					title: 'Turno activo',
+					}).then(function(){ 
+   					location.reload();});
+      				}
+			});	
+	
+    	} else if (result.isDenied) {
+        window.location.href = "{{url('/home')}}";
+    	}
+	});
+}
+</script>
 
-
-
-
-
-
-
-
+<!-- 
 
 <style>
 /*STYLE MODAL https://codepen.io/mburnette/pen/LxNxNg                                       ABAJO TODO MODAL TURNO ASISTENCIA*/
@@ -277,11 +334,6 @@ input:checked + .switchlabel:after {
 }
 
 </style>
-
-
-
-<script>
-if({{$Estacionamiento->TurnoAsistencia}} == false){ //SI NO PRESENTO ASITENCIA MOSTRAR MODAL
 
 	$( document ).ready(function() { $('#myModal').modal('toggle')}); //ACTIVA AL PRINCIPIO
 
@@ -338,5 +390,5 @@ $(document).on('click', '#switch', function () {  // si se hace click en switch 
     </div>
   </div>
 </div>
-
+-->
 @endsection
