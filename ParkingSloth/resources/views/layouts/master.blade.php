@@ -51,8 +51,50 @@
                 <div class="sidebar-brand-text mx-3">Parking Sloth</div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Usuario
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/navegarmapa/') }}">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Navegar Mapa</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/reportes/') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Reportes</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/comentarios/') }}">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>Calificanos</span></a>
+            </li>
+
+            
+
+            <div class="sidebar-heading">
+                Mod
+            </div>
+
+            <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            <li class="nav-item">
+                <a class="nav-link" id='ID_Usuario' href="../ActualizarEstacionamientos">
+                <i class="fas fa-fw fa-cog"></i>
+                    <span>Actualizar Estacionamientos</span></a>
+            </li>
+            <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Admin
+            </div>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/usuarios/') }}">
@@ -60,14 +102,6 @@
                     <span>Usuarios</span>
                 </a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Mapa
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -84,60 +118,9 @@
                     </div>
                 </div>
             </li>
-            <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
-            <li class="nav-item">
-                <a class="nav-link" id='ID_Usuario' href="../ActualizarEstacionamientos">
-                <i class="fas fa-fw fa-cog"></i>
-                    <span>Actualizar Estacionamientos</span></a>
-            </li>
-            <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
-            <div class="sidebar-heading">
-                Navegar
-            </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/navegarmapa/') }}">
-                    <i class="fas fa-fw fa-map"></i>
-                    <span>Navegar Mapa</span>
-                </a>
-            </li>
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Soporte
-            </div>
-
-
-            <!-- Nav Item - Soporte -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/reportes/') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Reportes</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/comentarios/') }}">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>Calificanos</span></a>
-            </li>
-
+              
 
             <!-- Divider AARON---------------------------->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Importacion
-            </div>
-
-
-            <!-- Nav Item - Soporte -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/ImportDataSet') }}">
                     <i class="fas fa-fw fa-table"></i>
@@ -146,7 +129,6 @@
             <!--AARON---------------------------->
 
             
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
