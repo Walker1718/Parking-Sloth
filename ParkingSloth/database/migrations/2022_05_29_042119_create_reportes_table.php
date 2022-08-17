@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('reportes', function (Blueprint $table) {
             $table->id('ID_Reporte');
-            $table->integer('ID_Usuario')->references('ID_Usuario')->on('Usuario');
+            $table->integer('ID_Estacionamiento')->references('ID_Estacionamiento')->on('estacionamientos');
             $table->string('Titulo');
             $table->string('Mensaje');
             $table->timestamps();
