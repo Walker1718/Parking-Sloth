@@ -10,11 +10,6 @@
         .lista_parking h3{
             text-align: center
         }
-        .google{
-            width: 100px;
-            height: 200px;
-            background-color: red;
-        }
     </style>
 @endsection
 
@@ -23,14 +18,17 @@
         <div class="lista_parking">
             <h3>Estacionamientos </h3>
         </div>
-        <div class="google">
-            <h2>prueba de google</h2>
+
+        <div id="map">
+            
         </div>
 @endsection
 
+{{-- APIKEY DE GOOGLE MAPS: AIzaSyDvmH6QiErR_xIveen3r1D-hOZ0y4lDAG4  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
 @section('scripts')
-        {{-- concepcion 
-        estacionamiento 1
-        estacionamiento 2
-        estacionamiento 3 --}}
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvmH6QiErR_xIveen3r1D-hOZ0y4lDAG4&callback=initMap">
+        </script>
+
+        <script src="../resources/js/map.js"></script>
 @endsection
