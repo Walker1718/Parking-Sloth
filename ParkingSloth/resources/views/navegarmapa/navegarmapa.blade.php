@@ -2,33 +2,51 @@
 
 @section('head')
     <style>
-        .lista_parking{
-        width: 300px;
-        height: 500px;
-        border: 5px solid black;
+        .pagina{
+            width: 1000px;
+            height: 800px;
+            margin: 0;
+            padding: 0;
         }
-        .lista_parking h3{
-            text-align: center
+
+        #map {
+            height: 100%;
+            width: 100%;
         }
     </style>
 @endsection
 
 @section('content')
-        <h1>Navegar mapa</h1>
-        <div class="lista_parking">
-            <h3>Estacionamientos </h3>
+        <div class="pagina">
+            <h1>Prueba</h1>
+            <div id="map"></div>
         </div>
-
-        <div id="map">
-            
-        </div>
+        
 @endsection
 
-{{-- APIKEY DE GOOGLE MAPS: AIzaSyDvmH6QiErR_xIveen3r1D-hOZ0y4lDAG4  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
+{{-- APIKEY DE GOOGLE MAPS: AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
 @section('scripts')
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvmH6QiErR_xIveen3r1D-hOZ0y4lDAG4&callback=initMap">
+
+        
+        <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE&callback=initMap">
         </script>
 
-        <script src="../resources/js/map.js"></script>
+        {{-- <script>
+            let map;
+
+        function initMap() {
+            let concepcion = { lat: -34.397, lng: 150.644 }
+            
+            map = new google.maps.Map(document.getElementById("map"), {
+            center: concepcion,
+            zoom: 10,
+            });
+        }
+
+        </script> --}}
+        
+        {{-- <script src="../public/js/map.js"></script> --}}
+        <script src="{{ asset('js/map.js')}}"></script>
+
 @endsection
