@@ -18,11 +18,6 @@
         </div>
         @endif
 
-
-        {{-- $table->integer('ID_Usuario')->references('ID_Usuario')->on('Usuario');
-            $table->string('Titulo');
-            $table->string('Mensaje'); --}}
-
         <div class="row">
             <div class="col-md-6">
                 <div class="card card-primary">
@@ -34,15 +29,15 @@
 
 
                         <div class="form-group">
-                            <label for="ID_Usuario">{{'ID_Usuario'}}</label>
+                            <label for="ID_Estacionamiento">{{'ID_Estacionamiento'}}</label>
 
-                            <select name="ID_Usuario" id="ID_Usuario" class="form-control custom-select {{$errors->has('ID_Usuario')?'is-invalid':''}}"     >
-                                <option value="">-- ID_Usuario --</option>
-                                @foreach ($usuarios as $usuarios)
-                                <option value="{{$usuarios['ID_Usuario']}}"> {{$usuarios['Nombre']}} - {{$usuarios['Rut']}} </option>
+                            <select name="ID_Estacionamiento" id="ID_Estacionamiento" class="form-control custom-select {{$errors->has('ID_Estacionamiento')?'is-invalid':''}}"     >
+                                <option value="">-- ID_Estacionamiento --</option>
+                                @foreach ($estacionamientos as $estacionamientos)
+                                <option value="{{$estacionamientos['ID_Estacionamiento']}}"> {{$estacionamientos['ID_Estacionamiento']}}</option>
                                 @endforeach
                             </select>
-                            {!! $errors->first('ID_Usuario','<div class="invalid-feedback"> :message</div>') !!}
+                            {!! $errors->first('ID_Estacionamiento','<div class="invalid-feedback"> :message</div>') !!}
 
                         </div>
 
