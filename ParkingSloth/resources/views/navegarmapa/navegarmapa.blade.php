@@ -53,11 +53,12 @@
 {{-- APIKEY DE GOOGLE MAPS: AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
 @section('scripts')
         
+        <script src="{{ asset('js/estacionamientos.js')}}"></script>
+
         <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE&callback=initMap">
         </script>
 
         <script src="{{ asset('js/map.js')}}"></script>
-        <script src="{{ asset('js/estacionamientos.js')}}"></script>
 
 @endsection

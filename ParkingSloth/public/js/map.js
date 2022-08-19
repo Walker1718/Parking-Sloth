@@ -7,6 +7,8 @@ function initMap() {
     center: concepcion,
     zoom: 13,
     });
+
+    console.log(estacionamientos)
 }
 
 // window.initMap = initMap;
