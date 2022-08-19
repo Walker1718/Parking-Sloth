@@ -5,7 +5,7 @@ function initMap() {
     
     map = new google.maps.Map(document.getElementById("map"), {
     center: concepcion,
-    zoom: 15,
+    zoom: 13,
     });
 }
 

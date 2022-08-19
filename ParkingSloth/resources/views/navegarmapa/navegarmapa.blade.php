@@ -2,51 +2,62 @@
 
 @section('head')
     <style>
-        .pagina{
-            width: 1000px;
-            height: 800px;
-            margin: 0;
+        #map {
+            height: 500px;
+            width: 50%;
             padding: 0;
+            margin: 0;
         }
 
-        #map {
-            height: 100%;
-            width: 100%;
+        .lista_estacionamientos{
+            position: absolute;
+            width: fit-content;
+            height: fit-content;
+            /* border: 5px solid #adadad18; */
+            left: 60vw;
+            background-color: #adadad70;
+            border-radius: 5px;.
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
         }
+
+        .lista_estacionamientos h5{
+            text-align: center;
+            padding: 1rem;
+            border-bottom: 3px solid #4e72df90;
+        }
+
+        .nombre_estacionamientos{
+            flex: 1;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        
     </style>
 @endsection
 
 @section('content')
-        <div class="pagina">
-            <h1>Prueba</h1>
-            <div id="map"></div>
+        <h1>Prueba</h1>
+        <div class="lista_estacionamientos">
+            <h5>Nombre estacionamientos</h5>
+            <div class="nombre_estacionamientos" id="nombre_estacionamientos"></div>
         </div>
+        <div id="map"></div>
+
         
 @endsection
 
 {{-- APIKEY DE GOOGLE MAPS: AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
 @section('scripts')
-
         
         <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE&callback=initMap">
         </script>
 
-        {{-- <script>
-            let map;
-
-        function initMap() {
-            let concepcion = { lat: -34.397, lng: 150.644 }
-            
-            map = new google.maps.Map(document.getElementById("map"), {
-            center: concepcion,
-            zoom: 10,
-            });
-        }
-
-        </script> --}}
-        
-        {{-- <script src="../public/js/map.js"></script> --}}
         <script src="{{ asset('js/map.js')}}"></script>
+        <script src="{{ asset('js/estacionamientos.js')}}"></script>
 
 @endsection
