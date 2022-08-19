@@ -1,6 +1,24 @@
 let map;
 let markers=[];
 
+const setListener = ()=> {
+    document.querySelectorAll(".nombre_individual_estacionamientos").forEach((estacionamientoNombre, index)=>{
+        estacionamientoNombre.addEventListener("click", ()=>{
+            google.maps.event.trigger(markers[index], "click")
+        })
+    })
+}
+
+const displayEstacionamientosList = ()=> {
+    let estacionamientosHTML = "";
+    estacionamientos.forEach(estacionamientos =>{
+        estacionamientosHTML += `<h6 class="nombre_individual_estacionamientos">${estacionamientos.name}</h6>`
+    })
+    document.getElementById("nombre_estacionamientos").innerHTML = estacionamientosHTML;
+
+    
+}
+
 const createMarker = (coord,name)=>{
     let html = `<h5>${name}</h5>`
     const marker = new google.maps.Marker({
@@ -36,7 +54,9 @@ function initMap() {
    createLocationMarkers()
 
    infoWindow = new google.maps.InfoWindow();
-   let html = `<h5>Prueba prueba</h5>`
+
+   displayEstacionamientosList()
+   setListener()
 }
 
 // window.initMap = initMap;
