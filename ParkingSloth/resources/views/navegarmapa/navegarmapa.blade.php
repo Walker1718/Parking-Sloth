@@ -45,6 +45,14 @@
             color: red;
         }
 
+        .reportar{
+            text-align: left;
+        }
+
+        .window {
+            text-align: center;
+        }
+
         
     </style>
 @endsection
