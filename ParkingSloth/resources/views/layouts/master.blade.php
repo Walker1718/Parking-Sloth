@@ -145,7 +145,8 @@
                     <span>Importacion de datos</span></a>
             </li>
             <!--AARON---------------------------->
-
+        </div> <!--AARON---------------------OCULTAR MODERADOR2------->
+        </div> <!--AARON---------------------Ocultar Usuario Comun------->
             
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -211,9 +212,6 @@
 
             <!-- End of Main Content -->
 
-            </div> <!--AARON---------------------OCULTAR MODERADOR2------->
-            </div> <!--AARON---------------------Ocultar Usuario Comun------->
-
             <!-- Footer -->
             <footer class="footer">
                 <div class="container my-auto">
@@ -251,7 +249,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 
@@ -294,6 +292,8 @@
             //-- AARON OcultarUsuarioComun --------->
             $("#OcultarUsuarioComun").hide();
             $("#OcultarUsuarioComun2").hide();
+            document.getElementById('username').innerText = "Login";
+            document.getElementById('userDropdown').setAttribute('href', '/login');
             //-- AARON OcultarUsuarioComun --------->
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
