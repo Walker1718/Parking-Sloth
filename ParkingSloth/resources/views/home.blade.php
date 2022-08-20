@@ -2,12 +2,21 @@
 
 @section('content')
 
-<div class="card" style="width: 28rem;">
-    <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-exclamation-triangle"></i> Advertencia!</h5>
-        <p class="card-text">Recuerda NO utilizar la aplicación mientras conduces!</p>
-        <a href="{{ url('/navegarmapa/') }}" class="btn btn-primary">Entendido</a>
-    </div>
-</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+Swal.fire({
+    icon: 'warning',
+    title: 'Recuerda NO utilizar la aplicación mientras conduces!',
+    showConfirmButton: true,          // In case you want two scenarios 
+    confirmButtonText: 'Entendido',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = '/navegarmapa';
+    }
+})
+
+</script>
 
 @stop
