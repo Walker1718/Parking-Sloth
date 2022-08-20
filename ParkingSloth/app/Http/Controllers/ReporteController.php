@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reporte;
 use App\Models\Estacionamiento;
+use App\Models\ListaEstacionamientos;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,8 @@ class ReporteController extends Controller
     public function create()
     {
         $estacionamientos = Estacionamiento::all();
-        
-        return view('reportes/create', compact('estacionamientos'));
+        $lista_estacionamientos = ListaEstacionamientos::all();
+        return view('reportes/create', compact('estacionamientos','lista_estacionamientos'));
     }
 
     /**
