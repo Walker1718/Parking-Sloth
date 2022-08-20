@@ -10,7 +10,7 @@
 <br>
 <div class="card">
     <div class="card-header">
-        
+        <br>
         <h3 class="card-title">Comentarios</h3>
         <input  style="float: right" type="text" placeholder="Buscar" name="search" id="search"
         class="from-control" />

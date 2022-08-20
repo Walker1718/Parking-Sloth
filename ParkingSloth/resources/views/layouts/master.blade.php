@@ -44,15 +44,61 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}" id='Home'>
                 <div class="sidebar-brand-icon">
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="65" height="65">
                 </div>
                 <div class="sidebar-brand-text mx-3">Parking Sloth</div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Usuario
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/navegarmapa/') }}">
+                    <i class="fas fa-fw fa-map"></i>
+                    <span>Navegar Mapa</span>
+                </a>
+            </li>
+
+            <div id="OcultarModerador"> <!--AARON---------------------OCULTAR MODERADOR------->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/reportes/create') }}">
+                    <i class="fas fa-fw fa-bug"></i>
+                    <span>Reporta un Error</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/comentarios/create') }}">
+                    <i class="fas fa-fw fa-comment"></i>
+                    <span>Calificanos</span></a>
+            </li>
+
+            </div> <!--AARON---------------------OCULTAR MODERADOR------->
+            <div id="OcultarUsuarioComun"> <!--AARON---------------------Ocultar Usuario Comun------->
+
+            <div class="sidebar-heading">
+                Mod
+            </div>
+
+            <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            <li class="nav-item">
+                <a class="nav-link" id='ID_Usuario' href="../ActualizarEstacionamientos">
+                <i class="fas fa-fw fa-cog"></i>
+                    <span>Actualizar Estacionamientos</span></a>
+            </li>
+            <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+
+            <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Admin
+            </div>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/usuarios/') }}">
@@ -60,14 +106,6 @@
                     <span>Usuarios</span>
                 </a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Mapa
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -91,19 +129,6 @@
                     <span>Actualizar Estacionamientos</span></a>
             </li>
 
-            <div class="sidebar-heading">
-                Navegar
-            </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/navegarmapa/') }}">
-                    <i class="fas fa-fw fa-map"></i>
-                    <span>Navegar Mapa</span>
-                </a>
-            </li>
-
-
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -112,28 +137,17 @@
             <div class="sidebar-heading">
                 Soporte
             </div>
-
-
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-info"></i>
                     <span>Capacitación</span></a>
-            </li>
+            </li>    
 
-            <!-- Nav Item - Soporte -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/reportes/') }}">
+                <a class="nav-link" href="{{ url('/ImportDataSet') }}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Reportes</span></a>
+                    <span>Importacion de datos</span></a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/comentarios/') }}">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>Calificanos</span></a>
-            </li>
-            
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -219,7 +233,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
@@ -233,19 +246,39 @@
         
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
+            //-- AARON OCULTARMODERADOR --------->
+            const rol = usuario.ID_Rol;
+            //-- AARON OCULTARMODERADOR --------->
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
             const btnVerPerfil = document.getElementById("btnVerPerfil");
             const base = "{{ url('/') }}"
             const url = `${base}/usuarios/${usuario.ID_Usuario}/editar/perfil`;
             btnVerPerfil.setAttribute("href", url);
+            //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+            //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            //-- AARON OCULTARMODERADOR --------->
+            if(rol == 2){
+                $("#OcultarModerador").hide();
+                $("#OcultarModerador2").hide();
+
+            const ID_Usuario = document.getElementById('Home');
+            ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+            }
+            //-- AARON OCULTARMODERADOR --------->
         }else{
+            //-- AARON OcultarUsuarioComun --------->
+            $("#OcultarUsuarioComun").hide();
+            $("#OcultarUsuarioComun2").hide();
+            document.getElementById('username').innerText = "Login";
+            document.getElementById('userDropdown').setAttribute('href', '/login');
+            //-- AARON OcultarUsuarioComun --------->
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
-            logout();
+            //logout();
         }
 
         function logout(){

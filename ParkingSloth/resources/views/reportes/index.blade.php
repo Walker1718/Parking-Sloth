@@ -10,7 +10,7 @@
 <br>
 <div class="card">
     <div class="card-header">
-        
+        <br>
         <h3 class="card-title">Reportes</h3>
         <input  style="float: right" type="text" placeholder="Buscar" name="search" id="search"
         class="from-control" />
@@ -22,28 +22,30 @@
             <thead >
                 <tr>
                     <th>N°Reporte</th>
-                    <th>Rut Usuario</th>
+                    <th>Calle</th>
                     <th>Título de Reporte</th>
-                    <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($reportes as $reportes)
+                @foreach($reportes as $reporte)
                 <tr>
-                        <td>{{$reportes->ID_Reporte}}</td>
+                        <td>{{$reporte->ID_Reporte}}</td>
                         <td>
-                            @foreach ($usuarios as $usuario)
-                                @if ($usuario->ID_Usuario == $reportes->ID_Usuario)
-                                    {{$usuario->Rut}}
-                                @endif                            
+                            @foreach ($estacionamientos as $estacionamiento)
+                                
+                                    @foreach ($lista_estacionamientos as $lista_estacionamiento)
+                                        @if ($estacionamiento->ID_Lista == $lista_estacionamiento->ID_Lista && $estacionamiento->ID_Estacionamiento == $reporte->ID_Estacionamiento)
+                                            {{$lista_estacionamiento->Nombre_Calle}} - {{$estacionamiento->Numero}}
+                                        @endif 
+                                    @endforeach   
+                                
                             @endforeach
                         </td>   
-                        <td>{{$reportes->Titulo}}</td>
+                        <td>{{$reporte->Titulo}}</td>
 
                         {{-- Boton de Ver detalle completo --}}
                         <td>
-                            <form method="post" action="{{url('/reportes/'.$reportes->ID_Reporte)}}">
+                            <form method="post" action="{{url('/reportes/'.$reporte->ID_Reporte)}}">
                                 {{csrf_field() }}
                                 {{method_field('GET')}}
                                 <button type="submit" class="btn btn-block btn-success">Ver mas</button>
@@ -114,7 +116,7 @@
                                           </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <form action="{{url('/reportes/'.$reportes->ID_Reporte)}}" method="post" >
+                                            <form action="{{url('/reportes/'.$reporte->ID_Reporte)}}" method="post" >
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <button type="submit" class="btn btn-primary">Aceptar</button>

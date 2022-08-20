@@ -15,7 +15,7 @@ use App\Http\Controllers\EstacionamientoController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
 
@@ -31,6 +31,10 @@ Route::get('/usuarios/modificarContraseña', [UsuarioController::class, 'vistaMo
 Route::post('/usuarios/guardarDatos',[UsuarioController::class, 'guardarUsuarios']);
 Route::patch('/usuarios/{id}/actualizarDatos',[UsuarioController::class, 'actualizarUsuarios']);
 Route::get('/usuarios/{id}/editar', [UsuarioController::class, 'vistaEditarUsuarios']);
+
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::get('/home', function () {
     return view('home');

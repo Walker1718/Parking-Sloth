@@ -26,23 +26,10 @@
                     </div>
                     <div class="card-body" style="display: block;">
 
-                        {{-- <div class="form-group">
-                            <label for="ID_Usuario">{{'ID_Usuario'}}</label>
-
-                            <select name="ID_Usuario" id="ID_Usuario" class="form-control custom-select {{$errors->has('ID_Usuario')?'is-invalid':''}}"     >
-                                <option value="">-- ID_Usuario --</option>
-                                @foreach ($usuarios as $usuarios)
-                                <option value="{{$usuarios['ID_Usuario']}}"> {{$usuarios['Nombre']}} - {{$usuarios['Rut']}} </option>
-                                @endforeach
-                            </select>
-                            {!! $errors->first('ID_Usuario','<div class="invalid-feedback"> :message</div>') !!}
-
-                        </div> --}}
-
                         <div class="form-group">
                             <label for="Titulo">{{'Título'}}</label>
                             <input type="text" name="Titulo" id="Titulo" value=""
-                            class="form-control {{$errors->has('Titulo')?'is-invalid':''}}">
+                                class="form-control {{$errors->has('Titulo')?'is-invalid':''}}">
 
                             {!! $errors->first('Titulo','<div class="invalid-feedback"> :message</div>') !!}
                         </div>
@@ -50,31 +37,35 @@
                         <div class="form-group">
                             <label for="Mensaje">{{'Comentario'}}</label>
                             <textarea name="Mensaje" id="Mensaje"
-                            class="form-control {{$errors->has('Mensaje')?'is-invalid':''}}"
-                            rows="4"></textarea>
+                                class="form-control {{$errors->has('Mensaje')?'is-invalid':''}}" rows="4"></textarea>
 
                             {!! $errors->first('Mensaje','<div class="invalid-feedback"> :message</div>') !!}
                         </div>
 
                         <div class="form-group">
                             <label for="Calificacion">{{'Calificacion'}}</label>
-                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer; color:orange;" id="1estrella" ></span>
-                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="2estrella" ></span>
-                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="3estrella" ></span>
-                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="4estrella" ></span>
-                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="5estrella" ></span>
+                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer; color:orange;"
+                                id="1estrella"></span>
+                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;"
+                                id="2estrella"></span>
+                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;"
+                                id="3estrella"></span>
+                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;"
+                                id="4estrella"></span>
+                            <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;"
+                                id="5estrella"></span>
                         </div>
 
                         <div class="form-group">
 
-                            <input type="number" id="Calificacion" name="Calificacion"
-                            min="1" max="5" value="1" class="form-control" hidden> 
-    
+                            <input type="number" id="Calificacion" name="Calificacion" min="1" max="5" value="1"
+                                class="form-control" hidden>
+
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-12">
-                                <a href="{{url('/comentarios')}}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{url('/navegarmapa')}}" class="btn btn-secondary">Volver</a>
                                 <input type="submit" value="Enviar" class="btn btn-success float-right">
                             </div>
                         </div>
@@ -83,8 +74,6 @@
                 </div>
             </div>
         </div>
-
-        
     </section>
 </form>
 @endsection
