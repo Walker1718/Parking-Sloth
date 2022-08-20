@@ -44,7 +44,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}" id='Home'>
                 <div class="sidebar-brand-icon">
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="65" height="65">
                 </div>
@@ -64,7 +64,8 @@
                     <span>Navegar Mapa</span>
                 </a>
             </li>
-
+            <div id="OcultarUsuarioComun"> <!--AARON---------------------Ocultar Usuario Comun------->
+            <div id="OcultarModerador"> <!--AARON---------------------OCULTAR MODERADOR------->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reportes/create') }}">
                     <i class="fas fa-fw fa-bug"></i>
@@ -77,6 +78,7 @@
                     <span>Calificanos</span></a>
             </li>
 
+            </div> <!--AARON---------------------OCULTAR MODERADOR------->
             
 
             <div class="sidebar-heading">
@@ -90,6 +92,8 @@
                     <span>Actualizar Estacionamientos</span></a>
             </li>
             <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+
+            <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -141,7 +145,8 @@
                     <span>Importacion de datos</span></a>
             </li>
             <!--AARON---------------------------->
-
+        </div> <!--AARON---------------------OCULTAR MODERADOR2------->
+        </div> <!--AARON---------------------Ocultar Usuario Comun------->
             
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -244,7 +249,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 
@@ -261,6 +266,9 @@
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
+            //-- AARON OCULTARMODERADOR --------->
+            const rol = usuario.ID_Rol;
+            //-- AARON OCULTARMODERADOR --------->
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
             const btnVerPerfil = document.getElementById("btnVerPerfil");
@@ -270,8 +278,23 @@
             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
-             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            //-- AARON OCULTARMODERADOR --------->
+            if(rol == 2){
+                $("#OcultarModerador").hide();
+                $("#OcultarModerador2").hide();
+
+            const ID_Usuario = document.getElementById('Home');
+            ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+            }
+            //-- AARON OCULTARMODERADOR --------->
         }else{
+            //-- AARON OcultarUsuarioComun --------->
+            $("#OcultarUsuarioComun").hide();
+            $("#OcultarUsuarioComun2").hide();
+            document.getElementById('username').innerText = "Login";
+            document.getElementById('userDropdown').setAttribute('href', '/login');
+            //-- AARON OcultarUsuarioComun --------->
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
