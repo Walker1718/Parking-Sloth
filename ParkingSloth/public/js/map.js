@@ -19,8 +19,19 @@ const displayEstacionamientosList = ()=> {
     
 }
 
-const createMarker = (coord,name)=>{
-    let html = `<p>${name}</p>`
+const createMarker = (coord,name,horario,valor)=>{
+    let html = `
+        <div class="window">
+            <p>${name}</p>
+            <div class="horario">
+                <p>${horario}</p>
+            </div>
+            <div class="valor">
+                <p>${valor}</p>
+            </div>
+        </div>
+    
+    `
     const marker = new google.maps.Marker({
         position: coord,
         map:map,
@@ -40,8 +51,10 @@ const createLocationMarkers = ()=>{
     estacionamientos.forEach(estacionamientos=>{
         let coord = new google.maps.LatLng(estacionamientos.lat, estacionamientos.lng);
         let name = estacionamientos.name;
+        let horario = estacionamientos.horario;
+        let valor = estacionamientos.valor;
         bounds.extend(coord);
-        createMarker(coord, name);
+        createMarker(coord, name, horario, valor);
         map.fitBounds(bounds);
     })
 }
