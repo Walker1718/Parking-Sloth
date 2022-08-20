@@ -64,7 +64,8 @@
                     <span>Navegar Mapa</span>
                 </a>
             </li>
-
+            <div id="OcultarUsuarioComun"> <!--AARON---------------------Ocultar Usuario Comun------->
+            <div id="OcultarModerador"> <!--AARON---------------------OCULTAR MODERADOR------->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reportes/create') }}">
                     <i class="fas fa-fw fa-bug"></i>
@@ -77,6 +78,7 @@
                     <span>Calificanos</span></a>
             </li>
 
+            </div> <!--AARON---------------------OCULTAR MODERADOR------->
             
 
             <div class="sidebar-heading">
@@ -90,6 +92,8 @@
                     <span>Actualizar Estacionamientos</span></a>
             </li>
             <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+
+            <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -207,6 +211,9 @@
 
             <!-- End of Main Content -->
 
+            </div> <!--AARON---------------------OCULTAR MODERADOR2------->
+            </div> <!--AARON---------------------Ocultar Usuario Comun------->
+
             <!-- Footer -->
             <footer class="footer">
                 <div class="container my-auto">
@@ -261,6 +268,9 @@
         const usuarioJson = localStorage.getItem("usuario");
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
+            //-- AARON OCULTARMODERADOR --------->
+            const rol = usuario.ID_Rol;
+            //-- AARON OCULTARMODERADOR --------->
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
             const btnVerPerfil = document.getElementById("btnVerPerfil");
@@ -270,8 +280,16 @@
             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
-             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            //-- AARON OCULTARMODERADOR --------->
+            if(rol == 2){
+                $("#OcultarModerador").hide();
+                $("#OcultarModerador2").hide();
+            }
+            //-- AARON OCULTARMODERADOR --------->
         }else{
+            $("#OcultarUsuarioComun").hide();
+            $("#OcultarUsuarioComun2").hide();
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
