@@ -65,7 +65,7 @@
                                 rows="4"></textarea> --}}
 
                             <textarea id="Mensaje" name="Mensaje" class="form-control {{$errors->has('Mensaje')?'is-invalid':''}}" 
-                                aria-label="With textarea" maxlength="255"></textarea>
+                                aria-label="With textarea" maxlength="256"></textarea>
                               <span class="help-block">
                                 <p id="Mensaje_ayuda" class="help-block">Mensaje de alerta</p>
                               </span>

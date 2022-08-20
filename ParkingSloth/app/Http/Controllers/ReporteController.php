@@ -17,9 +17,10 @@ class ReporteController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::all();
+        $estacionamientos = Estacionamiento::all();
+        $lista_estacionamientos = ListaEstacionamientos::all();
         $datos['reportes']= Reporte::paginate();
-        return view('reportes.index',$datos,compact('usuarios'));
+        return view('reportes.index',$datos,compact('estacionamientos','lista_estacionamientos'));
     }
 
     /**
@@ -58,7 +59,7 @@ class ReporteController extends Controller
 
         $datosReporte=$request->except('_token');
 
-        Reporte::insert($datosReporte);
+        Reporte::create($datosReporte);
 
         return redirect('reportes');  
     }
@@ -72,8 +73,9 @@ class ReporteController extends Controller
     public function show($ID_Reporte)
     {
         $ReporteVerMas = Reporte::find($ID_Reporte);
-        $usuarios = Usuario::all(); 
-        return view('reportes.show', compact('ReporteVerMas', 'usuarios'));
+        $estacionamientos = Estacionamiento::all();
+        $lista_estacionamientos = ListaEstacionamientos::all();
+        return view('reportes.show', compact('ReporteVerMas', 'estacionamientos','lista_estacionamientos'));
     }
 
     /**
