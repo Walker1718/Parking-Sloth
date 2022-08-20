@@ -294,8 +294,6 @@
             //-- AARON OcultarUsuarioComun --------->
             $("#OcultarUsuarioComun").hide();
             $("#OcultarUsuarioComun2").hide();
-            const ID_Usuario = document.getElementById('Home');
-            ID_Usuario.setAttribute('href', '/navegarmapa');
             //-- AARON OcultarUsuarioComun --------->
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
