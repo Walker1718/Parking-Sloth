@@ -40,7 +40,7 @@
 @endsection
 
 @section('content')
-        <h1>Prueba</h1>
+        <h1 style=padding:1rem>Encuentra tu estacionamiento</h1>
         <div class="lista_estacionamientos">
             <h5>Nombre estacionamientos</h5>
             <div class="nombre_estacionamientos" id="nombre_estacionamientos"></div>
