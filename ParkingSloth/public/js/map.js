@@ -22,16 +22,16 @@ const displayEstacionamientosList = ()=> {
 const createMarker = (coord,name,horario,valor)=>{
     let html = `
         <div class="window">
-            <p>${name}</p>
+            <p style="font-weight: bold">${name}</p>
             <div class="horario">
-                <p>${horario}</p>
+                <p><i class="fa-regular fa-clock"></i> ${horario}</p>
             </div>
             <div class="valor">
                 <p>${valor}</p>
             </div>
             
             <div class="reportar">
-                <a id="" href="/reportes/create" onClick="Href()">Reportar error</a>
+                <a id="" href="/reportes/create" onClick="Href()"><i class="fa-solid fa-bug"></i> Reportar error</a>
             </div>
 
         </div>
