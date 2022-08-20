@@ -44,7 +44,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}" id='Home'>
                 <div class="sidebar-brand-icon">
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="65" height="65">
                 </div>
@@ -285,11 +285,18 @@
             if(rol == 2){
                 $("#OcultarModerador").hide();
                 $("#OcultarModerador2").hide();
+
+            const ID_Usuario = document.getElementById('Home');
+            ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
             }
             //-- AARON OCULTARMODERADOR --------->
         }else{
+            //-- AARON OcultarUsuarioComun --------->
             $("#OcultarUsuarioComun").hide();
             $("#OcultarUsuarioComun2").hide();
+            const ID_Usuario = document.getElementById('Home');
+            ID_Usuario.setAttribute('href', '/navegarmapa');
+            //-- AARON OcultarUsuarioComun --------->
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
