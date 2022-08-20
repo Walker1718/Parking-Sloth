@@ -42,15 +42,16 @@ class ReporteController extends Controller
     public function store(Request $request)
     {
         $campos=[
-            'ID_Usuario'=>'required|string',
+            'ID_Estacionamiento'=>'required|integer',
             'Titulo'=>'required|string',
             'Mensaje'=> 'required|string'
         ];
         
         $Mensaje=[
-            "ID_Usuario.required"=>'El Usuario es requerido',
+            "ID_Estacionamiento.required"=>'El estacionamiento es requerido',
             "Titulo.required"=>'Debe ingresar un Título',
-            "Mensaje.required"=>'Debe ingresar un Mensaje'
+            "Mensaje.required"=>'Debe ingresar un Mensaje',
+
         ];
         $this->validate($request,$campos,$Mensaje);
 
