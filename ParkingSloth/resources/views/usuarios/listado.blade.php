@@ -2,6 +2,19 @@
 
 @section('content')
     <script>
+        if(usuarioJson){
+            const usuario = JSON.parse(usuarioJson);
+            const rol = usuario.ID_Rol;
+            if(rol != 1){
+                const url = "{{ url('/home') }}"
+                window.location.replace(url);
+            }
+        }else{
+            const url = "{{ url('/') }}"
+            window.location.replace(url);
+        }
+    </script>
+    <script>
         async function actualizarActivo(id){
             const base = "{{ url('/') }}"
             const url = `${base}/api/usuarios/${id}/activo`;
@@ -66,5 +79,6 @@
             </table>
         </div>  
     </div>
+
 
 @stop

@@ -21,6 +21,10 @@
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <script>
+        const usuarioJson = localStorage.getItem("usuario");
+    </script>
+    
     @yield('head')
     <style>
        .footer {
@@ -242,7 +246,6 @@
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     
     <script>
-        const usuarioJson = localStorage.getItem("usuario");
         
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
@@ -264,8 +267,8 @@
                 $("#OcultarModerador").hide();
                 $("#OcultarModerador2").hide();
 
-            const ID_Usuario = document.getElementById('Home');
-            ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+                const ID_Usuario = document.getElementById('Home');
+                ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
             }
             //-- AARON OCULTARMODERADOR --------->
         }else{

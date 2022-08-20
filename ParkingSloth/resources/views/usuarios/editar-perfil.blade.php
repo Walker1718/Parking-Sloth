@@ -2,6 +2,13 @@
 
 @section('content')
   
+<script>
+    //si el usuario necesita estar logeado
+    if(!usuarioJson){
+        const url = "{{ url('/') }}"
+        window.location.replace(url);
+    }
+</script>
 
 <section class="vh-100 gradient-custom">
     <div class="container">
@@ -62,5 +69,6 @@
       </div>
     </div>
 </section>
+
 
 @stop

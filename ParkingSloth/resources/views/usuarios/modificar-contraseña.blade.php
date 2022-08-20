@@ -3,6 +3,13 @@
 @section('content')
 
 <script>
+    if(!usuarioJson){
+        const url = "{{ url('/') }}"
+        window.location.replace(url);
+    }
+</script>
+
+<script>
 
     function clear(){
         document.getElementById('pass').style.borderColor = "#212529";
@@ -87,4 +94,6 @@
       </div>
     </div>
 </section>
+
+
 @stop
