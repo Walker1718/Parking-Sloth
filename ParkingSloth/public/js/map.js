@@ -12,7 +12,7 @@ const setListener = ()=> {
 const displayEstacionamientosList = ()=> {
     let estacionamientosHTML = "";
     estacionamientos.forEach(estacionamientos =>{
-        estacionamientosHTML += `<h6 class="nombre_individual_estacionamientos">${estacionamientos.name}</h6>`
+        estacionamientosHTML += `<p class="nombre_individual_estacionamientos">${estacionamientos.name}</p>`
     })
     document.getElementById("nombre_estacionamientos").innerHTML = estacionamientosHTML;
 
@@ -20,11 +20,11 @@ const displayEstacionamientosList = ()=> {
 }
 
 const createMarker = (coord,name)=>{
-    let html = `<h5>${name}</h5>`
+    let html = `<p>${name}</p>`
     const marker = new google.maps.Marker({
         position: coord,
         map:map,
-        // icon: "./img/logo.png"
+        icon: "./img/loguito.png"
     })
     google.maps.event.addListener(marker, "click", ()=>{
         infoWindow.setContent(html);
@@ -36,10 +36,13 @@ const createMarker = (coord,name)=>{
 
 
 const createLocationMarkers = ()=>{
+    let bounds = new google.maps.LatLngBounds();
     estacionamientos.forEach(estacionamientos=>{
         let coord = new google.maps.LatLng(estacionamientos.lat, estacionamientos.lng);
         let name = estacionamientos.name;
+        bounds.extend(coord);
         createMarker(coord, name);
+        map.fitBounds(bounds);
     })
 }
 
@@ -49,6 +52,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
     center: concepcion,
     zoom: 13,
+    mapId: "6780ea5549035eec",
     });
 
    createLocationMarkers()

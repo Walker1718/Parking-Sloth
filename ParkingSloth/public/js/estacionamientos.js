@@ -22,6 +22,14 @@ let estacionamientos = [
         address: "O'higgins 1117, Concepción",
         horario: "Lunes - Sábado: 8:00 - 22:00 \nDomingo - Festivos: Cerrado",
         valor: "$20 c/min"
+    },
+    {
+        name: "Estacionamiento al pasito",
+        lat: -36.8252966,
+        lng: -73.0527326,
+        address: "Freire 700, Concepción",
+        horario: "Lunes - Viernes: 8:00 - 22:00 \nSábado - Domingo - Festivos: 8:00 - 20:00",
+        valor: "$20 c/min"
     }
 
 ]
