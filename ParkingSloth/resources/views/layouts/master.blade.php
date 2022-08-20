@@ -64,7 +64,7 @@
                     <span>Navegar Mapa</span>
                 </a>
             </li>
-            <div id="OcultarUsuarioComun"> <!--AARON---------------------Ocultar Usuario Comun------->
+
             <div id="OcultarModerador"> <!--AARON---------------------OCULTAR MODERADOR------->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reportes/create') }}">
@@ -79,7 +79,7 @@
             </li>
 
             </div> <!--AARON---------------------OCULTAR MODERADOR------->
-            
+            <div id="OcultarUsuarioComun"> <!--AARON---------------------Ocultar Usuario Comun------->
 
             <div class="sidebar-heading">
                 Mod
