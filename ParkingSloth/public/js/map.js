@@ -29,8 +29,12 @@ const createMarker = (coord,name,horario,valor)=>{
             <div class="valor">
                 <p>${valor}</p>
             </div>
+            
+            <div class="reportar">
+                <a id="" href="/reportes/create" onClick="Href()">Reportar error</a>
+            </div>
+
         </div>
-    
     `
     const marker = new google.maps.Marker({
         position: coord,
