@@ -6,13 +6,36 @@
         window.location.replace(adminUrl);
     }
 
+    function clean(){
+      document.getElementById('email').style.borderColor  = "white";
+      document.getElementById('pass').style.borderColor  = "white";
+      document.getElementById('errorEmail').textContent = "";
+      document.getElementById('errorPass').textContent = ""
+    }
+    
     async function login(){
-        const email = document.getElementById('email').value;
-        const pass = document.getElementById('pass').value;
+        clean();
+        const email = document.getElementById('email');
+        const pass = document.getElementById('pass');
+        let validado = true;
+        if(!email.value){
+          validado = false;
+          email.style.borderColor  = "red";
+          document.getElementById('errorEmail').textContent = "* Debe ingresar su correo"
+        }
+        if(!pass.value){
+          validado = false;
+          pass.style.borderColor  = "red";
+          document.getElementById('errorPass').textContent = "* Debe ingresar su contraseña"
+        }
+        if(!validado){
+          return;
+        }
+        
         const url = "{{ url('/api/login') }}";
         const data = {
-            email,
-            pass
+          email: email.value,
+          pass: pass.value
         }
         const res = await axios.post(url, data);
         const usuario = res.data;
@@ -55,15 +78,15 @@
                     <p class="text-white-50 mb-5">Ingrese sus credenciales por favor</p>
       
                     <div class="form-outline form-white mb-4">
-                      <input type="email"  name="email" id="email"  class="form-control form-control-lg" />
-                      <label class="form-label" for="email">Correo Electronico</label>
+                      <input type="email" placeholder="Correo electronico" name="email" id="email"  class="form-control form-control-lg" />
+                      <span id="errorEmail" style="color: red"></span>
                     </div>
       
                     <div class="form-outline form-white mb-4">
-                      <input type="password" name="pass" id="pass" class="form-control form-control-lg" />
-                      <label class="form-label" for="pass">Contraseña</label>
+                      <input type="password" placeholder="Contraseña" name="pass" id="pass" class="form-control form-control-lg" />
+                      <span id="errorPass" style="color: red"></span>
                     </div>
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit" onclick="login()">Login</button>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit" onclick="login()">Ingresar</button>
                   </div>
                   
                 </div>

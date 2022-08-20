@@ -114,6 +114,12 @@
             </div>
 
 
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>Capacitación</span></a>
+            </li>
+
             <!-- Nav Item - Soporte -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reportes/') }}">
@@ -164,16 +170,16 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" id="btnVerPerfil" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
+                                    <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-black-400"></i>
+                                    Editar Perfil
                                 </a>
                                 <a class="dropdown-item" href="{{ url('/usuarios/modificarContraseña') }}">
-                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-black-400"></i>
                                     Cambiar Contraseña
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" onclick="logout()">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-black-400"></i>
                                     Salir
                                 </a>
                             </div>
@@ -213,26 +219,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
@@ -244,13 +230,14 @@
     
     <script>
         const usuarioJson = localStorage.getItem("usuario");
+        
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
             const btnVerPerfil = document.getElementById("btnVerPerfil");
             const base = "{{ url('/') }}"
-            const url = `${base}/usuarios/${usuario.ID_Usuario}/perfil`;
+            const url = `${base}/usuarios/${usuario.ID_Usuario}/editar/perfil`;
             btnVerPerfil.setAttribute("href", url);
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
@@ -258,7 +245,7 @@
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
-            //logout();
+            logout();
         }
 
         function logout(){
@@ -267,6 +254,23 @@
             window.location.replace(loginUrl);
         }
 
+        async function actualizarUsuarioMemoria(){
+            const usuario = JSON.parse(usuarioJson);
+            const url = "{{ url('/api/usuarios') }}/"+usuario.ID_Usuario;
+            axios.get(url).then( response => {
+                const nuevoUsuario = response.data;
+                localStorage.setItem("usuario", JSON.stringify(nuevoUsuario));
+                const span = document.getElementById('username');
+                span.textContent =`${nuevoUsuario.Nombre} ${nuevoUsuario.Apellido}`;
+                return response;
+            }).catch( error => {
+                console.error(error);
+            })
+        }
+
+        $(async function() {
+           await actualizarUsuarioMemoria();
+        });
 
     </script>
     @yield('scripts')

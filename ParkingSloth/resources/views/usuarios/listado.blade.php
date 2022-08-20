@@ -19,19 +19,21 @@
             </div>
         </div>
         <div class="row">
-            <table class="table table-bordered table-responsive-lg">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Rut</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Fecha de creación</th>
-                    <th>Fecha de actualización</th>
-                    <th>Activo</th>
-                    <th>Editar</th>
-                </tr>
+            <table class="table table-hover table-bordered table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Rut</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Fecha de creación</th>
+                        <th>Fecha de actualización</th>
+                        <th>Activo</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
                 @foreach ($usuarios as $usuario)
                     <tr>
                         <td>{{ $usuario->ID_Usuario }}</td>
