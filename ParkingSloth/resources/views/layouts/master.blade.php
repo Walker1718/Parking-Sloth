@@ -24,7 +24,7 @@
     <script>
         const usuarioJson = localStorage.getItem("usuario");
     </script>
-    
+
     @yield('head')
     <style>
        .footer {
@@ -194,7 +194,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" id="btnVerPerfil" href="#">
+                                <a class="dropdown-item" id="btnVerPerfil" href="{{ url('/usuarios/editar/perfil') }}">
                                     <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-black-400"></i>
                                     Editar Perfil
                                 </a>
@@ -261,10 +261,6 @@
             //-- AARON OCULTARMODERADOR --------->
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
-            const btnVerPerfil = document.getElementById("btnVerPerfil");
-            const base = "{{ url('/') }}"
-            const url = `${base}/usuarios/${usuario.ID_Usuario}/editar/perfil`;
-            btnVerPerfil.setAttribute("href", url);
             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
@@ -300,10 +296,17 @@
         }
 
         async function actualizarUsuarioMemoria(){
+            if(!usuarioJson){
+                return;
+            }
             const usuario = JSON.parse(usuarioJson);
             const url = "{{ url('/api/usuarios') }}/"+usuario.ID_Usuario;
             axios.get(url).then( response => {
                 const nuevoUsuario = response.data;
+                if(!nuevoUsuario.Activo){
+                    logout();
+                    return;
+                }
                 localStorage.setItem("usuario", JSON.stringify(nuevoUsuario));
                 const span = document.getElementById('username');
                 span.textContent =`${nuevoUsuario.Nombre} ${nuevoUsuario.Apellido}`;

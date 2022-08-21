@@ -36,12 +36,9 @@ class UsuarioController extends Controller
         ]);
     }
 
-    public function vistaEditarPerfil($id)
+    public function vistaEditarPerfil()
     {
-        $usuario = $this->buscarUsuario($id);
-        return view('usuarios.editar-perfil',[
-            "usuario" => $usuario
-        ]);
+        return view('usuarios.editar-perfil');
     }
 
     public function actualizarPerfil($id, Request $request)
