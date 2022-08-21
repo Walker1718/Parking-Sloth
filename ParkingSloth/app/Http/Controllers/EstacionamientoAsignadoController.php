@@ -110,4 +110,23 @@ class EstacionamientoAsignadoController extends Controller
         //CONSULTA
         //exit; 
     }
+
+    public function IndexModerador($ID_Usuario)
+    {
+        $Estacionamiento = DB::table('estacionamientos') 
+        ->join('lista_estacionamientos','estacionamientos.ID_Lista','=','lista_estacionamientos.ID_Lista')
+        ->join("estacionamiento_asignados","estacionamientos.ID_Estacionamiento","=","estacionamiento_asignados.ID_Estacionamiento")
+        ->select(   'estacionamientos.Numero',
+                    'estacionamientos.Activo',
+                    'estacionamientos.Referencia',
+                    'estacionamiento_asignados.Horario',
+                    'estacionamiento_asignados.TurnoAsistencia',
+                    'lista_estacionamientos.Nombre_Calle')
+        ->where("estacionamiento_asignados.ID_Usuario",$ID_Usuario)
+        ->get();
+        
+        if($Estacionamiento){
+            return view('ActualizarEstacionamientos.index', compact('Estacionamiento'));
+        }
+    }
 }

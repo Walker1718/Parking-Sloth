@@ -95,6 +95,13 @@
                 <i class="fas fa-fw fa-cog"></i>
                     <span>Actualizar Estacionamientos</span></a>
             </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" id='IndexModerador' href="../IndexModerador">
+                <i class="fas fa-fw fa-cog"></i>
+                    <span>Lista asignada</span></a>
+            </li>
             <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
 
             <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
@@ -261,6 +268,8 @@
             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+            const IndexModerador = document.getElementById('IndexModerador');
+            IndexModerador.setAttribute('href', '/IndexModerador/'+`${usuario.ID_Usuario}`);
             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             //-- AARON OCULTARMODERADOR --------->
             if(rol == 2){
