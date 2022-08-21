@@ -14,7 +14,7 @@
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <form method="POST" action="{{url('/usuarios/'.$usuario->ID_Usuario.'/actualizar/perfil')}}" class="mb-md-5 mt-md-4 pb-5">
+            <form id="form-editar-perfil" method="POST" class="mb-md-5 mt-md-4 pb-5">
                 @method("PATCH")
                 @csrf
                 <p class="text-white-50 mb-5">Actualice sus datos personales</p>
@@ -26,7 +26,6 @@
                         name="nombre" 
                         id="nombre" 
                         class="form-control form-control-lg" 
-                        value="{{ $usuario->Nombre }}"
                     />
                 </div>
 
@@ -37,7 +36,6 @@
                         name="apellido" 
                         id="apellido" 
                         class="form-control form-control-lg" 
-                        value="{{ $usuario->Apellido }}"
                     />
                 </div>
 
@@ -48,7 +46,6 @@
                         name="email" 
                         id="email" 
                         class="form-control form-control-lg" 
-                        value="{{ $usuario->Email }}"
                     />
                 </div>
 
@@ -59,7 +56,6 @@
                         name="rut" 
                         id="rut" 
                         class="form-control form-control-lg" 
-                        value="{{ $usuario->Rut }}"
                     />
                 </div>
 
@@ -71,4 +67,22 @@
 </section>
 
 
+<script>
+    const usuario = JSON.parse(usuarioJson);
+    const form = document.getElementById("form-editar-perfil");
+    const nombre = document.getElementById("nombre");
+    const apellido = document.getElementById("apellido");
+    const email = document.getElementById("email");
+    const rut = document.getElementById("rut");
+
+    const baseUrl = "{{url('/usuarios')}}/";
+    form.action = baseUrl + usuario.ID_Usuario + "/actualizar/perfil";
+
+    nombre.value = usuario.Nombre;
+    apellido.value = usuario.Apellido;
+    email.value = usuario.Email;
+    rut.value = usuario.Rut;
+
+</script>
+    
 @stop

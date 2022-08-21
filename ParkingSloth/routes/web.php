@@ -25,7 +25,7 @@ Route::get('/test', function() {
 
 Route::get('/usuarios', [UsuarioController::class, 'vistaUsuarios']);
 Route::get('/usuarios/crear', [UsuarioController::class, 'vistaCrearUsuarios']);
-Route::get('/usuarios/{id}/editar/perfil', [UsuarioController::class, 'vistaEditarPerfil']);
+Route::get('/usuarios/editar/perfil', [UsuarioController::class, 'vistaEditarPerfil']);
 Route::patch('/usuarios/{id}/actualizar/perfil', [UsuarioController::class, 'actualizarPerfil']);
 Route::get('/usuarios/modificarContraseña', [UsuarioController::class, 'vistaModificarContraseña']);
 Route::post('/usuarios/guardarDatos',[UsuarioController::class, 'guardarUsuarios']);
