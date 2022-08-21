@@ -287,10 +287,17 @@
         }
 
         async function actualizarUsuarioMemoria(){
+            if(!usuarioJson){
+                return;
+            }
             const usuario = JSON.parse(usuarioJson);
             const url = "{{ url('/api/usuarios') }}/"+usuario.ID_Usuario;
             axios.get(url).then( response => {
                 const nuevoUsuario = response.data;
+                if(!nuevoUsuario.Activo){
+                    logout();
+                    return;
+                }
                 localStorage.setItem("usuario", JSON.stringify(nuevoUsuario));
                 const span = document.getElementById('username');
                 span.textContent =`${nuevoUsuario.Nombre} ${nuevoUsuario.Apellido}`;
