@@ -167,19 +167,18 @@ class UsuarioController extends Controller
             $rutSeparado = explode("-", $rut);
             if (sizeof($rutSeparado) != 2) {
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
-            } else {
+            } else if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
                 // Not A Number
-                if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
-                    $validator->getMessageBag()->add('rut','El rut no esta bien formado');
+                $validator->getMessageBag()->add('rut','El rut no esta bien formado');
+            }else{
+                $numero = intval($rutSeparado[0]);
+                $digitoCalculado = $this->generarDV($numero);
+                if ($digitoCalculado != $rutSeparado[1]) {
+                    $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
                 }
+                // añade los puntos al rut
+                $rut = number_format($numero, 0, ",", ".") . '-' . $digitoCalculado;
             }
-            $numero = intval($rutSeparado[0]);
-            $digitoCalculado = $this->generarDV($numero);
-            if ($digitoCalculado != $rutSeparado[1]) {
-                $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
-            }
-            // añade los puntos al rut
-            $rut = number_format($numero, 0, ",", ".") . '-' . $digitoCalculado;
         }
         
         if ($validator->fails()) {
