@@ -52,8 +52,11 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('reportes.pdf');
 });
+
+Route::get('/reportes/pdf', [App\Http\Controllers\ReporteController::class, 'pdf'])->name('reportes.pdf');
+Route::get('/comentarios/pdf', [App\Http\Controllers\ComentarioController::class, 'pdf'])->name('comentarios.pdf');
 
 Route::resource('reportes', '\App\Http\Controllers\ReporteController');
 Route::resource('comentarios', '\App\Http\Controllers\ComentarioController');
