@@ -67,7 +67,7 @@ class ComentarioController extends Controller
      */
     public function show($ID_Comentario)
     {
-        $ComentarioVerMas = Reporte::find($ID_Comentario);
+        $ComentarioVerMas = Comentario::find($ID_Comentario);
         return view('comentarios.show', compact('ComentarioVerMas'));
     }
 
