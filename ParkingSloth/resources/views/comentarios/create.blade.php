@@ -22,8 +22,8 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Calificanos</h3>
-                        <p>Califica tu experienca con la aplicación</p>
+                        <h3 class="card-title">Califícanos</h3>
+                        <p>Califíca tu experienca con la aplicación</p>
                     </div>
                     <div class="card-body" style="display: block;">
 

@@ -79,7 +79,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/comentarios/create') }}">
                     <i class="fas fa-fw fa-comment"></i>
-                    <span>Calificanos</span></a>
+                    <span>Califícanos</span></a>
             </li>
 
             </div> <!--AARON---------------------OCULTAR MODERADOR------->
