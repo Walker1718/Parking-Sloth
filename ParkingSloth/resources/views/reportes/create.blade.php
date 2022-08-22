@@ -23,6 +23,8 @@
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Crear Reporte</h3>
+                        <p>¿Existe un error en los datos de la aplicación o mal uso de esta? dejanos un mensaje para poder solucionarlo.</p>
+                        <p>Por favor selecciona la dirección de la calle donde existe el error.</p>
                     </div>
                     <div class="card-body" style="display: block;">
 
@@ -77,7 +79,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <a href="{{url('/navegarmapa')}}" class="btn btn-secondary">Volver</a>
-                                <input id="submit" type="submit" value="Enviar" class="btn btn-success float-right">
+                                <input id="submit" type="submit" value="Enviar" class="btn btn-success float-right" onclick="(alerta)">
                             </div>
                         </div>
 
@@ -118,4 +120,21 @@
         }); 
 
     </script>
+
+    <script>
+        $.ajax({
+                type: "POST",
+                url: 'handler.php',
+                data: formdata,
+                success: after_form_submitted,
+                dataType: 'json' ,
+                processData: false,
+                contentType: false,
+                cache: false        
+            })
+        .done(function( data ) {
+                window.location = '/navegarmapa'
+            });
+    </script>
+
 @endsection

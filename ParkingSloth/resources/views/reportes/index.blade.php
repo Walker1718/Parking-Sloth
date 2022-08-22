@@ -162,4 +162,23 @@
     });
 </script>
 
+{{-- <script>
+    //si el usuario esta logeado
+    if(usuarioJson){
+        const usuario = JSON.parse(usuarioJson);
+         // rol 1 es admin, rol 2 es moderador
+        const rol = usuario.ID_Rol;
+        // si rol no coincide con el deseado, mandar al home
+        if(rol != 1){
+            const url = "{{ url('/navegarmapa') }}"
+            window.location.replace(url);
+        }
+    }
+    // si necesita estar logeado, mandar al login
+    else{
+        const url = "{{ url('/') }}"
+        window.location.replace(url);
+    }
+</script> --}}
+
 @stop
