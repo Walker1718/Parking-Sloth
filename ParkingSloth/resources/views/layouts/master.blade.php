@@ -73,7 +73,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reportes/create') }}">
                     <i class="fas fa-fw fa-bug"></i>
-                    <span>Reporta un Error</span></a>
+                    <span>Reporta un error</span></a>
             </li>
 
             <li class="nav-item">
