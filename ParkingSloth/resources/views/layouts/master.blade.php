@@ -105,7 +105,7 @@
             <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
 
             
-
+            <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
             <!-- Heading -->
             <div class="sidebar-heading">
                 Admin
@@ -184,7 +184,7 @@
                     <span>Importacion de datos</span></a>
             </li>
             
-
+            </div> <!--AARON---------------------OCULTAR MODERADOR------->
             </div> <!--AARON---------------------Ocultar Usuario Comun------->
 
             <!-- Sidebar Toggler (Sidebar) -->
