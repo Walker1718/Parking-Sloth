@@ -33,7 +33,7 @@
                 <tr>
                         <td>{{$comentarios->ID_Comentario}}</td>  
                         <td>{{$comentarios->Titulo}}</td>
-                        <td>{{$comentarios->Calificacion}}</td>
+                        <td>{{$comentarios->Calificacion}} <span class="fa fa-star" style="color:orange;"></span> </td>
 
                         {{-- Boton de Ver detalle completo --}}
                         <td>
@@ -52,10 +52,10 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">¿Desea borrar el Reporte?</h5>
+                                            <h5 class="modal-title">¿Desea borrar el comentario?</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Si borra el Reporte no lo podra recuperar.</p>
+                                            <p>Si borra el comentario no lo podra recuperar.</p>
                                           </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
