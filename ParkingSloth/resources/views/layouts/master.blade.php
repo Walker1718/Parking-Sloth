@@ -149,22 +149,13 @@
                 </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Soporte
-            </div>
-
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/ImportDataSet') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Importacion de datos</span></a>
             </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
             
+
             </div> <!--AARON---------------------Ocultar Usuario Comun------->
 
             <!-- Sidebar Toggler (Sidebar) -->
