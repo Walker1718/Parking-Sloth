@@ -1,6 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
+<script>
+    if(usuarioJson){
+        const usuario = JSON.parse(usuarioJson);
+        const rol = usuario.ID_Rol;
+        if(rol != 1){
+            const url = "{{ url('/home') }}"
+            window.location.replace(url);
+        }
+    }else{
+        const url = "{{ url('/') }}"
+        window.location.replace(url);
+    }
+</script>
+
     <form action="{{url('usuarios/'.$usuario->ID_Usuario.'/actualizarDatos' )}}" method="POST">
         @method('PATCH')
         @csrf
@@ -46,4 +60,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+
 @stop

@@ -6,11 +6,8 @@ use App\Models\Estacionamiento;
 use App\Models\Rol;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
-use Hamcrest\Type\IsNumeric;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -44,17 +41,37 @@ class UsuarioController extends Controller
         ]);
     }
 
-    public function vistaVerPerfil($id)
+    public function vistaEditarPerfil()
     {
-        $usuario = Usuario::where('ID_Usuario', $id)
-            ->first();
-        if(!$usuario){
-            abort(404, "Usuario no encontrado");
-        }
-        return view('usuarios.perfil',[
-            "usuario" => $usuario
-        ]);
+        return view('usuarios.editar-perfil');
     }
+
+    public function actualizarPerfil($id, Request $request)
+    {
+        $usuario = $this->buscarUsuario($id);
+       
+        $nombre = $request->input("nombre");
+        $apellido = $request->input("apellido");
+        $email = $request->input("email");
+        $rut = $request->input("rut");
+
+        if($nombre){
+            $usuario->Nombre = $nombre;
+        }
+        if($apellido){
+            $usuario->Apellido = $apellido;
+        }
+        if($email){
+            $usuario->Email = $email;
+        }
+        if($rut){
+            $usuario->Rut = $rut;
+        }
+        
+        $usuario->save();
+        return redirect('/home');
+    }
+
 
     public function vistaModificarContraseña()
     {
@@ -62,9 +79,19 @@ class UsuarioController extends Controller
     }
 
 
+    public function buscarUsuario($id){
+        $usuario = Usuario::where('ID_Usuario', $id)
+            ->first();
+        if(!$usuario){
+            abort(404, "Usuario no encontrado");
+        } 
+        return $usuario;
+    }
+
     public function cambiarContraseña($id, Request $request){
         $pass = $request->input('pass');
         $confirm = $request->input('confirm');
+        $actual = $request->input('actualPass');
 
         if(!$pass || !$confirm){
             return null;
@@ -78,6 +105,12 @@ class UsuarioController extends Controller
         if(!$usuario){
             return null;
         }
+        
+        $compare = Hash::check($actual, $usuario->Contraseña);
+        if (!$compare ) {
+            return null;
+        }
+
         $usuario->Contraseña = bcrypt($pass);
         $usuario->save();
         return $usuario;
@@ -113,10 +146,6 @@ class UsuarioController extends Controller
         }
     }
 
-    private function validarRut($rut)
-    {
-
-    }
     /**
      * Crea y guarda un usuario en la base de datos
      * @return \Models\Usuario
@@ -143,19 +172,18 @@ class UsuarioController extends Controller
             $rutSeparado = explode("-", $rut);
             if (sizeof($rutSeparado) != 2) {
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
-            } else {
+            } else if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
                 // Not A Number
-                if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
-                    $validator->getMessageBag()->add('rut','El rut no esta bien formado');
+                $validator->getMessageBag()->add('rut','El rut no esta bien formado');
+            }else{
+                $numero = intval($rutSeparado[0]);
+                $digitoCalculado = $this->generarDV($numero);
+                if ($digitoCalculado != $rutSeparado[1]) {
+                    $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
                 }
+                // añade los puntos al rut
+                $rut = number_format($numero, 0, ",", ".") . '-' . $digitoCalculado;
             }
-            $numero = intval($rutSeparado[0]);
-            $digitoCalculado = $this->generarDV($numero);
-            if ($digitoCalculado != $rutSeparado[1]) {
-                $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
-            }
-            // añade los puntos al rut
-            $rut = number_format($numero, 0, ",", ".") . '-' . $digitoCalculado;
         }
         
         if ($validator->fails()) {
@@ -185,11 +213,7 @@ class UsuarioController extends Controller
     public function vistaEditarUsuarios($id)
     {
         $roles = Rol::all();
-        $usuario = Usuario::where('ID_Usuario', $id)
-            ->first();
-        if (!$usuario) {
-            abort(404);
-        }
+        $usuario = $this->buscarUsuario($id);
         return view('usuarios.editar', [
             'usuario' => $usuario,
             'roles' => $roles
@@ -233,8 +257,7 @@ class UsuarioController extends Controller
             $rut = number_format($numero, 0, ",", ".") . '-' . $digitoCalculado;
         }
 
-        $usuario = Usuario::where('ID_Usuario', $id)
-            ->first();
+        $usuario = $this->buscarUsuario($id);
 
         $rol = $request->input('rol');
         $usuario->Nombre = $request->input('nombre') ?? $usuario->Nombre;
@@ -266,10 +289,7 @@ class UsuarioController extends Controller
     }
 
     public function cambiarActivo($id){
-        $usuario = Usuario::where('ID_Usuario', $id)->first();
-        if($usuario == null){
-            throw new NotFoundHttpException("usuario no encontrado");
-        }
+        $usuario = $this->buscarUsuario($id);
         $usuario->Activo = !$usuario->Activo;
         $usuario->save();
         return $usuario;

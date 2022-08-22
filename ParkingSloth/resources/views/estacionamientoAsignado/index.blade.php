@@ -49,17 +49,11 @@
                             <td>{{$estacionamiento->Capacidad_Utilizada.'/'.$estacionamiento->Capacidad_Total}}</td>
                             @if($estacionamiento->Activo == 1)
                                 <td>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                                        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"></label>
-                                      </div>
+                                    <i class="fas fa-check"></i>
                                 </td>
                             @else
                                 <td>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
-                                        <label class="form-check-label" for="flexSwitchCheckDisabled"></label>
-                                    </div>
+                                    <i class="fas fa-times"></i>
                                 </td>
                                 
                             @endif

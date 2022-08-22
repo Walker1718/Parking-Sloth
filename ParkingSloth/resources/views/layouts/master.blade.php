@@ -21,6 +21,10 @@
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <script>
+        const usuarioJson = localStorage.getItem("usuario");
+    </script>
+
     @yield('head')
     <style>
        .footer {
@@ -44,7 +48,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}" id='Home'>
                 <div class="sidebar-brand-icon">
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="65" height="65">
                 </div>
@@ -65,6 +69,7 @@
                 </a>
             </li>
 
+            <div id="OcultarModerador"> <!--AARON---------------------OCULTAR MODERADOR------->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reportes/create') }}">
                     <i class="fas fa-fw fa-bug"></i>
@@ -77,7 +82,8 @@
                     <span>Calificanos</span></a>
             </li>
 
-            
+            </div> <!--AARON---------------------OCULTAR MODERADOR------->
+            <div id="OcultarUsuarioComun"> <!--AARON---------------------Ocultar Usuario Comun------->
 
             <div class="sidebar-heading">
                 Mod
@@ -89,7 +95,16 @@
                 <i class="fas fa-fw fa-cog"></i>
                     <span>Actualizar Estacionamientos</span></a>
             </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" id='IndexModerador' href="../IndexModerador">
+                <i class="fas fa-fw fa-cog"></i>
+                    <span>Lista asignada</span></a>
+            </li>
             <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+
+            <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -149,29 +164,30 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
-                    aria-expanded="true" aria-controls="collapse3">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Soporte</span>
-                </a>
-                <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('/reportes/') }}" >Lista Reportes</a>
-                        <a class="collapse-item" href="{{ url('/comentarios/') }}" >Lista Comentarios</a>
-                    </div>
-                </div>
+                <a class="nav-link" id='ID_Usuario' href="../ActualizarEstacionamientos">
+                <i class="fas fa-fw fa-cog"></i>
+                    <span>Actualizar Estacionamientos</span></a>
             </li>
-              
 
-            <!-- Divider AARON---------------------------->
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Soporte
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>Capacitación</span></a>
+            </li>    
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/ImportDataSet') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Importacion de datos</span></a>
             </li>
-            <!--AARON---------------------------->
-
-            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -207,17 +223,17 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" id="btnVerPerfil" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
+                                <a class="dropdown-item" id="btnVerPerfil" href="{{ url('/usuarios/editar/perfil') }}">
+                                    <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-black-400"></i>
+                                    Editar Perfil
                                 </a>
                                 <a class="dropdown-item" href="{{ url('/usuarios/modificarContraseña') }}">
-                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-black-400"></i>
                                     Cambiar Contraseña
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" onclick="logout()">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-black-400"></i>
                                     Salir
                                 </a>
                             </div>
@@ -257,27 +273,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
@@ -287,20 +282,36 @@
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     
     <script>
-        const usuarioJson = localStorage.getItem("usuario");
+        
         if(usuarioJson){
             const usuario = JSON.parse(usuarioJson);
+            //-- AARON OCULTARMODERADOR --------->
+            const rol = usuario.ID_Rol;
+            //-- AARON OCULTARMODERADOR --------->
             const span = document.getElementById('username');
             span.textContent =`${usuario.Nombre} ${usuario.Apellido}`;
-            const btnVerPerfil = document.getElementById("btnVerPerfil");
-            const base = "{{ url('/') }}"
-            const url = `${base}/usuarios/${usuario.ID_Usuario}/perfil`;
-            btnVerPerfil.setAttribute("href", url);
             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
             const ID_Usuario = document.getElementById('ID_Usuario');
             ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
-             //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            const IndexModerador = document.getElementById('IndexModerador');
+            IndexModerador.setAttribute('href', '/IndexModerador/'+`${usuario.ID_Usuario}`);
+            //-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
+            //-- AARON OCULTARMODERADOR --------->
+            if(rol == 2){
+                $("#OcultarModerador").hide();
+                $("#OcultarModerador2").hide();
+
+                const ID_Usuario = document.getElementById('Home');
+                ID_Usuario.setAttribute('href', '/ActualizarEstacionamientos/'+`${usuario.ID_Usuario}`);
+            }
+            //-- AARON OCULTARMODERADOR --------->
         }else{
+            //-- AARON OcultarUsuarioComun --------->
+            $("#OcultarUsuarioComun").hide();
+            $("#OcultarUsuarioComun2").hide();
+            document.getElementById('username').innerText = "Login";
+            document.getElementById('userDropdown').setAttribute('href', '/login');
+            //-- AARON OcultarUsuarioComun --------->
             const dropdown = document.getElementById('userDropdown');
             dropdown.disabled = true;
             //TODO: descomentar cuando sea necesario que el usuario tenga sesion abierta
@@ -313,6 +324,30 @@
             window.location.replace(loginUrl);
         }
 
+        async function actualizarUsuarioMemoria(){
+            if(!usuarioJson){
+                return;
+            }
+            const usuario = JSON.parse(usuarioJson);
+            const url = "{{ url('/api/usuarios') }}/"+usuario.ID_Usuario;
+            axios.get(url).then( response => {
+                const nuevoUsuario = response.data;
+                if(!nuevoUsuario.Activo){
+                    logout();
+                    return;
+                }
+                localStorage.setItem("usuario", JSON.stringify(nuevoUsuario));
+                const span = document.getElementById('username');
+                span.textContent =`${nuevoUsuario.Nombre} ${nuevoUsuario.Apellido}`;
+                return response;
+            }).catch( error => {
+                console.error(error);
+            })
+        }
+
+        $(async function() {
+           await actualizarUsuarioMemoria();
+        });
 
     </script>
     @yield('scripts')
