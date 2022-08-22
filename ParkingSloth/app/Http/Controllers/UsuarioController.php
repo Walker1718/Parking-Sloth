@@ -65,14 +65,14 @@ class UsuarioController extends Controller
             if (sizeof($rutSeparado) != 2) {
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
                 return redirect('/usuarios/editar/perfil')->withErrors($errores)->withInput();
-            } else if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
+            } else if (!is_numeric($rutSeparado[0])) {
                 // Not A Number
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
                 return redirect('/usuarios/editar/perfil')->withErrors($errores)->withInput();
             }else{
                 $numero = intval($rutSeparado[0]);
                 $digitoCalculado = $this->generarDV($numero);
-                if ($digitoCalculado != $rutSeparado[1]) {
+                if ($digitoCalculado != strtoupper($rutSeparado[1])) {
                     $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
                     return redirect('/usuarios/editar/perfil')->withErrors($errores)->withInput();
                 }
@@ -207,13 +207,13 @@ class UsuarioController extends Controller
             $rutSeparado = explode("-", $rut);
             if (sizeof($rutSeparado) != 2) {
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
-            } else if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
+            } else if ( !is_numeric($rutSeparado[0]) ) {
                 // Not A Number
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
             }else{
                 $numero = intval($rutSeparado[0]);
                 $digitoCalculado = $this->generarDV($numero);
-                if ($digitoCalculado != $rutSeparado[1]) {
+                if ($digitoCalculado != strtoupper($rutSeparado[1])) {
                     $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
                 }
                 // añade los puntos al rut
@@ -272,8 +272,8 @@ class UsuarioController extends Controller
                     ->withErrors(['rut' => 'El rut no esta bien formado'])
                     ->withInput();
             } else {
-                // Not A Number
-                if (!is_numeric($rutSeparado[0]) || !is_numeric($rutSeparado[1])) {
+                // el numero antes del guion sea numerico
+                if (!is_numeric($rutSeparado[0])) {
                     return redirect()
                         ->back()
                         ->withErrors(['rut' => 'El rut no esta bien formado'])
@@ -282,7 +282,7 @@ class UsuarioController extends Controller
             }
             $numero = intval($rutSeparado[0]);
             $digitoCalculado = $this->generarDV($numero);
-            if ($digitoCalculado != $rutSeparado[1]) {
+            if ($digitoCalculado != strtoupper($rutSeparado[1]) ) {
                 return redirect()
                     ->back()
                     ->withErrors(['rut' => 'El rut ingresado no es valido'])
