@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="Titulo">{{'Título'}}</label>
                             <input type="text" name="Titulo" id="Titulo"
-                                value=""
+                                value="" maxlength="64"
                                 class="form-control {{$errors->has('Titulo')?'is-invalid':''}}">
 
                             {!! $errors->first('Titulo','<div class="invalid-feedback"> :message</div>') !!}

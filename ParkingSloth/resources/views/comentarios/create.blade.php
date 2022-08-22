@@ -22,14 +22,14 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Calificanos</h3>
-                        <p>Califica tu experienca con la aplicación</p>
+                        <h3 class="card-title">Califícanos</h3>
+                        <p>Califíca tu experienca con la aplicación</p>
                     </div>
                     <div class="card-body" style="display: block;">
 
                         <div class="form-group">
                             <label for="Titulo">{{'Título'}}</label>
-                            <input type="text" name="Titulo" id="Titulo" value=""
+                            <input type="text" name="Titulo" id="Titulo" value="" maxlength="64"
                                 class="form-control {{$errors->has('Titulo')?'is-invalid':''}}">
 
                             {!! $errors->first('Titulo','<div class="invalid-feedback"> :message</div>') !!}

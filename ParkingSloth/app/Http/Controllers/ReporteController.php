@@ -19,7 +19,7 @@ class ReporteController extends Controller
     {
         $estacionamientos = Estacionamiento::all();
         $lista_estacionamientos = ListaEstacionamientos::all();
-        $datos['reportes']= Reporte::paginate();
+        $datos['reportes']= Reporte::paginate(5);
         return view('reportes.index',$datos,compact('estacionamientos','lista_estacionamientos'));
     }
 
