@@ -26,6 +26,7 @@
                         name="nombre" 
                         id="nombre" 
                         class="form-control form-control-lg" 
+                        value="{{ old('nombre') }}"
                     />
                 </div>
 
@@ -36,6 +37,7 @@
                         name="apellido" 
                         id="apellido" 
                         class="form-control form-control-lg" 
+                        value="{{ old('apellido') }}"
                     />
                 </div>
 
@@ -45,8 +47,12 @@
                         type="text" 
                         name="email" 
                         id="email" 
-                        class="form-control form-control-lg" 
+                        class="form-control form-control-lg @error('email') is-invalid @enderror" 
+                        value="{{ old('email') }}"
                     />
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-outline form-white mb-4">
@@ -55,8 +61,12 @@
                         type="text" 
                         name="rut" 
                         id="rut" 
-                        class="form-control form-control-lg" 
+                        class="form-control form-control-lg @error('rut') is-invalid @enderror" 
+                        value="{{ old('rut') }}"
                     />
+                    @error('rut')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <button class="btn btn-primary px-5" type="submit">Confirmar</button>
@@ -78,10 +88,19 @@
     const baseUrl = "{{url('/usuarios')}}/";
     form.action = baseUrl + usuario.ID_Usuario + "/actualizar/perfil";
 
-    nombre.value = usuario.Nombre;
-    apellido.value = usuario.Apellido;
-    email.value = usuario.Email;
-    rut.value = usuario.Rut;
+    //si old es vacio, entonces rellenamos con el usuario de la sesion
+    if("{{ old('nombre') }}" == ""){
+        nombre.value = usuario.Nombre;
+    }
+    if("{{ old('apellido') }}" == ""){
+        apellido.value = usuario.Apellido;
+    }
+    if("{{ old('email') }}" == ""){
+        email.value = usuario.Email;
+    }
+    if("{{ old('rut') }}" == ""){
+        rut.value = usuario.Rut;
+    }
 
 </script>
     
