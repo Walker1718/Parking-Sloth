@@ -131,6 +131,11 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="d-flex justify-content-center">
+            {{ $reportes->links() }}
+        </div>
+
     </div>
     <!-- /.card-body -->
 </div>

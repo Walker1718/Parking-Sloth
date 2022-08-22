@@ -16,7 +16,7 @@ class ComentarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        $datos['comentarios']= Comentario::paginate();
+        $datos['comentarios']= Comentario::paginate(5);
         return view('comentarios.index',$datos,compact('usuarios'));
     }
 

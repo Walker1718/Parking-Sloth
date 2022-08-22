@@ -29,15 +29,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($comentarios as $comentarios)
+                @foreach($comentarios as $comentario)
                 <tr>
-                        <td>{{$comentarios->ID_Comentario}}</td>  
-                        <td>{{$comentarios->Titulo}}</td>
-                        <td>{{$comentarios->Calificacion}} <span class="fa fa-star" style="color:orange;"></span> </td>
+                        <td>{{$comentario->ID_Comentario}}</td>  
+                        <td>{{$comentario->Titulo}}</td>
+                        <td>{{$comentario->Calificacion}} <span class="fa fa-star" style="color:orange;"></span> </td>
 
                         {{-- Boton de Ver detalle completo --}}
                         <td>
-                            <form method="post" action="{{url('/comentarios/'.$comentarios->ID_Comentario)}}">
+                            <form method="post" action="{{url('/comentarios/'.$comentario->ID_Comentario)}}">
                                 {{csrf_field() }}
                                 {{method_field('GET')}}
                                 <button type="submit" class="btn btn-block btn-success">Ver mas</button>
@@ -59,7 +59,7 @@
                                           </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <form action="{{url('/comentarios/'.$comentarios->ID_Comentario)}}" method="post" >
+                                            <form action="{{url('/comentarios/'.$comentario->ID_Comentario)}}" method="post" >
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <button type="submit" class="btn btn-primary">Aceptar</button>
@@ -74,6 +74,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            {{ $comentarios->links() }}
+        </div>
     </div>
     <!-- /.card-body -->
 </div>
