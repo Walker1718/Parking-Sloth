@@ -11,7 +11,7 @@
 <div class="card">
     <div class="card-header">
         <br>
-        <h3 class="card-title">Comentarios</h3>
+        <h3 class="card-title">Comentarios y Calificaciones</h3>
         <input  style="float: right" type="text" placeholder="Buscar" name="search" id="search"
         class="from-control" />
         
@@ -23,7 +23,7 @@
                 <tr>
                     <th>N°Comentario</th>
                     <th>Título de Reporte</th>
-                    <th>Calificación</th>
+                    <th>Calificación (1 - 5)</th>
                     <th></th>
                     <th></th>
                 </tr>

@@ -151,6 +151,21 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
+                    aria-expanded="true" aria-controls="collapse3">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Reportes/Comentarios</span>
+                </a>
+                <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Listas</h6>
+                        <a class="collapse-item" href="{{ url('/reportes/') }}" >Reportes</a>
+                        <a class="collapse-item" href="{{ url('/comentarios/') }}" >Comentarios</a>
+                    </div>
+                </div>
+            </li>
+
             {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ url('/asignar_estacionamientos/create') }}"> 
                     <i class="fas fa-users"></i>
@@ -273,6 +288,8 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
