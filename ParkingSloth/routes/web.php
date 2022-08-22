@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EstacionamientoAsignadoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EstacionamientoController;
@@ -31,6 +32,20 @@ Route::get('/usuarios/modificarContraseña', [UsuarioController::class, 'vistaMo
 Route::post('/usuarios/guardarDatos',[UsuarioController::class, 'guardarUsuarios']);
 Route::patch('/usuarios/{id}/actualizarDatos',[UsuarioController::class, 'actualizarUsuarios']);
 Route::get('/usuarios/{id}/editar', [UsuarioController::class, 'vistaEditarUsuarios']);
+
+//foo asignar estacionamiento
+
+Route::resource('asignar_estacionamientos',EstacionamientoAsignadoController::class);
+
+Route::get('/usuarios/{id}/estacionamientos',[EstacionamientoAsignadoController::class, 'listaAsignada']);
+Route::get('/usuarios/{id}/estacionamientos/asignarEstacionamientos',[EstacionamientoAsignadoController::class, 'asignarEstacionamiento']);
+Route::post('/usuarios/{id}/estacionamientos/guardarEstacionamientoAsignado',[EstacionamientoAsignadoController::class, 'GuardarEstacionamiento']);
+Route::delete('/usuarios/{id}/estacionamientos/{id_est}/desAsignar', [EstacionamientoAsignadoController::class, 'desasignarEstacionamiento']);
+
+
+//foo asignar estacionamiento
+
+
 
 Route::get('/', function () {
     return view('home');

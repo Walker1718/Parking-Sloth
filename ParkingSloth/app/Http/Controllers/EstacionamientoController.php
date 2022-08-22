@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estacionamiento;
+use App\Models\ListaEstacionamientos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -17,8 +18,9 @@ class EstacionamientoController extends Controller
     public function index()
     {
         $estacionamientos = Estacionamiento::all();
+        $listaEstacionamientos = ListaEstacionamientos::all();
 
-        return view('estacionamientos.index', compact('estacionamientos'));
+        return view('estacionamientos.index', compact('estacionamientos','listaEstacionamientos'));
     }
 
     /**
@@ -28,8 +30,8 @@ class EstacionamientoController extends Controller
      */
     public function create()
     {
-        //
-        return view('estacionamientos.create');
+        $calles = ListaEstacionamientos::all();
+        return view('estacionamientos.create',compact('calles'));
     }
 
     /**
@@ -41,8 +43,16 @@ class EstacionamientoController extends Controller
     public function store(Request $request)
     {
         //return $request->all();
+
+        //  dd($request);
         $estacionamiento = new Estacionamiento();
+
+        $estacionamiento->ID_Lista = $request->input('ID_Lista');
+
         $estacionamiento->Numero =  $request->input('numero');
+
+        $estacionamiento->Latitud =  $request->input('latitud');
+        $estacionamiento->Longitud =  $request->input('longitud');
 
         if($request->input('activo')=='on'){
             $estacionamiento->Activo = true;
@@ -83,11 +93,13 @@ class EstacionamientoController extends Controller
         //$estacionamientos = Estacionamiento::all();
         $estacionamiento = new Estacionamiento();
         $estacionamiento = Estacionamiento::find($id);
+        $calles = ListaEstacionamientos::all();
+
         // $estacionamiento = DB::table('Estacionamientos')
         //                     ->where('ID_Estacionamiento','=',$id)
         //                     ->get()->first();
 
-        return view('estacionamientos.edit', compact('estacionamiento'));
+        return view('estacionamientos.edit', compact('estacionamiento','calles'));
     }
 
     /**
