@@ -18,8 +18,8 @@
             <table class="table table-head-fixed text-nowrap">
             <thead>
                 <tr>
-                    <th>ID_Reporte</th>
-                    <th>ID_Estacionamiento</th>
+                    <th>Id Reporte</th>
+                    <th>Id Estacionamiento</th>
                     <th>Título</th>
                     <th>Calle</th>
                     <th>Número</th>
