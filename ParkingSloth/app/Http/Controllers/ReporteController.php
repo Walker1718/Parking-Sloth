@@ -61,7 +61,7 @@ class ReporteController extends Controller
 
         Reporte::create($datosReporte);
 
-        return redirect('reportes');  
+        return redirect('navegarmapa');  
     }
 
     /**

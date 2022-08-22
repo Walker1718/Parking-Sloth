@@ -55,7 +55,7 @@ class ComentarioController extends Controller
 
         Comentario::insert($datosComentario);
 
-        return redirect('comentarios'); 
+        return redirect('navegarmapa'); 
     }
 
     /**
