@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estacionamiento as ModelsEstacionamiento;
 use App\Models\estacionamiento_asignado;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Estacionamiento;
+use App\Models\ListaEstacionamientos;
+
 class EstacionamientoAsignadoController extends Controller
 {
     /**
@@ -15,7 +20,27 @@ class EstacionamientoAsignadoController extends Controller
      */
     public function index()
     {
+
+        $estacionamientos = Estacionamiento::all();
+        $estacionamientos_asignados = estacionamiento_asignado::all();
+        $listaEstacionamientos = ListaEstacionamientos::all();
+        $usuarios = Usuario::all();
+        return view('estacionamientoAsignado.index',compact('estacionamientos','estacionamientos_asignados','listaEstacionamientos','usuarios'));
+         
+        
+
+    }
+
+    public function listaAsignada($id)
+    {
         //
+        $estacionamientos = Estacionamiento::all();
+        $listaEstacionamientos = ListaEstacionamientos::all();
+        $estacionamientos_asignados = estacionamiento_asignado::where('ID_Usuario', $id)->get();
+        $usuario = Usuario::where('ID_Usuario', $id)->get()->first();
+
+        return view('estacionamientoAsignado.indexusuario', compact('estacionamientos','estacionamientos_asignados','usuario','listaEstacionamientos'));
+
     }
 
     /**
@@ -25,7 +50,20 @@ class EstacionamientoAsignadoController extends Controller
      */
     public function create()
     {
-        //
+        // $estacionamientos = Estacionamiento::all();
+        // $usuario = Usuario::where('ID_Usuario', $id)->get()->first();
+        // return view('estacionamientoAsignado.create',compact('estacionamientos','usuario'));
+
+        $estacionamientos = Estacionamiento::all();
+        $usuarios = Usuario::all();
+        return view('estacionamientoAsignado.create', compact('estacionamientos','usuarios'));
+    }
+
+    public function asignarEstacionamiento($id)
+    {
+        $estacionamientos = Estacionamiento::all();
+        $usuario = Usuario::where('ID_Usuario', $id)->get()->first();
+        return view('estacionamientoAsignado.asignar',compact('estacionamientos','usuario'));
     }
 
     /**
@@ -36,7 +74,29 @@ class EstacionamientoAsignadoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $estacionamientoAsignado = new estacionamiento_asignado();
+        $estacionamientoAsignado->ID_Usuario = $request->input('moderadorAsignado');
+        $estacionamientoAsignado->ID_Estacionamiento = $request->input('estacionamientoAsignado');
+        $estacionamientoAsignado->Horario = $request->input('fecha');
+
+        $estacionamientoAsignado->save();
+        
+
+        return redirect('/asignar_estacionamientos');
+    }
+
+    public function guardarEstacionamiento(Request $request, $id)
+    {
         //
+        $estacionamientoAsignado = new estacionamiento_asignado();
+        $estacionamientoAsignado->ID_Usuario = $id;
+        $estacionamientoAsignado->ID_Estacionamiento = $request->input('estacionamientoAsignado');
+        $estacionamientoAsignado->Horario = $request->input('fecha');
+
+        $estacionamientoAsignado->save();
+
+        return redirect('usuarios/'.$id.'/estacionamientos');
     }
 
     /**
@@ -79,9 +139,20 @@ class EstacionamientoAsignadoController extends Controller
      * @param  \App\Models\estacionamiento_asignado  $estacionamiento_asignado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(estacionamiento_asignado $estacionamiento_asignado)
+    public function desasignarEstacionamiento($id,$id_est)
     {
-        //
+        DB::table('estacionamiento_asignados')
+        ->where("estacionamiento_asignados.ID_Usuario",$id)
+        ->where("estacionamiento_asignados.ID_Estacionamiento",$id_est)
+        ->delete();
+        // $estacionamiento_asignado = new estacionamiento_asignado();
+        // $estacionamiento_asignado = estacionamiento_asignado::where([
+        //                                                     ['ID_Usuario','=',$id],
+        //                                                     ['ID_Estacionamiento','=',$id_est]
+        // ])->get()->first();
+        
+        // $estacionamiento_asignado->delete();
+        return redirect('usuarios/'.$id.'/estacionamientos');
     }
 
     public function ActualizarTurnoAsistencia(Request $request)

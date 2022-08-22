@@ -104,6 +104,8 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
+
+            {{-- FOO --}}
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -113,11 +115,38 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Estacionamientos</h6>
-                        <a class="collapse-item" href="../estacionamientos">Lista estacionamientos</a>
-                        <a class="collapse-item" href="../estacionamientos/create">Crear estacionamientos</a>
+                        <a class="collapse-item" href="{{ url('/estacionamientos/') }}">Lista estacionamientos</a>
+                        <a class="collapse-item" href="{{ url('/estacionamientos/create') }}">Crear estacionamientos</a>
                     </div>
                 </div>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Asignacion de est.</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Asignacion de est.</h6>
+                        <a class="collapse-item" href="{{ url('/asignar_estacionamientos') }}">Lista est. asignados</a>
+                        <a class="collapse-item" href="{{ url('/asignar_estacionamientos/create') }}">Asignar estacionamiento</a>
+                    </div>
+                </div>
+            </li>
+
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{ url('/asignar_estacionamientos/create') }}"> 
+                    <i class="fas fa-users"></i>
+                    <span>Asignar estacionamiento</span>
+                </a>
+            </li> --}}
+
+
+            {{-- FOO --}}
+
+
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"

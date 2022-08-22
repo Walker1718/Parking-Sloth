@@ -31,6 +31,7 @@
                     <th>Fecha de actualización</th>
                     <th>Activo</th>
                     <th>Editar</th>
+                    <th>Estacionamientos asignados</th>
                 </tr>
                 @foreach ($usuarios as $usuario)
                     <tr>
@@ -58,6 +59,24 @@
                             <a href="{{url('/usuarios/'.$usuario->ID_Usuario.'/editar')}}">
                                 <i class="fas fa-edit  fa-lg"></i>
                             </a>
+                        </td>
+                        {{-- FOO --}}
+                        <td>
+                            
+                            <a href="{{url('/usuarios/'.$usuario->ID_Usuario.'/estacionamientos')}}">
+                                <i class="fas fa-parking"></i>
+                            </a>
+
+                            {{-- <select class="form-select" name="rol" id="rol" aria-label="Default select example">
+                                <option value="0">Seleccione un estacionamiento para asignar</option>
+                                @foreach ($estacionamientos as $estacionamiento)
+                                    <option 
+                                        value="{{$estacionamiento->ID_Estacionamiento}}">{{$estacionamiento->Numero}}
+                                    </option>
+                                @endforeach
+                            </select> --}}
+
+
                         </td>
                     </tr>
                 @endforeach

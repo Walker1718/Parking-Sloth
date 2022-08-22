@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estacionamiento;
 use App\Models\Rol;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+
 
 class UsuarioController extends Controller
 {
@@ -22,8 +25,10 @@ class UsuarioController extends Controller
     public function vistaUsuarios()
     {
         $usuarios = Usuario::all();
+        $estacionamientos = Estacionamiento::all();
         return view('usuarios.listado', [
-            'usuarios' => $usuarios
+            'usuarios' => $usuarios,
+            'estacionamientos' => $estacionamientos
         ]);
     }
 
@@ -269,5 +274,12 @@ class UsuarioController extends Controller
         $usuario->save();
         return $usuario;
     }
+
+    // FOO
+
+    // public function editarEstacionamiento(Request $request){
+
+    //     app(EstacionamientoAsignadoController:class)->index();
+    // }
 
 }
