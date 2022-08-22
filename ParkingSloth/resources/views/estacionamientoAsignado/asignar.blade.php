@@ -13,8 +13,9 @@
                 @csrf
 
                 {{-- CALLE A ASIGNAR --}}
-                <select class="form-select" name="estacionamientoAsignado" id="estacionamientoAsignado" aria-label="Default select example">
-                    <option value="0">Seleccione un estacionamiento para asignar</option>
+                <label>Estacionamiento</label>
+                <select class="form-select" name="estacionamientoAsignado" id="estacionamientoAsignado" aria-label="Seleccione un estacionamiento para asignar" required>
+                    <option value="">Seleccione un estacionamiento para asignar</option>
                     @foreach ($estacionamientos as $estacionamiento)
 
                         <option 
@@ -28,7 +29,7 @@
                 {{-- Fecha --}}
                 <div class="form-group">
                     <label>Activo:</label>
-                    <input type="date" class="form-control" name='fecha'>
+                    <input type="date" class="form-control" name='fecha' required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Asignar</button>

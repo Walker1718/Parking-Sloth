@@ -14,8 +14,8 @@
 
                 {{-- CALLE A ASIGNAR --}}
                 <label>Estacionamiento</label>
-                <select class="form-select" name="estacionamientoAsignado" id="estacionamientoAsignado" aria-label="Default select example">
-                    <option value="0">Seleccione un estacionamiento para asignar</option>
+                <select class="form-select" name="estacionamientoAsignado" id="estacionamientoAsignado" aria-label="Seleccione un estacionamiento para asignar" required>
+                    <option value="">Seleccione un estacionamiento para asignar</option>
                     @foreach ($estacionamientos as $estacionamiento)
 
                         <option 
@@ -28,8 +28,8 @@
 
                 {{-- MODERADOR ASIGNADO --}}
                 <label>Moderador</label>
-                <select class="form-select" name="moderadorAsignado" id="moderadorAsignado" aria-label="Default select example">
-                    <option value="0">Seleccione un moderador para el estacionamiento</option>
+                <select class="form-select" name="moderadorAsignado" id="moderadorAsignado" aria-label="Seleccione un moderador para el estacionamiento" required>
+                    <option value="">Seleccione un moderador para el estacionamiento</option>
                     @foreach ($usuarios as $usuario)
 
                         <option 
@@ -44,7 +44,7 @@
                 
                 <div class="form-group">
                     <label>Fecha</label>
-                    <input type="date" class="form-control" name='fecha'>
+                    <input type="date" class="form-control" name='fecha' min="2000-01-02" required >
                 </div>
                 
                 <button type="submit" class="btn btn-primary" oninput="asignar()">Asignar</button>
