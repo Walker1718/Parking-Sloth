@@ -45,6 +45,28 @@ class EstacionamientoController extends Controller
         //return $request->all();
 
         //  dd($request);
+
+        $campos=[
+            'ID_Lista'=>'required|integer',
+            'numero'=>'required|integer|max:1000000',
+            'latitud'=> 'required|numeric|between:-90,90',
+            'longitud'=> 'required|numeric|between:-180,180',
+            'capacidad_total'=> 'required|integer',
+            'referencia'  => 'max:100'
+            
+        ];
+        
+        $Mensaje=[
+            "ID_Lista.required"=>'Debe seleccionar una calle',
+            "numero.required"=>'Debe ingresar un numero de estacionamiento',
+            "latitud.required"=>'Debe ingresar una latitud',
+            "longitud.required"=>'Debe ingresar una longitud',
+            "capacidad_total.required"=>'Debe ingresar la capacidad total',
+
+            "referencia.max"=>'El campo referencia no debe superar los 100 caracteres'
+        ];
+        $this->validate($request,$campos,$Mensaje);
+
         $estacionamiento = new Estacionamiento();
 
         $estacionamiento->ID_Lista = $request->input('ID_Lista');
