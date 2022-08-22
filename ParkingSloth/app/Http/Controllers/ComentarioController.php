@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comentario;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ComentarioController extends Controller
 {
@@ -104,5 +105,13 @@ class ComentarioController extends Controller
         Comentario::destroy($ID_Comentario);
         
         return redirect('comentarios');
+    }
+
+    public function pdf()
+    {
+        $usuarios = Usuario::all();
+        $datos['comentarios']= Comentario::paginate();
+        $pdf = Pdf::loadView('comentarios.pdf',$datos,compact('usuarios'));
+        return $pdf->stream();
     }
 }
