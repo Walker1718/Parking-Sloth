@@ -104,7 +104,7 @@
             </li>
             <!-- AARON ACTUALIZAR ESTACIONAMIENOT --------->
 
-            <div id="OcultarModerador2"> <!--AARON---------------------OCULTAR MODERADOR------->
+            
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -149,13 +149,6 @@
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" id='ID_Usuario' href="../ActualizarEstacionamientos">
-                <i class="fas fa-fw fa-cog"></i>
-                    <span>Actualizar Estacionamientos</span></a>
-            </li>
-
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -163,11 +156,6 @@
             <div class="sidebar-heading">
                 Soporte
             </div>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-info"></i>
-                    <span>Capacitación</span></a>
-            </li>    
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/ImportDataSet') }}">
@@ -176,6 +164,8 @@
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+            
+            </div> <!--AARON---------------------Ocultar Usuario Comun------->
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
