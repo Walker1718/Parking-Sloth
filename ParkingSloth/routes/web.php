@@ -74,6 +74,10 @@ Route::post('/ImportDataSet/userimport', 'App\Http\Controllers\ImportDataSetCont
 Route::get('/IndexModerador/{ID_Usuario}', 'App\Http\Controllers\EstacionamientoAsignadoController@IndexModerador');
 //aaron actualizar estacionamiento/
 
-Route::get('/navegarmapa', function(){
-    return view('navegarmapa.navegarmapa');
-});
+
+//elizabeth navegar mapa controller
+Route::get('/navegarmapa', 'App\Http\Controllers\NavegarMapaController@NavegarMapa');
+
+// Route::get('/navegarmapa', function(){
+//     return view('navegarmapa.navegarmapa');
+// });
