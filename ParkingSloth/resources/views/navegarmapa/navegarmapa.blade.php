@@ -80,7 +80,24 @@
                 console.log(jso_estacionamiento[i]);
             }
         
-            let estacionamientos = []
+            let estacionamientos = [
+                {
+                    name: "Freire 552",
+                    lat: -36.8261952, 
+                    lng: -73.0545832,
+                    address: "Freire 552, Concepción",
+                    horario: "Lunes - Viernes: 8:00 - 22:00<br/>Sábado - Domingo - Festivos: 8:00 - 20:00",
+                    valor: "$20 c/min"
+                },
+                {
+                    name: "Barros Arana 1068",
+                    lat: -36.82523,
+                    lng: -73.0466577,
+                    address: "Barros Arana 1068, Concepción",
+                    horario: "Lunes - Viernes: 8:00 - 22:00<br/>Sábado - Domingo - Festivos: 9:00 - 20:00",
+                    valor: "$25 c/min"
+                }
+            ]
   
             for (var i in jso_estacionamiento){
                 estacionamientos.push({"name": jso_estacionamiento[i].Numero,
