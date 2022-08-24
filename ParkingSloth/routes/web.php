@@ -69,6 +69,7 @@ Route::get('/ActualizarEstacionamientos/{ID_Usuario}', 'App\Http\Controllers\Est
 
 Route::get('/ImportDataSet', 'App\Http\Controllers\ImportDataSetController@show');
 Route::post('/ImportDataSet/import', 'App\Http\Controllers\ImportDataSetController@store');
+Route::post('/ImportDataSet/userimport', 'App\Http\Controllers\ImportDataSetController@userstore');
 
 Route::get('/IndexModerador/{ID_Usuario}', 'App\Http\Controllers\EstacionamientoAsignadoController@IndexModerador');
 //aaron actualizar estacionamiento/

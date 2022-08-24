@@ -31,11 +31,13 @@ class ImportDataSet implements ToCollection,  WithHeadingRow
             $Error = "Error en la fila " . $position . " de la tabla, en las Casillas :";
 
             if (!$row->has(['calles', 'cuadras','automoviles'])) {
-                $Titulos_sin_identificar = "";
-                if (!$row->has(['calles'])) $Titulos_sin_identificar = $Titulos_sin_identificar . 'Calles';
-                if (!$row->has(['cuadras'])) $Titulos_sin_identificar = $Titulos_sin_identificar . 'Cuadras';
-                if (!$row->has(['automoviles'])) $Titulos_sin_identificar = $Titulos_sin_identificar . 'Automoviles';
-            return back()->withErrors('No comple con los siguientes titulos predefinidos que tienen que tener las tablas: ' . $Titulos_sin_identificar . ' .');
+                $Titulos_sin_identificar = 'No comple con los siguientes titulos predefinidos que tienen que tener las tablas: ';
+                if (!$row->has(['calles'])) $Titulos_sin_identificar = $Titulos_sin_identificar . ' Calles';
+                if (!$row->has(['cuadras'])) $Titulos_sin_identificar = $Titulos_sin_identificar . ' Cuadras';
+                if (!$row->has(['automoviles'])) $Titulos_sin_identificar = $Titulos_sin_identificar . ' Automoviles';
+                array_push($Errors, $Titulos_sin_identificar);
+                array_unshift($Errors,count((array)$Errors));
+            return back()->withErrors($Errors);
             } 
 
                 if ($row['calles'] == null || !is_string($row['calles'])){
@@ -50,14 +52,14 @@ class ImportDataSet implements ToCollection,  WithHeadingRow
                     $Error = $Error . ' Automoviles';
                     $booleanErrors = true;
                 }
-
                 if($booleanErrors){
                     $Error = $Error . '.';
                     array_push($Errors, $Error);
                     $booleanErrorsMaster = true;
-
                 }
         }  
+        array_unshift($Errors,count((array)$Errors));
+
 
         if($booleanErrorsMaster) return back()->withErrors($Errors);
 
