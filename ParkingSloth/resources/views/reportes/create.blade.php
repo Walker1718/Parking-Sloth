@@ -121,20 +121,4 @@
 
     </script>
 
-    <script>
-        $.ajax({
-                type: "POST",
-                url: 'handler.php',
-                data: formdata,
-                success: after_form_submitted,
-                dataType: 'json' ,
-                processData: false,
-                contentType: false,
-                cache: false        
-            })
-        .done(function( data ) {
-                window.location = '/navegarmapa'
-            });
-    </script>
-
 @endsection

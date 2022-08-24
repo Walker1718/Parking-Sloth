@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-12">
-        <a href="{{route('comentarios.pdf')}}" class="btn btn-primary btn-lg">Importar</a>
+        <a href="{{route('comentarios.pdf')}}" class="btn btn-primary btn-lg">Exportar</a>
         <a href="{{url('/comentarios/create')}}" class="btn btn-primary btn-lg float-right">Crear Nuevo</a>
     </div>
 </div>

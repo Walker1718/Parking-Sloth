@@ -52,7 +52,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('reportes.pdf');
+    return view('home');
 });
 
 Route::get('/reportes/pdf', [App\Http\Controllers\ReporteController::class, 'pdf'])->name('reportes.pdf');

@@ -12,16 +12,15 @@
   <br>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Reporte Nº{{$ComentarioVerMas->ID_Reporte}}</h3>
+            <h3 class="card-title">Comentario Nº{{$ComentarioVerMas->ID_Comentario}}</h3>
         </div>
         <div class="card-body table-responsive p-0" style="height: 200px;">
             <table class="table table-head-fixed text-nowrap">
             <thead>
                 <tr>
-                    <th>ID_Comentario</th>
+                    <th>Id Comentario</th>
                     <th>Título</th>
-                    <th>Calificacion</th>
-                    <th>Mensaje</th>
+                    <th>Calificación</th>
                 </tr>
             </thead>
             <tbody>
