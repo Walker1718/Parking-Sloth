@@ -13,6 +13,14 @@ class AsignarTest extends TestCase
      *
      * @return void
      */
+
+    public function test_asignar_ver_pagina()
+    {
+        $response = $this->get('/asignar_estacionamientos/crear'); //Consulta la url navegarmapa
+
+        $response->assertStatus(200); //Pregunta si 
+    }
+     
     public function test_asignar_estacionamiento()
     {
         $response = $this->post('/asignar_estacionamientos',[
