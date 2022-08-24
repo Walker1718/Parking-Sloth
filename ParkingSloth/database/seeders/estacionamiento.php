@@ -22,6 +22,8 @@ class estacionamiento extends Seeder
                 'Activo' => true,
                 'Capacidad_Total' => 13,
                 'Capacidad_Utilizada' => 0,
+                'Latitud' => -36.82624311167962,
+                'Longitud' =>  -73.0516106959861,
                 'Referencia' => 'Estacionamiento_Test1'
             ],
             [
@@ -30,6 +32,8 @@ class estacionamiento extends Seeder
                 'Activo' => true,
                 'Capacidad_Total' => 8,
                 'Capacidad_Utilizada' => 0,
+                'Latitud' => -36.825757889786345,
+                'Longitud' =>  -73.04704557632546,
                 'Referencia' => 'Estacionamiento_Test2'
             ]
         ];
