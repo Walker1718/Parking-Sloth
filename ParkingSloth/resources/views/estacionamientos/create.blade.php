@@ -5,7 +5,15 @@
     
     <div class="container-fluid">
         <div class="container">
-            <h1>Crear estacionamiento</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Crear Estacionamiento</h3>
+                            <p>Porfavor complete los campos para la creación de un estacionamiento.</p>
+                        </div>
+                        <div class="card-body" style="display: block;">
             
             <form class="form-group" method="POST" action="/estacionamientos">
                 @csrf
@@ -21,6 +29,8 @@
 
                     </div>
                 @endif
+
+                
 
                 {{-- CALLE--}}
                 <label">Calle:</label>
@@ -81,9 +91,21 @@
                     <label id="labelActivo">Habilitado</label>
                   </div>
 
-                <button type="submit" class="btn btn-primary">Guardar</button>
+
+                  <div class="row">
+                    <div class="col-12">
+                        <a href="{{url('/estacionamientos')}}" class="btn btn-secondary">Volver</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+                
 
             </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
 
         </div>
     </div>

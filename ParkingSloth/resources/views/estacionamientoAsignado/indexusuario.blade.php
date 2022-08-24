@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="container">
 
-            <h1>{{$usuario->Nombre}}: Estacionamientos asignados </h1>
+            <h1>{{$usuario->Nombre}} {{$usuario->Apellido}}: Estacionamientos asignados </h1>
 
             
             {{-- <select class="form-select" name="rol" id="rol" aria-label="Default select example">

@@ -55,15 +55,33 @@ class EstacionamientoAsignadoController extends Controller
         // return view('estacionamientoAsignado.create',compact('estacionamientos','usuario'));
 
 
+        $estacionamientos = DB::table('estacionamientos') 
+        ->join('lista_estacionamientos','estacionamientos.ID_Lista','=','lista_estacionamientos.ID_Lista')
+        ->select(   'estacionamientos.ID_Estacionamiento',
+                    'estacionamientos.Numero',
+                    'estacionamientos.Capacidad_Total',
+                    'estacionamientos.Capacidad_Utilizada',
+                    'lista_estacionamientos.Nombre_Calle')->get();
 
-        $estacionamientos = Estacionamiento::all();
+////////////////////////
+        // $estacionamientos = Estacionamiento::all();
         $usuarios = Usuario::all();
         return view('estacionamientoAsignado.create', compact('estacionamientos','usuarios'));
     }
 
     public function asignarEstacionamiento($id)
     {
-        $estacionamientos = Estacionamiento::all();
+
+        $estacionamientos = DB::table('estacionamientos') 
+        ->join('lista_estacionamientos','estacionamientos.ID_Lista','=','lista_estacionamientos.ID_Lista')
+        ->select(   'estacionamientos.ID_Estacionamiento',
+                    'estacionamientos.Numero',
+                    'estacionamientos.Capacidad_Total',
+                    'estacionamientos.Capacidad_Utilizada',
+                    'lista_estacionamientos.Nombre_Calle')->get();
+        
+        
+        // $estacionamientos = Estacionamiento::all();
         $usuario = Usuario::where('ID_Usuario', $id)->get()->first();
         return view('estacionamientoAsignado.asignar',compact('estacionamientos','usuario'));
     }
