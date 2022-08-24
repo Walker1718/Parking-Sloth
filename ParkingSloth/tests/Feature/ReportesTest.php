@@ -37,13 +37,26 @@ class ReportesTest extends TestCase
         $response->assertSessionHasNoErrors();
     }
 
-    public function testReporteError()
+    public function testReporteCampoVacio()
+    {
+        
+        $response = $this->post('/reportes',[
+            'ID_Estacionamiento'     =>  "",
+            'Titulo'  =>  "",
+            'Mensaje'  =>  "",
+        ]);
+
+        //$response->assertStatus(302);
+        $response->assertSessionHasErrors();
+    }
+
+    public function testReporteCampoInvalido()
     {
         
         $response = $this->post('/reportes',[
             'ID_Estacionamiento'     =>  -1,
-            'Titulo'  =>  1214,
-            'Mensaje'  =>  "",
+            'Titulo'  =>  "1214",
+            'Mensaje'  =>  123,
         ]);
 
         //$response->assertStatus(302);

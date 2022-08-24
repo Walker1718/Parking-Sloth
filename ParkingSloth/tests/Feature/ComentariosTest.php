@@ -20,7 +20,7 @@ class ComentariosTest extends TestCase
 
     // }
      
-    public function test_ingresar_reporte()
+    public function testIngresarComentario()
     {
         
         $response = $this->post('/comentarios',[
@@ -33,18 +33,32 @@ class ComentariosTest extends TestCase
         $response->assertSessionHasNoErrors();
     }
 
-    public function testReporteError()
+    public function testComentarioCampoVacio()
+    {
+        
+        $response = $this->post('/comentarios',[
+            'Titulo'  =>  "",
+            'Mensaje'  =>  "",
+            'Calificacion'  =>  "",
+        ]);
+
+        //$response->assertStatus(302);
+        $response->assertSessionHasErrors();
+    }
+
+    public function testComentarioError()
     {
         
         $response = $this->post('/comentarios',[
             'Titulo'  =>  "Titulo Test comentario con error",
-            'Mensaje'  =>  "Mensaje Test comentario con error",
+            'Mensaje'  =>  1,
             'Calificacion'  =>  3,
         ]);
 
         //$response->assertStatus(302);
         $response->assertSessionHasErrors();
     }
+
 
     // public function tearDown()
     // {
