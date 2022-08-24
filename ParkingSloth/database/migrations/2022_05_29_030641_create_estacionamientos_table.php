@@ -20,8 +20,8 @@ return new class extends Migration
             $table->boolean('Activo');
             $table->integer('Capacidad_Total');
             $table->integer('Capacidad_Utilizada');
-            $table->float('Latitud')->nullable();
-            $table->float('Longitud')->nullable();
+            $table->decimal('Latitud',17,14)->nullable();
+            $table->decimal('Longitud',17,14)->nullable();
             $table->string('Referencia')->nullable();
             $table->timestamps();
         });
