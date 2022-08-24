@@ -54,6 +54,8 @@ class EstacionamientoAsignadoController extends Controller
         // $usuario = Usuario::where('ID_Usuario', $id)->get()->first();
         // return view('estacionamientoAsignado.create',compact('estacionamientos','usuario'));
 
+
+
         $estacionamientos = Estacionamiento::all();
         $usuarios = Usuario::all();
         return view('estacionamientoAsignado.create', compact('estacionamientos','usuarios'));
@@ -74,6 +76,20 @@ class EstacionamientoAsignadoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos=[
+            'estacionamientoAsignado'=>'required|integer',
+            'moderadorAsignado'=>'required|integer',
+            'fecha'=>'required|date'
+        ];
+        
+        $Mensaje=[
+            "estacionamientoAsignado.required"=>'Debe seleccionar un estacionamiento',
+            "moderadorAsignado.required"=>'Debe seleccionar un moderador',
+            "fecha.required"=>"Debe seleccionar una fecha"
+        ];
+
+        $this->validate($request,$campos,$Mensaje);
 
         $estacionamientoAsignado = new estacionamiento_asignado();
         $estacionamientoAsignado->ID_Usuario = $request->input('moderadorAsignado');
