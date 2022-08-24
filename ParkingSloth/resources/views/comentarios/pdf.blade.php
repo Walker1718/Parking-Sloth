@@ -26,7 +26,7 @@
             <tr>
                 <td>{{$comentario->ID_Comentario}}</td>  
                 <td>{{$comentario->Titulo}}</td>
-                <td>{{$comentario->Calificacion}}  </td>
+                <td>{{$comentario->Calificacion}} <span class="fa fa-star"></span> </td>
             </tr>
             @endforeach
         </tbody>

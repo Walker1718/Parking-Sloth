@@ -18,9 +18,9 @@
             <table class="table table-head-fixed text-nowrap">
             <thead>
                 <tr>
-                    <th>ID_Comentario</th>
+                    <th>Id Comentario</th>
                     <th>Título</th>
-                    <th>Calificacion</th>
+                    <th>Calificación</th>
                 </tr>
             </thead>
             <tbody>

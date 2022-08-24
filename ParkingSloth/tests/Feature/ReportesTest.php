@@ -7,8 +7,10 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Estacionamiento;
 
+
 class ReportesTest extends TestCase
 {
+
     /**
      * A basic feature test example.
      *
@@ -26,7 +28,7 @@ class ReportesTest extends TestCase
     {
         
         $response = $this->post('/reportes',[
-            'ID_Estacionamiento'     =>  13,
+            'ID_Estacionamiento'     =>  1,
             'Titulo'  =>  "Titulo Test Reporte",
             'Mensaje'  =>  "Mensaje Test reporte",
         ]);
@@ -47,4 +49,10 @@ class ReportesTest extends TestCase
         //$response->assertStatus(302);
         $response->assertSessionHasErrors();
     }
+
+    // public function tearDown()
+    // {
+    //     parent::tearDown();
+    //     DB::rollBack();
+    // }
 }
