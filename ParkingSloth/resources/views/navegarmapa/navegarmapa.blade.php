@@ -68,15 +68,36 @@
         
 @endsection
 
-{{-- APIKEY DE GOOGLE MAPS: AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
-{{-- EL ID DEL MAPA CONFIGURADO DE GOOGLE: 6780ea5549035eec --}}
 
 @section('scripts')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
-        <script src="{{ asset('js/estacionamientos.js')}}"></script>
+        {{-- <script src="{{ asset('js/estacionamientos.js')}}"></script> --}}
 
+
+        <script type="text/javascript">
+            const jso_estacionamiento = {!! json_encode($estacionamientos) !!};
+            for (var i in jso_estacionamiento){
+                console.log(jso_estacionamiento[i]);
+            }
+        
+            let estacionamientos = []
+  
+            for (var i in jso_estacionamiento){
+                estacionamientos.push({"name": jso_estacionamiento[i].Numero,
+                            "lat": jso_estacionamiento[i].Latitud, 
+                            "lng": jso_estacionamiento[i].Longitud,
+                            "address": jso_estacionamiento[i].Referencia,
+                            "horario": "Lunes - Viernes: 8:00 - 22:00<br/>Sábado - Domingo - Festivos: 8:00 - 20:00",
+                            "valor": "$20 c/min"});    
+            }
+
+        </script>
+
+                
+        {{-- APIKEY DE GOOGLE MAPS: AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE  ... NO USAR SIN PERMISO DE ELI. ES SU TARJETA DE CREDITO--}}
+        {{-- EL ID DEL MAPA CONFIGURADO DE GOOGLE: 6780ea5549035eec --}}
         <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE&map_ids=6780ea5549035eec&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjXeLYYRnc_sr8FyNRS9kVhikDvwi3vCE&map_ids=6780ea5549035eec&callback=initMap">
         </script>
 
         <script src="{{ asset('js/map.js')}}"></script>
