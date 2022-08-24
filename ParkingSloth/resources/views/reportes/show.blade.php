@@ -33,14 +33,18 @@
                 <td>{{$ReporteVerMas->Titulo}}</td>
                 
                 @foreach ($estacionamientos as $estacionamiento)
-                    @if ($estacionamiento->ID_Estacionamiento == $ReporteVerMas->ID_Estacionamiento)
+                    
+                    
                         @foreach ($lista_estacionamientos as $lista_estacionamiento)
+                        @if ($estacionamiento->ID_Lista == $lista_estacionamiento->ID_Lista && $estacionamiento->ID_Estacionamiento == $ReporteVerMas->ID_Estacionamiento)
                             <td>{{$lista_estacionamiento->Nombre_Calle}}</td>
-                            
+                            <td>{{$estacionamiento->Numero}}</td>
+                        @endif   
                         @endforeach
-                        <td>{{$estacionamiento->Numero}}</td>
-                    @endif                            
+                        
+                                               
                 @endforeach
+
                 <td>{{$ReporteVerMas->created_at}}</td>
                 
             </tr>

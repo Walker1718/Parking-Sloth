@@ -4,6 +4,8 @@
 
 <div class="row">
     <div class="col-12">
+        <div v></div>
+        <a href="{{route('reportes.pdf')}}" class="btn btn-primary btn-lg">Exportar</a>
         <a href="{{url('/reportes/create')}}" class="btn btn-primary btn-lg float-right">Crear Nuevo Reporte</a>
     </div>
 </div>

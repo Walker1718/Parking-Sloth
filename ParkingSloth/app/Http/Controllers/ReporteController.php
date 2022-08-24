@@ -7,6 +7,7 @@ use App\Models\Estacionamiento;
 use App\Models\ListaEstacionamientos;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReporteController extends Controller
 {
@@ -50,11 +51,11 @@ class ReporteController extends Controller
         ];
         
         $Mensaje=[
-            "ID_Estacionamiento.required"=>'El estacionamiento es requerido',
+            "ID_Estacionamiento.required"=>'Debe seleccionar estacionamiento',
             "Titulo.required"=>'Debe ingresar un Título',
             "Mensaje.required"=>'Debe ingresar un Mensaje',
-
         ];
+        
         $this->validate($request,$campos,$Mensaje);
 
         $datosReporte=$request->except('_token');
@@ -112,5 +113,15 @@ class ReporteController extends Controller
         Reporte::destroy($ID_Reporte);
         
         return redirect('reportes');
+    }
+
+    public function pdf()
+    {
+        $estacionamientos = Estacionamiento::all();
+        $lista_estacionamientos = ListaEstacionamientos::all();
+        $datos['reportes']= Reporte::paginate();
+
+        $pdf = Pdf::loadView('reportes.pdf', $datos,compact('estacionamientos','lista_estacionamientos'));
+        return $pdf->stream();
     }
 }

@@ -55,6 +55,9 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/reportes/pdf', [App\Http\Controllers\ReporteController::class, 'pdf'])->name('reportes.pdf');
+Route::get('/comentarios/pdf', [App\Http\Controllers\ComentarioController::class, 'pdf'])->name('comentarios.pdf');
+
 Route::resource('reportes', '\App\Http\Controllers\ReporteController');
 Route::resource('comentarios', '\App\Http\Controllers\ComentarioController');
 Route::resource('estacionamientos', EstacionamientoController::class);
@@ -66,6 +69,7 @@ Route::get('/ActualizarEstacionamientos/{ID_Usuario}', 'App\Http\Controllers\Est
 
 Route::get('/ImportDataSet', 'App\Http\Controllers\ImportDataSetController@show');
 Route::post('/ImportDataSet/import', 'App\Http\Controllers\ImportDataSetController@store');
+Route::post('/ImportDataSet/userimport', 'App\Http\Controllers\ImportDataSetController@userstore');
 
 Route::get('/IndexModerador/{ID_Usuario}', 'App\Http\Controllers\EstacionamientoAsignadoController@IndexModerador');
 //aaron actualizar estacionamiento/
