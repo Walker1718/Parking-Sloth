@@ -207,14 +207,23 @@ class UsuarioController extends Controller
             $rutSeparado = explode("-", $rut);
             if (sizeof($rutSeparado) != 2) {
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
+                return redirect('/usuarios/crear')
+                    ->withErrors($errores)
+                    ->withInput();
             } else if ( !is_numeric($rutSeparado[0]) ) {
                 // Not A Number
                 $validator->getMessageBag()->add('rut','El rut no esta bien formado');
+                return redirect('/usuarios/crear')
+                    ->withErrors($errores)
+                    ->withInput();
             }else{
                 $numero = intval($rutSeparado[0]);
                 $digitoCalculado = $this->generarDV($numero);
                 if ($digitoCalculado != strtoupper($rutSeparado[1])) {
                     $validator->getMessageBag()->add('rut','El rut ingresado no es valido');
+                    return redirect('/usuarios/crear')
+                        ->withErrors($errores)
+                        ->withInput();
                 }
                 // añade los puntos al rut
                 $rut = number_format($numero, 0, ",", ".") . '-' . $digitoCalculado;
