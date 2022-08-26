@@ -51,7 +51,7 @@ class UsuarioController extends Controller
         $usuario = $this->buscarUsuario($id);
         
         $validator = Validator::make($request->all(), [
-            'email' => 'email',
+            'email' => 'email|nullable',
         ]);
 
         $errores = $validator->errors();
