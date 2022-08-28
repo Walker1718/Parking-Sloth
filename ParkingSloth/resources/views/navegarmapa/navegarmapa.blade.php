@@ -86,6 +86,7 @@
                     lat: -36.8261952, 
                     lng: -73.0545832,
                     address: "Freire 552, Concepción",
+                    capacidad: "5",
                     horario: "Lunes - Viernes: 8:00 - 22:00<br/>Sábado - Domingo - Festivos: 8:00 - 20:00",
                     valor: "$20 c/min"
                 },
@@ -94,6 +95,7 @@
                     lat: -36.82523,
                     lng: -73.0466577,
                     address: "Barros Arana 1068, Concepción",
+                    capacidad: "10",
                     horario: "Lunes - Viernes: 8:00 - 22:00<br/>Sábado - Domingo - Festivos: 9:00 - 20:00",
                     valor: "$25 c/min"
                 }
@@ -104,6 +106,7 @@
                             "lat": jso_estacionamiento[i].Latitud, 
                             "lng": jso_estacionamiento[i].Longitud,
                             "address": jso_estacionamiento[i].Referencia,
+                            "capacidad": jso_estacionamiento[i].Capacidad_Total,
                             "horario": "Lunes - Viernes: 8:00 - 22:00<br/>Sábado - Domingo - Festivos: 8:00 - 20:00",
                             "valor": "$20 c/min"});    
             }
